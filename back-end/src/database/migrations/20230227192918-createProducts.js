@@ -14,14 +14,13 @@ module.exports = {
         type: Sequelize.STRING,
         unique: true,
       },
-      preco: {
+      price: {
         allowNull: false,
         type: Sequelize.DECIMAL(4, 2),
       },
       urlImage: {
         allowNull: false,
         type: Sequelize.STRING,
-        field: 'url_image'
       },
     });
   },
