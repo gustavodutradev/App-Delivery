@@ -35,7 +35,6 @@ services:
       MYSQL_USER: root
       MYSQL_PASSWORD: password
       MYSQL_HOST: db
-      JWT_SECRET: secret
       MYSQL_DB_NAME: delivery-app
       EVAL_ALWAYS_RESTORE_DEV_DB: true
       NODE_ENV: development
