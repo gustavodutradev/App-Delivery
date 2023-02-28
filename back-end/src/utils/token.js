@@ -9,7 +9,7 @@ const jwtConfig = {
 
 export function generateToken(user) {
   const { name, email, role } = user;
-  const token = jwt.sign({ data: { id, name, email, role }, secret, jwtConfig });
+  const token = jwt.sign({ data: { name, email, role }, secret, jwtConfig });
 
   return token;
 }
