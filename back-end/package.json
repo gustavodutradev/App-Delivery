@@ -2,7 +2,7 @@
   "name": "delivery-app-back-end",
   "version": "0.1.0",
   "description": "Back-end do projeto App de Delivery",
-  "main": "./src/api/server.js",
+  "main": "./src/api/server.ts",
   "engines": {
     "node": ">=16.0.0"
   },
@@ -11,7 +11,7 @@
   "scripts": {
     "db:reset": "npx sequelize-cli db:drop && npx sequelize-cli db:create && npx sequelize-cli db:migrate && npx sequelize-cli db:seed:all",
     "start": "node .",
-    "dev": "nodemon .",
+    "dev": "nodemon  --watch \"./src/**\" ./src/api/server.ts",
     "test": "mocha src/tests/**/*$NAME*.test.js --exit",
     "test:coverage": "nyc --all npm run test",
     "test:coverage:json": "nyc --all --reporter=json-summary npm run test",
@@ -34,6 +34,7 @@
     "socket.io": "4.4.1"
   },
   "devDependencies": {
+    "@types/node": "^18.14.2",
     "chai": "4.3.6",
     "chai-http": "4.3.0",
     "eslint-config-trybe-backend": "1.0.4",
@@ -41,6 +42,7 @@
     "nodemon": "2.0.15",
     "nyc": "15.1.0",
     "sequelize-cli": "6.4.1",
-    "sinon": "13.0.1"
+    "sinon": "13.0.1",
+    "typescript": "^4.9.5"
   }
 }
