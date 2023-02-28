@@ -7,6 +7,7 @@ type Props = {
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   value: string | number;
   name: string;
+  datatestId?: string;
 };
 
 const SInput = styled.label`
@@ -40,6 +41,7 @@ const Input = (p: Props) => {
         type={ p.type || 'text' }
         onChange={ p.onChange }
         value={ p.value }
+        datatest-id = { p.datatestId }
       />
     </SInput>
   );
