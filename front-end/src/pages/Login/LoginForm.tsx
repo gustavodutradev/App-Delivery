@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import tw from 'twin.macro';
 import Button from '../../components/Button';
 import Input from '../../components/Input';
+import axiosRequest from '../../utils/axios';
 
 type Props = {
 };
@@ -20,10 +22,20 @@ const SForm = styled.form`
 const LoginForm = (p: Props) => {
   const [email, setEmail] = useState('');
   const [pw, setPw] = useState('');
+  const axios = axiosRequest();
+  const navigate = useNavigate();
+
+  const redirect = (status: number) => {
+    if (status === 201) navigate('/');
+  };
 
   return (
     <SForm
-      onSubmit={() => {}}
+      onSubmit={ async (e) => {
+        e.preventDefault();
+        const result = await axios.post('/login');
+        redirect(result.status)
+      } }
     >
       <Input 
         onChange={(e) => { setEmail(e.target.value); }}
