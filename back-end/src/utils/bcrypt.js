@@ -1,11 +1,15 @@
-import bcrypt from 'bcryptjs';
+const bcrypt = require('bcryptjs');
 
-export function encryptPassword(password) {
+function encryptPassword(password) {
   const encryptedPassword = bcrypt.hashSync(password, 10);
   return encryptedPassword;
 }
 
-export function checkPassword(loginPassword, userPassword) {
+function checkPassword(loginPassword, userPassword) {
   const isValid = bcrypt.compareSync(loginPassword, userPassword);
   return isValid;
+}
+
+module.exports = {
+  encryptPassword, checkPassword
 }

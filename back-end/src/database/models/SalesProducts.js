@@ -19,18 +19,18 @@ module.exports = (sequelize, DataTypes) => {
     timestamps: false,
     underscored: true,
   });
-  
-  SalesProduct.associate = (models) => {
-    models.SalesProduct.hasMany(models.Product, {
+
+  SalesProduct.associate = ({ Product, Sale }) => {
+    SalesProduct.hasMany(Product, {
       foreignKey: 'productId',
       as: 'products',
-      through: models.SalesProduct,
+      through: SalesProduct,
       otherKey: 'saleId'
     });
-    models.SalesProduct.hasMany(models.Sale, {
+    SalesProduct.hasMany(Sale, {
       foreignKey: 'saleId',
       as: 'sales',
-      through: models.SalesProduct,
+      through: SalesProduct,
       otherKey: 'productId'
     });
   }

@@ -19,20 +19,20 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       type: DataTypes.STRING
     },
-    role : {
+    role: {
       allowNull: false,
       type: DataTypes.STRING
     }
   },
-  {
-    tableName: 'users',
-    timestamps: false,
-    underscored: true,
-  })
+    {
+      tableName: 'users',
+      timestamps: false,
+      underscored: true,
+    })
 
   User.associate = (models) => {
-    models.User.belongsToMany(models.Sales, { foreignKey: 'sellerId', as: 'seller' });
-    models.User.belongsToMany(models.Sales, { foreignKey: 'userId', as: 'user' }); 
+    User.belongsToMany(models.Sales, { foreignKey: 'sellerId', as: 'seller' });
+    User.belongsToMany(models.Sales, { foreignKey: 'userId', as: 'user' });
   }
   return User;
 };
