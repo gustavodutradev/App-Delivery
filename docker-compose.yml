@@ -4,15 +4,13 @@ services:
   # Serviço que irá rodar o node
   backend:
     # Imagem base do container
-    image: node:16
+    build: ./back-end 
     # Nome do container para facilitar execução
     container_name: backend
     # Mesmo que `docker run -t`
     tty: true
     # Mesmo que `docker run -i`
     stdin_open: true
-    # Substitui o comando padrão da imagem do node
-    command: bash
     # Restarta a imagem caso algo a faça parar
     restart: always
     # Diretório padrão de execução
@@ -41,15 +39,13 @@ services:
 
   frontend:
     # Imagem base do container
-    image: node:16
+    build: ./front-end 
     # Nome do container para facilitar execução
     container_name: frontend
     # Mesmo que `docker run -t`
     tty: true
     # Mesmo que `docker run -i`
     stdin_open: true
-    # Substitui o comando padrão da imagem do node
-    command: bash
     # Restarta a imagem caso algo a faça parar
     restart: always
     # Diretório padrão de execução
