@@ -27,6 +27,7 @@ const LoginForm = (p: Props) => {
 
   const redirect = (status: number) => {
     if (status === 201) navigate('/');
+    console.log(`erro: status ${status} sem resposta`);
   };
 
   return (
