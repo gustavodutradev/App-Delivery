@@ -1,30 +1,47 @@
-const { Users } = require('../database/models');
+const { User } = require('../database/models');
 const { checkPassword, encryptPassword } = require('../utils/bcrypt');
 const { generateToken } = require('../utils/token');
 const NotFound = require('../utils/errors/notFound');
+const { 
+	registerValidations, 
+	checkUserExistence, 
+	checkLoingPassword, 
+	checkLoginEmail
+} = require('../utils/validations/loginValidations');
 
+const createUser = async (user) => {
+	const { name, email, role, password } = user;
+	registerValidations(user);
+	const foundUser = await findUser(email);
+	checkUserExistence(foundUser);
 
-async function createUser(user) {
-    const { name, email, role, password } = user;
-    const passwordCrypt = encryptPassword(password);
-    const newUser = await Users.create({ ...user, password: passwordCrypt });
-    const token = generateToken(newUser);
-    return { name, email, role, token }
-
+	const passwordCrypt = encryptPassword(password);
+	const newUser = await User.create({ ...user, password: passwordCrypt });
+	const token = generateToken(newUser);
+	return { name, email, role, token };
 }
 
-async function loginUser(user) {
-    const { email, password } = user;
-    const userFound = await Users.findOne({ where: { email } });
-    const { name, role } = userFound;
-    const isValidPassword = checkPassword(password, userFound.password);
-    const token = generateToken(userFound);
-    if (!userFound) throw new NotFound('Email or Password is invalid!');
-    if (!isValidPassword) throw new NotFound('Email or Password is invalid!');
-    return { name, email, role, token }
+const findUser = async (email) => {
+	const userFound = await User.findOne({ where: { email } });
+	return userFound;
+}
+
+const loginUser = async (user) => {
+	const { email, password } = user;
+	const userFound = await findUser(email);
+	checkLoginEmail(userFound);
+
+	const { name, password: dbPassword, role } = userFound;
+
+	const isValidPassword = checkPassword(password, dbPassword);
+	checkLoingPassword(isValidPassword);
+
+	const token = generateToken(userFound);
+
+	return { name, email, role, token }
 }
 
 module.exports = {
-    createUser,
-    loginUser,
+	createUser,
+	loginUser,
 }
