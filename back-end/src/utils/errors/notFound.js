@@ -1,8 +1,8 @@
 class NotFound extends Error{
-    
-    constructor(message){
-        this.status = 404;
-        super(message)
-    }
-    
+	constructor(message){
+		super(message)
+		this.status = 404;
+	}
 }
+
+module.exports = NotFound;
