@@ -1,5 +1,5 @@
 const { User } = require('../database/models');
-const { checkPassword, encryptPassword } = require('../utils/bcrypt');
+const { checkPassword, encryptPassword } = require('../utils/md5');
 const { generateToken } = require('../utils/token');
 const { 
   registerValidations, 
