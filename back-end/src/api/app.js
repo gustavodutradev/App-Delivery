@@ -3,9 +3,9 @@ const routes = require('./routes')
 const app = express();
 const errorHandle = require('../middleware/errorHandle')
 
-// app.get('/coffee', (_req, res) => res.status(418).end());
 app.use(express.json());
-app.use(routes);
+// app.get('/coffee', (_req, res) => res.status(418).end());
+app.use(routes)
 app.use(errorHandle);
 
 module.exports = app;
