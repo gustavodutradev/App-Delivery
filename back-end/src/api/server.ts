@@ -5,4 +5,3 @@ app.listen(port);
 console.log(`Api rodando na porta ${port}`);
 
 export { };
-
