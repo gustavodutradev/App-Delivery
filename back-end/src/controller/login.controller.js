@@ -1,17 +1,26 @@
 const loginService = require('../service/login.service');
 
-async function createUser(req, res) {
-    const user = req.body;
-    const data = await loginService.createUser(user);
-    return res.status(201).json(data);
+const createUser = async (req, res, next) => {
+	const user = req.body;
+	try {
+		const data = await loginService.createUser(user);
+		return res.status(201).json(data);
+	} catch (err) {
+		console.log(err);
+		return next(err);
+	}
 }
-async function loginUser(req, res) {
-    const user = req.body;
-    const data = await loginService.loginUser(user)
-    return res.status(200).json(data);
+const loginUser = async (req, res, next) => {
+	const user = req.body;
+	try {
+		const data = await loginService.loginUser(user);
+		return res.status(200).json(data);
+	} catch (err) {
+		return next(err);
+	}
 }
 
 module.exports = {
-    createUser,
-    loginUser,
+	createUser,
+	loginUser,
 }
