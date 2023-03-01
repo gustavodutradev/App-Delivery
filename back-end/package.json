@@ -9,9 +9,10 @@
   "engineStrict": true,
   "private": true,
   "scripts": {
-    "db:reset": "npx sequelize-cli db:drop && npx sequelize-cli db:create && npx sequelize-cli db:migrate && npx sequelize-cli db:seed:all",
+    "db:reset": "npm run prepack && npx sequelize-cli db:drop && npx sequelize-cli db:create && npx sequelize-cli db:migrate && npx sequelize-cli db:seed:all",
     "start": "node .",
     "dev": "nodemon  --watch \"./src/**\" ./src/api/server.ts",
+    "prepack": "rm -rf ./build && npx -y tsc",
     "test": "mocha src/tests/**/*$NAME*.test.js --exit",
     "test:coverage": "nyc --all npm run test",
     "test:coverage:json": "nyc --all --reporter=json-summary npm run test",
@@ -20,6 +21,7 @@
   "dependencies": {
     "@hapi/boom": "9.1.4",
     "@types/express": "4.17.13",
+    "bcryptjs": "2.4.3",
     "body-parser": "1.19.2",
     "cors": "2.8.5",
     "dotenv": "16.0.0",
@@ -29,9 +31,9 @@
     "md5": "2.3.0",
     "multer": "1.4.4",
     "mysql2": "2.3.3",
-    "bcryptjs": "2.4.3",
     "sequelize": "6.17.0",
-    "socket.io": "4.4.1"
+    "socket.io": "4.4.1",
+    "ts-node": "^10.9.1"
   },
   "devDependencies": {
     "@types/node": "^18.14.2",
