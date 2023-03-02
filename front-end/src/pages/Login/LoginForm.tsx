@@ -5,6 +5,8 @@ import tw from 'twin.macro';
 import Button from '../../components/Button';
 import Input from '../../components/Input';
 import axiosRequest from '../../utils/axios';
+import ErrorMessage from '../../components/ErrorMessage';
+import { AxiosResponse } from 'axios';
 
 type Props = {
 };
@@ -22,6 +24,7 @@ const SForm = styled.form`
 const LoginForm = (p: Props) => {
   const [email, setEmail] = useState('');
   const [pw, setPw] = useState('');
+  const [wrongLogin, setWrongLogin] = useState(false);
   const axios = axiosRequest();
   const navigate = useNavigate();
 
@@ -29,19 +32,33 @@ const LoginForm = (p: Props) => {
   const REGEXP_EMAIL = /\S+@\S+\.\S+/;
 
   const redirect = (status: number) => {
-    if (status === 201) navigate('/');
+    if (status === 200) return navigate('/customer/products');
     console.log(`erro: status ${status} sem resposta`);
   };
 
-  const isValid = (pw.length > MIN_PASSWORD_CHARACTERS) && REGEXP_EMAIL.test(email);
+  const handleRequest = (result: AxiosResponse) => {
+    const { status, data: { token } } = result;
+    if(status === 200) {
+      setToken(token);
+      redirect(status);
+    }
+    return null;
+  }
 
+  const setToken = (token: string) => localStorage.setItem('token', token);
+
+  const isValid = (pw.length > MIN_PASSWORD_CHARACTERS) && REGEXP_EMAIL.test(email);
 
   return (
     <SForm
       onSubmit={ async (e) => {
         e.preventDefault();
-        const result = await axios.post('/login');
-        redirect(result.status)
+        try {
+          handleRequest(await axios.post('/login', { email, password: pw }));
+        } catch (err: unknown) {
+          setWrongLogin(true);
+          console.log(err);
+        }
       } }
     >
       <Input 
@@ -69,6 +86,17 @@ const LoginForm = (p: Props) => {
         type="button"
         onClick={ () => { navigate('/register'); } }
       />
+
+{
+  wrongLogin ? 
+    <ErrorMessage
+    datatestId= 'common_login__element-invalid-email'
+    message= { "Ops! Verifique seu e-mail ou senha" }
+  /> 
+  :
+  null
+}
+
     </SForm>
   );
 };
