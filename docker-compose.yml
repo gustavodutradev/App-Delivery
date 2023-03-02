@@ -21,6 +21,7 @@ services:
       - 3001:3001
   
     environment:
+      PORT: 3001
       MYSQL_USER: root
       MYSQL_PASSWORD: password
       MYSQL_PORT: 3306
@@ -58,6 +59,9 @@ services:
       test: ["CMD", "lsof", "-t", "-i:3000"]  # Caso utilize outra porta interna para o front, altere ela aqui também
       timeout: 10s
       retries: 5
+    environment:
+      API_PORT: 3001
+      API_HOST: backend
 
 
   db:
