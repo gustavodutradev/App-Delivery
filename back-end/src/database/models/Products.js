@@ -4,7 +4,7 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER,
       primaryKey: true
     },
-    name: { 
+    name: {
       type: DataTypes.STRING,
       unique: true,
     },
@@ -15,9 +15,6 @@ module.exports = (sequelize, DataTypes) => {
     timestamps: false,
     underscored: true,
   });
-  
-  Product.associate = (models) => {
-    models.Product.belongsToMany(models.SalesProducts, { foreignKey: 'productId', as: 'products' });
-  }
+
   return Product;
 };
