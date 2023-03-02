@@ -4,10 +4,16 @@ import styled from 'styled-components';
 import tw from 'twin.macro';
 import Button from '../../components/Button';
 import Input from '../../components/Input';
+import ErrorMessage from '../../components/ErrorMessage';
 import axiosRequest from '../../utils/axios';
+import { AxiosResponse } from 'axios';
 
 type Props = {
 };
+
+const MIN_PASSWORD_CHARACTERS = 6;
+const MIN_NAME_CHARACTERS = 12;
+const REGEXP_EMAIL = /\S+@\S+\.\S+/;
 
 const SForm = styled.form`
   ${tw`
@@ -19,25 +25,42 @@ const SForm = styled.form`
   `}
 `;
 
-const LoginForm = (p: Props) => {
+const RegisterForm = (p: Props) => {
   const [email, setEmail] = useState('');
   const [name, setName] = useState('');
   const [pw, setPw] = useState('');
+  const [wrongRegister, setWrongRegister] = useState(false);
   const axios = axiosRequest();
   const navigate = useNavigate();
 
   const redirect = (status: number) => {
-    if (status === 201) navigate('/');
+    if (status === 201) return navigate('/customer/products');
     console.log(`erro: status ${status} sem resposta`);
   };
 
+  const handleRequest = (result: AxiosResponse) => {
+    const { status, data: { token } } = result;
+    if(status === 200) {
+      redirect(status);
+    }
+    return null;
+  }
+
+  const isValid = (pw.length >= MIN_PASSWORD_CHARACTERS)
+  && REGEXP_EMAIL.test(email)
+  && (name.length >= MIN_NAME_CHARACTERS);
+
   return (
     <SForm
-      onSubmit={ async (e) => {
-        e.preventDefault();
-        const result = await axios.post('/login');
-        redirect(result.status)
-      } }
+    onSubmit={ async (e) => {
+      e.preventDefault();
+      try {
+        handleRequest(await axios.post('/register', { name, email, password: pw }));
+      } catch (err: unknown) {
+        setWrongRegister(true);
+        console.log(err);
+      }
+    } }
     >
         <Input
         onChange= {(e) => { setName(e.target.value); }}
@@ -62,9 +85,20 @@ const LoginForm = (p: Props) => {
       <Button
         name='CADASTRAR'
         datatestId="common_register__button-register"
+        disabled= { !isValid }
       />
+
+{
+  wrongRegister ? 
+    <ErrorMessage
+    datatestId= 'common_register__element-invalid_register'
+    message= { "Ops! E-mail já cadastrado" }
+  /> 
+  :
+  null
+}
     </SForm>
   );
 };
 
-export default LoginForm;
+export default RegisterForm;
