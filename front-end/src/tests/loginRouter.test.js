@@ -1,5 +1,6 @@
 import { createServer, get } from 'http';
 import app from '../App';
+// import LoginPage from '';
 
 describe('Testes de rota', () => {
   test('GET / redireciona para /login', (done) => {
@@ -29,5 +30,10 @@ describe('Testes de rota', () => {
         done();
       });
     });
+  });
+  test('Acesso à rota /login', () => {
+    render(<LoginPage />);
+    const loginForm = screen.getByTestId('login-form');
+    expect(loginForm).toBeInTheDocument();
   });
 });
