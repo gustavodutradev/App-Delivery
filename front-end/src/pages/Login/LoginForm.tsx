@@ -37,15 +37,18 @@ const LoginForm = (p: Props) => {
   };
 
   const handleRequest = (result: AxiosResponse) => {
-    const { status, data: { token } } = result;
+    const { status, data: { token, name } } = result;
+    console.log(result);
     if(status === 200) {
       setToken(token);
+      setUserName(name);
       redirect(status);
     }
     return null;
   }
 
   const setToken = (token: string) => localStorage.setItem('token', token);
+  const setUserName = (username: string) => localStorage.setItem('user', username);
 
   const isValid = (pw.length > MIN_PASSWORD_CHARACTERS) && REGEXP_EMAIL.test(email);
 
