@@ -10,16 +10,16 @@ const cartSlice = createSlice({
   reducers: {
     addItem: (state, action) => {
       // action.payload: {
+      //   id: number,
       //   name: string,
       //   price: number,
+      //   quantity: number
       // }
-      state.items.push({ ...action.payload, quantity: 1 });
+      state.items.push({ ...action.payload });
     },
     removeItem: (state, action) => {
-      // action.payload: {
-      //   name: string
-      // }
-      state.items = state.items.filter((e) => e.name !== action.payload);
+      // action.payload = id: number
+      state.items = state.items.filter((e) => e.id !== action.payload);
     },
     changeQuantity: (state, action) => {
       // action.payload: {
@@ -27,8 +27,8 @@ const cartSlice = createSlice({
       //   add: boolean,
       //   amount: number,
       // }
-      const { name, add, amount } = action.payload;
-      const index = state.expenses.findIndex((e) => e.name === name);
+      const { id, add, amount } = action.payload;
+      const index = state.expenses.findIndex((e) => e.id === id);
       const amountToAdd = add ? amount : (-amount);
       state.items[index].quantity += amountToAdd;
     },
