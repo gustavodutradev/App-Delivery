@@ -23,14 +23,12 @@ const cartSlice = createSlice({
     },
     changeQuantity: (state, action) => {
       // action.payload: {
-      //   name: string,
-      //   add: boolean,
-      //   amount: number,
+      //   id: number,
+      //   quantity: number,
       // }
-      const { id, add, amount } = action.payload;
+      const { id, quantity } = action.payload;
       const index = state.expenses.findIndex((e) => e.id === id);
-      const amountToAdd = add ? amount : (-amount);
-      state.items[index].quantity += amountToAdd;
+      state.items[index].quantity = quantity;
     },
   },
 });
