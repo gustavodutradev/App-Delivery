@@ -14,14 +14,16 @@ const findUser = async (email) => {
 };
 
 const createUser = async (user) => {
-  const { name, email, role, password } = user;
+  const { name, email, password } = user;
   registerValidations(user);
   const foundUser = await findUser(email);
   checkUserExistence(foundUser);
 
   const passwordCrypt = encryptPassword(password);
-  const newUser = await User.create({ ...user, password: passwordCrypt });
+  const newUser = await User.create({ ...user, password: passwordCrypt, role: user.role || 'costumer' });
   const token = generateToken(newUser);
+  const { role } = newUser;
+
   return { name, email, role, token };
 };
 
