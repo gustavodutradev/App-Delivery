@@ -2,17 +2,16 @@
   "name": "delivery-app-back-end",
   "version": "0.1.0",
   "description": "Back-end do projeto App de Delivery",
-  "main": "./src/api/server.ts",
+  "main": "./src/api/server.js",
   "engines": {
     "node": ">=16.0.0"
   },
   "engineStrict": true,
   "private": true,
   "scripts": {
-    "db:reset": "npm run prepack && npx sequelize-cli db:drop && npx sequelize-cli db:create && npx sequelize-cli db:migrate && npx sequelize-cli db:seed:all",
+    "db:reset": "npx sequelize-cli db:drop && npx sequelize-cli db:create && npx sequelize-cli db:migrate && npx sequelize-cli db:seed:all",
     "start": "node .",
-    "dev": "nodemon  --watch \"./src/**\" ./src/api/server.ts",
-    "prepack": "rm -rf ./build && npx -y tsc",
+    "dev": "nodemon  --watch \"./src/**\" ./src/api/server.js",
     "test": "mocha src/tests/**/*$NAME*.test.js --exit",
     "test:coverage": "nyc --all npm run test",
     "test:coverage:json": "nyc --all --reporter=json-summary npm run test",
@@ -32,11 +31,9 @@
     "multer": "1.4.4",
     "mysql2": "2.3.3",
     "sequelize": "6.17.0",
-    "socket.io": "4.4.1",
-    "ts-node": "^10.9.1"
+    "socket.io": "4.4.1"
   },
   "devDependencies": {
-    "@types/node": "^18.14.2",
     "chai": "4.3.6",
     "chai-http": "4.3.0",
     "eslint-config-trybe-backend": "1.0.4",
@@ -44,7 +41,6 @@
     "nodemon": "2.0.15",
     "nyc": "15.1.0",
     "sequelize-cli": "6.4.1",
-    "sinon": "13.0.1",
-    "typescript": "^4.9.5"
+    "sinon": "13.0.1"
   }
 }
