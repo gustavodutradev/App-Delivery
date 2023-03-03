@@ -55,7 +55,7 @@ const RegisterForm = (p: Props) => {
     onSubmit={ async (e) => {
       e.preventDefault();
       try {
-        handleRequest(await axios.post('/register', { name, email, password: pw }));
+        handleRequest(await axios.post('/register', { name, email, password: pw, role: "customer" }));
       } catch (err: unknown) {
         setWrongRegister(true);
         console.log(err);
