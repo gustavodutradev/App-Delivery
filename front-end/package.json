@@ -15,7 +15,7 @@
     "test:coverage": "react-scripts test --coverage --watchAll=false",
     "test:coverage:json": "react-scripts test --coverage --coverageReporters=\"json-summary\" --watchAll=false --testFailureExitCode=0 --detectOpenHandles --runInBand --forceExit",
     "eject": "react-scripts eject",
-    "lint": "eslint --no-inline-config --no-error-on-unmatched-pattern -c .eslintrc.json . --ext .js --ext .jsx .ts .tsx",
+    "lint": "eslint --no-inline-config --no-error-on-unmatched-pattern -c .eslintrc.json . --ext .js --ext .jsx",
     "lint:styles": "stylelint **/*.css --config .stylelintrc.json --ignore-disables --allow-empty-input"
   },
   "dependencies": {
@@ -34,15 +34,10 @@
     "web-vitals": "2.1.4"
   },
   "devDependencies": {
-    "@types/node": "^18.14.2",
-    "@types/react-redux": "^7.1.25",
-    "@types/react-router-dom": "^5.3.3",
-    "@types/styled-components": "^5.1.26",
     "eslint-config-trybe-frontend": "1.3.1",
     "stylelint": "14.6.0",
     "stylelint-config-standard": "25.0.0",
-    "stylelint-order": "5.0.0",
-    "typescript": "^4.9.5"
+    "stylelint-order": "5.0.0"
   },
   "eslintConfig": {
     "extends": [

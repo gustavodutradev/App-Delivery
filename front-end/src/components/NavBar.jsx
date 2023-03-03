@@ -9,8 +9,7 @@ function NavBar() {
   const goToOrders = () => navigate('/customer/orders');
 
   useEffect(() => {
-    const user = localStorage.getItem('user');
-    setUsername(user as string);
+    setUsername(localStorage.getItem('user'));
   }, []);
 
   return (

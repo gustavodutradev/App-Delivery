@@ -2,14 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 import tw from 'twin.macro';
 
-type Props = {
-  type?: 'text' | 'number' | 'textarea' | 'password' | 'email';
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  value: string | number;
-  name: string;
-  datatestId?: string;
-};
-
 const SInput = styled.label`
   ${tw`
     text-center
@@ -33,18 +25,19 @@ const SInput = styled.label`
   }
 `;
 
-const Input = (p: Props) => {
+function Input(p) {
+  const { name, type, onChange, value, datatestId } = p;
   return (
     <SInput>
-      <span>{p.name}</span>
+      <span>{name}</span>
       <input
-        type={ p.type || 'text' }
-        onChange={ p.onChange }
-        value={ p.value }
-        datatest-id = { p.datatestId }
+        type={ type || 'text' }
+        onChange={ onChange }
+        value={ value }
+        datatest-id={ datatestId }
       />
     </SInput>
   );
-};
+}
 
 export default Input;

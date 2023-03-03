@@ -2,14 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 import tw from 'twin.macro';
 
-type Props = {
-  type?: 'submit' | 'button';
-  onClick?: () => void;
-  name?: string;
-  datatestId: string;
-  disabled?: boolean;
-};
-
 const SButton = styled.button`
   ${tw`
     justify-center
@@ -24,17 +16,18 @@ const SButton = styled.button`
   `}
 `;
 
-const Button = (p: Props) => {
+function Button(p) {
+  const { type, onClick, datatestId, disabled, name } = p;
   return (
     <SButton
-      type={ p.type || 'submit' }
-      onClick={ p.onClick }
-      datatest-id= { p.datatestId }
-      disabled= { p.disabled }
+      type={ type || 'submit' }
+      onClick={ onClick }
+      datatest-id={ datatestId }
+      disabled={ disabled }
     >
-      {p.name}
+      {name}
     </SButton>
   );
-};
+}
 
 export default Button;

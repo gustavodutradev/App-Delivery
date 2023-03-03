@@ -6,10 +6,6 @@ import Button from '../../components/Button';
 import Input from '../../components/Input';
 import axiosRequest from '../../utils/axios';
 import ErrorMessage from '../../components/ErrorMessage';
-import { AxiosResponse } from 'axios';
-
-type Props = {
-};
 
 const SForm = styled.form`
   ${tw`
@@ -21,34 +17,36 @@ const SForm = styled.form`
   `}
 `;
 
-const LoginForm = (p: Props) => {
+const OK = 200;
+
+export default function LoginForm() {
   const [email, setEmail] = useState('');
   const [pw, setPw] = useState('');
   const [wrongLogin, setWrongLogin] = useState(false);
   const axios = axiosRequest();
   const navigate = useNavigate();
 
+  const setToken = (token) => localStorage.setItem('token', token);
+  const setUserName = (username) => localStorage.setItem('user', username);
+
   const MIN_PASSWORD_CHARACTERS = 6;
   const REGEXP_EMAIL = /\S+@\S+\.\S+/;
 
-  const redirect = (status: number) => {
-    if (status === 200) return navigate('/customer/products');
+  const redirect = (status) => {
+    if (status === OK) return navigate('/customer/products');
     console.log(`erro: status ${status} sem resposta`);
   };
 
-  const handleRequest = (result: AxiosResponse) => {
+  const handleRequest = (result) => {
     const { status, data: { token, name } } = result;
     console.log(result);
-    if(status === 200) {
+    if (status === OK) {
       setToken(token);
       setUserName(name);
       redirect(status);
     }
     return null;
-  }
-
-  const setToken = (token: string) => localStorage.setItem('token', token);
-  const setUserName = (username: string) => localStorage.setItem('user', username);
+  };
 
   const isValid = (pw.length > MIN_PASSWORD_CHARACTERS) && REGEXP_EMAIL.test(email);
 
@@ -58,50 +56,45 @@ const LoginForm = (p: Props) => {
         e.preventDefault();
         try {
           handleRequest(await axios.post('/login', { email, password: pw }));
-        } catch (err: unknown) {
+        } catch (err) {
           setWrongLogin(true);
           console.log(err);
         }
       } }
     >
-      <Input 
-        onChange={(e) => { setEmail(e.target.value); }}
+      <Input
+        onChange={ (e) => { setEmail(e.target.value); } }
         value={ email }
-        name={ 'Login' }
-        type={ 'email' }
-        datatestId= 'common_login__input-email'
+        name="Login"
+        type="email"
+        datatestId="common_login__input-email"
       />
-      <Input 
-        onChange={(e) => { setPw(e.target.value); }}
+      <Input
+        onChange={ (e) => { setPw(e.target.value); } }
         value={ pw }
-        name={ 'Senha' }
-        type={ 'password' }
-        datatestId= 'common_login__input-password'
+        name="Senha"
+        type="password"
+        datatestId="common_login__input-password"
       />
       <Button
-        name='LOGIN'
-        datatestId= 'common_login__button-login'
+        name="LOGIN"
+        datatestId="common_login__button-login"
         disabled={ !isValid }
       />
       <Button
-        name= 'Ainda não tenho conta'
-        datatestId='common_login__button-register'
+        name="Ainda não tenho conta"
+        datatestId="common_login__button-register"
         type="button"
         onClick={ () => { navigate('/register'); } }
       />
 
-{
-  wrongLogin ? 
-    <ErrorMessage
-    datatestId= 'common_login__element-invalid-email'
-    message= { "Ops! Verifique seu e-mail ou senha" }
-  /> 
-  :
-  null
-}
+      {
+        wrongLogin && <ErrorMessage
+          message="Ops! Verifique seu e-mail ou senha"
+          datatest-id="common_login__element-invalid-email"
+        />
+      }
 
     </SForm>
   );
-};
-
-export default LoginForm;
+}
