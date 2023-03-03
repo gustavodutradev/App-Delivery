@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import Button from './Button';
 
@@ -8,9 +9,11 @@ function NavBar() {
   const goToProducts = () => navigate('/customer/products');
   const goToOrders = () => navigate('/customer/orders');
 
+  const name = useSelector((state) => state.user.name);
+
   useEffect(() => {
-    setUsername(localStorage.getItem('user'));
-  }, []);
+    setUsername(name);
+  }, [setUsername, name]);
 
   return (
     <nav>
