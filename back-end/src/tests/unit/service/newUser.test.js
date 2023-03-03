@@ -2,9 +2,13 @@ const sinon = require('sinon');
 const { expect } = require('chai');
 const { Model } = require('sequelize');
 const loginService = require('../../../service/login.service');
-const { createdUser, newUser, serviceObjReturn, token } = require('../../mocks/login.mock');
+const {
+  createdUser,
+  newUser,
+  serviceObjReturn,
+  token,
+} = require('../../mocks/login.mock');
 const jwt = require('jsonwebtoken');
-const NotFound = require('../../../utils/errors/notFound');
 
 describe('Testes para criação de um novo usuário', function () {
   afterEach(function () {
@@ -12,7 +16,7 @@ describe('Testes para criação de um novo usuário', function () {
   });
 
   describe('Casos de erro', function () {
-    it('Lança um erro caso o email esteja no formato "email@domain.domain"', async function () {
+    it('Lança um erro caso o email não esteja no formato "email@domain.domain"', async function () {
       sinon.stub(Model, 'findOne').resolves(null);
       sinon.stub(Model, 'create').resolves(null);
 
