@@ -23,7 +23,7 @@ const createUser = async (user) => {
   const newUser = await User.create({ 
     ...user, 
     password: passwordCrypt,
-    role: user.role || 'costumer'
+    role: user.role || 'costumer',
   });
   const token = generateToken(newUser);
   const { role } = newUser;
