@@ -94,7 +94,7 @@ export default function RegisterForm() {
       {
         wrongRegister && <ErrorMessage
           message="Ops! E-mail já cadastrado"
-          data-testid="common_register__element-invalid_register"
+          datatestId="common_register__element-invalid_register"
         />
       }
 

@@ -91,7 +91,7 @@ export default function LoginForm() {
       {
         wrongLogin && <ErrorMessage
           message="Ops! Verifique seu e-mail ou senha"
-          data-testid="common_login__element-invalid-email"
+          datatestId="common_login__element-invalid-email"
         />
       }
 
