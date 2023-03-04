@@ -48,7 +48,7 @@ export default function LoginForm() {
     return null;
   };
 
-  const isValid = (pw.length > MIN_PASSWORD_CHARACTERS) && REGEXP_EMAIL.test(email);
+  const isValid = (pw.length >= MIN_PASSWORD_CHARACTERS) && REGEXP_EMAIL.test(email);
 
   return (
     <SForm
