@@ -1,7 +1,15 @@
-FROM node:16.14-alpine
+FROM  node:16.14-alpine
+
 WORKDIR /front-end
-COPY ./package.json .
-RUN npm i
+
 EXPOSE 3000
-ENTRYPOINT [ "npm", "run" ]
-CMD [ "start" ]
+
+COPY package.json .
+COPY package-lock.json .
+
+RUN npm install
+
+COPY . .
+
+ENTRYPOINT ["npm", "run"]
+CMD ["start"]
