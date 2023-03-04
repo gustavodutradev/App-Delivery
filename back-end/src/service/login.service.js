@@ -20,7 +20,11 @@ const createUser = async (user) => {
   checkUserExistence(foundUser);
 
   const passwordCrypt = encryptPassword(password);
-  const newUser = await User.create({ ...user, password: passwordCrypt, role: user.role || 'costumer' });
+  const newUser = await User.create({ 
+    ...user, 
+    password: passwordCrypt,
+    role: user.role || 'costumer'
+  });
   const token = generateToken(newUser);
   const { role } = newUser;
 
