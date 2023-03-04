@@ -5,6 +5,7 @@ const newUser = {
 }
 
 const createdUser = {
+  id: 4,
   name: 'Paulo Gustavo Afonseca Evangelista',
   email: 'pauloRicardo_09@mock.com',
   password: '8d57ce3a6d955aa96df7dbdef2a4e094',
