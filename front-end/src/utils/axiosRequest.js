@@ -1,6 +1,6 @@
-import { create } from 'axios';
+import axios from 'axios';
 
-const axiosRequest = (headers) => create({
+const axiosRequest = (headers) => axios.create({
   baseURL: 'http://localhost:3001',
   headers: {
     'Content-Type': 'application/json',
@@ -8,4 +8,4 @@ const axiosRequest = (headers) => create({
   },
 });
 
-export default { axiosRequest };
+export default axiosRequest;

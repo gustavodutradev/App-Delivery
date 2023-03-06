@@ -1,8 +1,9 @@
-const React = require('react');
-const { render, fireEvent, waitFor } = require('@testing-library/react');
-const LoginForm = require('../pages/Login/LoginForm');
+import React from 'react';
+import { render, fireEvent, waitFor } from '@testing-library/react';
+import LoginPage from '../pages/Login/LoginPage';
+// import renderWithRouter from './renderWith';
 
-describe('LoginForm', () => {
+describe('LoginPage', () => {
   const INPUT_EMAIL = 'common_login__input-email';
   const INPUT_PASSWORD = 'common_login__input-password';
   const BTN_LOGIN = 'common_login__button-login';
@@ -10,7 +11,7 @@ describe('LoginForm', () => {
   const EMAIL_TEST = 'test@test.com';
 
   it('should render the login form', () => {
-    const { getByTestId } = render(<LoginForm />);
+    const { getByTestId } = render(<LoginPage />);
     expect(getByTestId(INPUT_EMAIL)).toBeInTheDocument();
     expect(getByTestId(INPUT_PASSWORD)).toBeInTheDocument();
     expect(getByTestId(BTN_LOGIN)).toBeInTheDocument();
@@ -18,7 +19,7 @@ describe('LoginForm', () => {
   });
 
   it('should enable the login button when email and password are valid', () => {
-    const { getByTestId } = render(<LoginForm />);
+    const { getByTestId } = render(<LoginPage />);
     const emailInput = getByTestId(INPUT_EMAIL);
     const passwordInput = getByTestId(INPUT_PASSWORD);
     const loginButton = getByTestId(BTN_LOGIN);
@@ -30,7 +31,7 @@ describe('LoginForm', () => {
   });
 
   it('should disable the login button when email or password are invalid', () => {
-    const { getByTestId } = render(<LoginForm />);
+    const { getByTestId } = render(<LoginPage />);
     const emailInput = getByTestId(INPUT_EMAIL);
     const passwordInput = getByTestId(INPUT_PASSWORD);
     const loginButton = getByTestId(BTN_LOGIN);
@@ -42,7 +43,7 @@ describe('LoginForm', () => {
   });
 
   it('should call the handleRequest func when the login button is clicked', async () => {
-    const { getByTestId } = render(<LoginForm />);
+    const { getByTestId } = render(<LoginPage />);
     const emailInput = getByTestId(INPUT_EMAIL);
     const passwordInput = getByTestId(INPUT_PASSWORD);
     const loginButton = getByTestId(BTN_LOGIN);
@@ -56,7 +57,7 @@ describe('LoginForm', () => {
   });
 
   it('should show an error message when the login fails', async () => {
-    const { getByTestId } = render(<LoginForm />);
+    const { getByTestId } = render(<LoginPage />);
     const emailInput = getByTestId(INPUT_EMAIL);
     const passwordInput = getByTestId(INPUT_PASSWORD);
     const loginButton = getByTestId(BTN_LOGIN);

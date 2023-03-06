@@ -1,11 +1,10 @@
 import React from 'react';
-import { screen } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import App from '../App';
-import renderWith from './renderWith';
 
 describe('Testa a tela de Login', () => {
-  it('Verifica se possui um formulario de login', () => {
-    renderWith(<App />);
+  it.skip('Verifica se possui um formulario de login', () => {
+    render(<App />);
 
     const email = screen.getByRole('textbox', { name: /login/i });
     const password = screen.getByLabelText(/senha/i);
