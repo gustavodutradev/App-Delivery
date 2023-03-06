@@ -20,9 +20,10 @@ const getProductById = async (req, res, next) => {
 };
 
 const createProduct = async (req, res, next) => {
+  const token = req.headers.authorization;
   const newProduct = req.body;
   try {
-    const createdProduct = await productsService.createProduct(newProduct);
+    const createdProduct = await productsService.createProduct(newProduct, token);
     return res.status(201).json(createdProduct);
   } catch (err) {
     return next(err);
