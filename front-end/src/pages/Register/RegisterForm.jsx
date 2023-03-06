@@ -22,7 +22,6 @@ const SForm = styled.form`
 `;
 
 const REGISTER_OK = 201;
-const REQUEST_OK = 200;
 
 export default function RegisterForm() {
   const [email, setEmail] = useState('');
@@ -39,7 +38,7 @@ export default function RegisterForm() {
 
   const handleRequest = (result) => {
     const { status } = result;
-    if (status === REQUEST_OK) {
+    if (status === REGISTER_OK) {
       redirect(status);
     }
     return null;
