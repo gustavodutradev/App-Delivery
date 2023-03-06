@@ -1,5 +1,6 @@
 const InvalidParam = require('../errors/invalidParam');
 const MissingParam = require('../errors/missingParam');
+const NotAuthorized = require('../errors/notAuthorized');
 const NotFound = require('../errors/notFound');
 
 const productNotFound = (product) => {
@@ -26,7 +27,12 @@ const validateProductFields = (newProduct) => {
   validateUrl(urlImage);
 };
 
+const userNotAuthorized = (userRole) => {
+  if (userRole !== 'seller') throw new NotAuthorized('Only sellers can register new products.');
+}
+
 module.exports = {
   productNotFound,
   validateProductFields,
+  userNotAuthorized,
 };
