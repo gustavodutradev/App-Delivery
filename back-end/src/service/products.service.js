@@ -24,8 +24,21 @@ const createProduct = async (newProduct, token) => {
   return createdProduct;
 };
 
+const updateProduct = async (product, productId, token) => {
+  validateProductFields(product);
+  
+  const userData = verifyToken(token);
+  const { data: { role } } = userData;
+  userNotAuthorized(role);
+
+  await getProductById(productId);
+
+  await Product.update(product, { where: { id: productId } });
+};
+
 module.exports = {
   getProducts,
   getProductById,
-  createProduct
+  createProduct,
+  updateProduct,
 };
