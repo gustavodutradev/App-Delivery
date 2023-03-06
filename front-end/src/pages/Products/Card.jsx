@@ -63,13 +63,16 @@ const BottomContainer = styled.div`
 
 const TopContainer = styled.div`
   ${tw`
-    w-full
+  w-full
   `}
-  background-image: url(${(props) => props.imgUrl});
-  height: 400px;
+  background-image: url(${(props) => props.imgUrl });
+  height: 300px;
   border: 1px solid rgba(0, 0, 0, 0.2);
   border-radius: 5px;
-  object-fit: cover;
+  object-fit: fill;
+  background-size: cover;
+  background-position-y: 50%;
+  background-position-x: 50%;
 `;
 
 function Card(props) {
@@ -97,8 +100,8 @@ function Card(props) {
   }, [quantity]);
 
   return (
-    <SCard imgUrl={ product.urlImage }>
-      <TopContainer>
+    <SCard>
+      <TopContainer imgUrl={ product.urlImage }>
         <span>R$ {product.price.replace('.', ',')}</span>
       </TopContainer>
       <BottomContainer>
