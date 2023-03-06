@@ -28,7 +28,7 @@ function NavBar() {
       />
 
       <span
-        datatest-id="customer_products__element-navbar-user-full-name"
+        data-testid="customer_products__element-navbar-user-full-name"
       >
         { username }
       </span>

@@ -34,7 +34,7 @@ function Input(p) {
         type={ type || 'text' }
         onChange={ onChange }
         value={ value }
-        datatest-id={ datatestId }
+        data-testid={ datatestId }
       />
     </SInput>
   );
