@@ -9,14 +9,14 @@ const STable = styled.div`
   ${tw`
     grid
     grid-cols-4
-    m-1.5
     font-bold
     border
     border-blue-700
     rounded
     text-white
-    p-1
+    p-4
   `}
+  background-color: #FC0;
 `;
 
 function Table() {
