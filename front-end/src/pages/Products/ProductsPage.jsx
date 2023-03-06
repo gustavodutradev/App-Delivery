@@ -1,11 +1,9 @@
-import React, { useEffect } from 'react';
+import React from 'react';
+import Table from './Table';
 
 function ProductsPage() {
-  useEffect(() => {
-
-  });
   return (
-    <div>ProductsPage</div>
+    <Table />
   );
 }
 
