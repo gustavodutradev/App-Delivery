@@ -1,5 +1,6 @@
 const productsService = require('../service/products.service');
 
+// retorna uma lista com todos os produtos;
 const getProducts = async (_req, res, next) => {
   try {
     const allProducts = await productsService.getProducts();
@@ -9,6 +10,7 @@ const getProducts = async (_req, res, next) => {
   }
 };
 
+// retorna um produto especificado pelo id ou um erro caso o id não exista;
 const getProductById = async (req, res, next) => {
   const { id } = req.params;
   try {
@@ -19,6 +21,7 @@ const getProductById = async (req, res, next) => {
   }
 };
 
+// cria um novo produto e retorna o mesmo e retorna erros caso os campos estejam faltando;
 const createProduct = async (req, res, next) => {
   const token = req.headers.authorization;
   const newProduct = req.body;
@@ -30,6 +33,7 @@ const createProduct = async (req, res, next) => {
   }
 };
 
+// atualiza um produto pelo id e só retorna um erro caso o id passado não exista;
 const updateProduct = async (req, res, next) => {
   const token = req.headers.authorization;
   const product = req.body;
