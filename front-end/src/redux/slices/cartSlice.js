@@ -27,12 +27,28 @@ const cartSlice = createSlice({
       //   quantity: number,
       // }
       const { id, quantity } = action.payload;
-      const index = state.expenses.findIndex((e) => e.id === id);
+      const index = state.items.findIndex((e) => e.id === id);
+      if (index < 0) return;
       state.items[index].quantity = quantity;
+    },
+    addOrUpdateItem: (state, action) => {
+      // action.payload: {
+      //   id: number,
+      //   name: string,
+      //   price: number,
+      //   quantity: number
+      // }
+      const { id, quantity } = action.payload;
+      const index = state.items.findIndex((e) => e.id === id);
+      if (index < 0) {
+        state.items.push(action.payload);
+      } else {
+        state.items[index].quantity = quantity;
+      }
     },
   },
 });
 
-export const { addItem, removeItem, changeQuantity } = cartSlice.actions;
+export const { addItem, removeItem, changeQuantity, addOrUpdateItem } = cartSlice.actions;
 
 export default cartSlice.reducer;
