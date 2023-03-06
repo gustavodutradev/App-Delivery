@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import tw from 'twin.macro';
 import Button from '../../components/Button';
 import Input from '../../components/Input';
-import axiosRequest from '../../utils/axios';
+import axiosRequest from '../../utils/axiosRequest.js';
 import ErrorMessage from '../../components/ErrorMessage';
 
 const SForm = styled.form`

@@ -5,7 +5,7 @@ import tw from 'twin.macro';
 import Button from '../../components/Button';
 import Input from '../../components/Input';
 import ErrorMessage from '../../components/ErrorMessage';
-import axiosRequest from '../../utils/axios';
+import axiosRequest from '../../utils/axiosRequest.js';
 
 const MIN_PASSWORD_CHARACTERS = 6;
 const MIN_NAME_CHARACTERS = 12;

@@ -1,22 +1,28 @@
 import React from 'react';
 import { render, fireEvent, act } from '@testing-library/react';
-import RegisterForm from './RegisterForm';
+import RegisterForm from '../pages/Register/RegisterForm';
 
 describe('RegisterForm', () => {
+  const INPUT_EMAIL = 'common_register__input-email';
+  const INPUT_NAME = 'common_register__input-name';
+  const INPUT_PASSWORD = 'common_login__input-password';
+  // const BTN_LOGIN = 'common_login__button-login';
+  const BTN_REGISTER = 'common_login__button-register';
+
   test('should render correctly', () => {
     const { getByTestId } = render(<RegisterForm />);
-    expect(getByTestId('common_register__input-name')).toBeInTheDocument();
-    expect(getByTestId('common_register__input-email')).toBeInTheDocument();
-    expect(getByTestId('common_register__input-password')).toBeInTheDocument();
-    expect(getByTestId('common_register__button-register')).toBeInTheDocument();
+    expect(getByTestId(INPUT_EMAIL)).toBeInTheDocument();
+    expect(getByTestId(INPUT_NAME)).toBeInTheDocument();
+    expect(getByTestId(INPUT_PASSWORD)).toBeInTheDocument();
+    expect(getByTestId(BTN_REGISTER)).toBeInTheDocument();
   });
 
   test('should disable register button if inputs are invalid', () => {
     const { getByTestId } = render(<RegisterForm />);
-    const nameInput = getByTestId('common_register__input-name');
-    const emailInput = getByTestId('common_register__input-email');
-    const passwordInput = getByTestId('common_register__input-password');
-    const registerButton = getByTestId('common_register__button-register');
+    const nameInput = getByTestId(INPUT_NAME);
+    const emailInput = getByTestId(INPUT_EMAIL);
+    const passwordInput = getByTestId(INPUT_PASSWORD);
+    const registerButton = getByTestId(BTN_REGISTER);
 
     // Fill invalid inputs
     fireEvent.change(nameInput, { target: { value: 'Short' } });
@@ -29,10 +35,10 @@ describe('RegisterForm', () => {
 
   test('should enable register button if inputs are valid', () => {
     const { getByTestId } = render(<RegisterForm />);
-    const nameInput = getByTestId('common_register__input-name');
-    const emailInput = getByTestId('common_register__input-email');
-    const passwordInput = getByTestId('common_register__input-password');
-    const registerButton = getByTestId('common_register__button-register');
+    const nameInput = getByTestId(INPUT_NAME);
+    const emailInput = getByTestId(INPUT_EMAIL);
+    const passwordInput = getByTestId(INPUT_PASSWORD);
+    const registerButton = getByTestId(BTN_REGISTER);
 
     // Fill valid inputs
     fireEvent.change(nameInput, { target: { value: 'Full Name' } });
@@ -51,11 +57,11 @@ describe('RegisterForm', () => {
 
     // Render component and fill inputs
     const { getByTestId } = render(<RegisterForm axiosRequest={ () => axiosMock } />);
-    const nameInput = getByTestId('common_register__input-name');
-    const emailInput = getByTestId('common_register__input-email');
-    const passwordInput = getByTestId('common_register__input-password');
-    const registerButton = getByTestId('common_register__button-register');
-    fireEvent.change(nameInput, { target: { value: 'Full Name' } });
+    const nameInput = getByTestId(INPUT_NAME);
+    const emailInput = getByTestId(INPUT_EMAIL);
+    const passwordInput = getByTestId(INPUT_PASSWORD);
+    const registerButton = getByTestId(BTN_REGISTER);
+    fireEvent.change(nameInput, { target: { value: 'Panda Name' } });
     fireEvent.change(emailInput, { target: { value: 'valid-email@example.com' } });
     fireEvent.change(passwordInput, { target: { value: '123456' } });
 

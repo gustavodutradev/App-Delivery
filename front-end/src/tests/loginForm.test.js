@@ -1,23 +1,29 @@
-import React from 'react';
-import { render, fireEvent, waitFor } from '@testing-library/react';
-import LoginForm from './LoginForm';
+const React = require('react');
+const { render, fireEvent, waitFor } = require('@testing-library/react');
+const LoginForm = require('../pages/Login/LoginForm');
 
 describe('LoginForm', () => {
+  const INPUT_EMAIL = 'common_login__input-email';
+  const INPUT_PASSWORD = 'common_login__input-password';
+  const BTN_LOGIN = 'common_login__button-login';
+  const BTN_REGISTER = 'common_login__button-register';
+  const EMAIL_TEST = 'test@test.com';
+
   it('should render the login form', () => {
     const { getByTestId } = render(<LoginForm />);
-    expect(getByTestId('common_login__input-email')).toBeInTheDocument();
-    expect(getByTestId('common_login__input-password')).toBeInTheDocument();
-    expect(getByTestId('common_login__button-login')).toBeInTheDocument();
-    expect(getByTestId('common_login__button-register')).toBeInTheDocument();
+    expect(getByTestId(INPUT_EMAIL)).toBeInTheDocument();
+    expect(getByTestId(INPUT_PASSWORD)).toBeInTheDocument();
+    expect(getByTestId(BTN_LOGIN)).toBeInTheDocument();
+    expect(getByTestId(BTN_REGISTER)).toBeInTheDocument();
   });
 
   it('should enable the login button when email and password are valid', () => {
     const { getByTestId } = render(<LoginForm />);
-    const emailInput = getByTestId('common_login__input-email');
-    const passwordInput = getByTestId('common_login__input-password');
-    const loginButton = getByTestId('common_login__button-login');
+    const emailInput = getByTestId(INPUT_EMAIL);
+    const passwordInput = getByTestId(INPUT_PASSWORD);
+    const loginButton = getByTestId(BTN_LOGIN);
 
-    fireEvent.change(emailInput, { target: { value: 'test@test.com' } });
+    fireEvent.change(emailInput, { target: { value: EMAIL_TEST } });
     fireEvent.change(passwordInput, { target: { value: '123456' } });
 
     expect(loginButton).toBeEnabled();
@@ -25,9 +31,9 @@ describe('LoginForm', () => {
 
   it('should disable the login button when email or password are invalid', () => {
     const { getByTestId } = render(<LoginForm />);
-    const emailInput = getByTestId('common_login__input-email');
-    const passwordInput = getByTestId('common_login__input-password');
-    const loginButton = getByTestId('common_login__button-login');
+    const emailInput = getByTestId(INPUT_EMAIL);
+    const passwordInput = getByTestId(INPUT_PASSWORD);
+    const loginButton = getByTestId(BTN_LOGIN);
 
     fireEvent.change(emailInput, { target: { value: 'test' } });
     fireEvent.change(passwordInput, { target: { value: '123' } });
@@ -37,12 +43,12 @@ describe('LoginForm', () => {
 
   it('should call the handleRequest func when the login button is clicked', async () => {
     const { getByTestId } = render(<LoginForm />);
-    const emailInput = getByTestId('common_login__input-email');
-    const passwordInput = getByTestId('common_login__input-password');
-    const loginButton = getByTestId('common_login__button-login');
+    const emailInput = getByTestId(INPUT_EMAIL);
+    const passwordInput = getByTestId(INPUT_PASSWORD);
+    const loginButton = getByTestId(BTN_LOGIN);
     const handleRequest = jest.fn();
 
-    fireEvent.change(emailInput, { target: { value: 'test@test.com' } });
+    fireEvent.change(emailInput, { target: { value: EMAIL_TEST } });
     fireEvent.change(passwordInput, { target: { value: '123456' } });
     fireEvent.click(loginButton);
 
@@ -51,11 +57,11 @@ describe('LoginForm', () => {
 
   it('should show an error message when the login fails', async () => {
     const { getByTestId } = render(<LoginForm />);
-    const emailInput = getByTestId('common_login__input-email');
-    const passwordInput = getByTestId('common_login__input-password');
-    const loginButton = getByTestId('common_login__button-login');
+    const emailInput = getByTestId(INPUT_EMAIL);
+    const passwordInput = getByTestId(INPUT_PASSWORD);
+    const loginButton = getByTestId(BTN_LOGIN);
 
-    fireEvent.change(emailInput, { target: { value: 'test@test.com' } });
+    fireEvent.change(emailInput, { target: { value: EMAIL_TEST } });
     fireEvent.change(passwordInput, { target: { value: 'wrongpassword' } });
     fireEvent.click(loginButton);
 
