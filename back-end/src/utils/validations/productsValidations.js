@@ -21,7 +21,7 @@ const validateUrl = (productImage) => {
 };
 
 const validateProductFields = (newProduct) => {
-  const { name, price, urlImage } = newProduct
+  const { name, price, urlImage } = newProduct;
   validateName(name);
   validatePrice(price);
   validateUrl(urlImage);
@@ -29,7 +29,7 @@ const validateProductFields = (newProduct) => {
 
 const userNotAuthorized = (userRole) => {
   if (userRole !== 'seller') throw new NotAuthorized('Only sellers can register new products.');
-}
+};
 
 module.exports = {
   productNotFound,

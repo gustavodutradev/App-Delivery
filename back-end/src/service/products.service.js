@@ -1,6 +1,10 @@
 const { Product } = require('../database/models');
 const { verifyToken } = require('../utils/token');
-const { productNotFound, validateProductFields, userNotAuthorized } = require('../utils/validations/productsValidations');
+const {
+  productNotFound,
+  validateProductFields,
+  userNotAuthorized,
+} = require('../utils/validations/productsValidations');
 
 const getProducts = async () => {
   const allProducts = await Product.findAll();
