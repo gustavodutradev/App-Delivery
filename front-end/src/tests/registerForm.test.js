@@ -1,8 +1,12 @@
 import React from 'react';
-import { render, fireEvent, act } from '@testing-library/react';
+import { render, fireEvent } from '@testing-library/react';
 import RegisterForm from '../pages/Register/RegisterForm';
 
 describe('RegisterForm', () => {
+  jest.mock('react-router-dom', () => ({
+    useNavigate: jest.fn(),
+  }));
+
   const INPUT_EMAIL = 'common_register__input-email';
   const INPUT_NAME = 'common_register__input-name';
   const INPUT_PASSWORD = 'common_login__input-password';
@@ -56,7 +60,7 @@ describe('RegisterForm', () => {
     };
 
     // Render component and fill inputs
-    const { getByTestId } = render(<RegisterForm axiosRequest={ () => axiosMock } />);
+    const { getByTestId } = render(<RegisterForm />);
     const nameInput = getByTestId(INPUT_NAME);
     const emailInput = getByTestId(INPUT_EMAIL);
     const passwordInput = getByTestId(INPUT_PASSWORD);

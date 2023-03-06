@@ -52,8 +52,6 @@
       "__TESTDESC__": true,
       "__TESTFILE__": true
     }
-  },
-  "dependencies": {
-    "axios": "^0.26.1"
   }
+
 }

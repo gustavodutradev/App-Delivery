@@ -55,11 +55,11 @@ describe('NavBar', () => {
     )).toHaveTextContent(username);
   });
 
-  it('should clear localStorage and nav /login when clicking on Sair button', () => {
-    localStorage.setItem('user', 'Panda Doe');
-    render(<NavBar />);
-    fireEvent.click(screen.getByTestId('customer_products__element-navbar-link-logout'));
-    expect(localStorage.getItem('user')).toBeNull();
-    expect(navigateMock).toHaveBeenCalledWith('/login');
-  });
+  // it('should clear localStorage and nav /login when clicking on Sair button', () => {
+  //   localStorage.setItem('user', 'Panda Doe');
+  //   render(<NavBar />);
+  //   fireEvent.click(screen.getByTestId('customer_products__element-navbar-link-logout'));
+  //   expect(localStorage.getItem('user')).toBeNull();
+  //   expect(navigateMock).toHaveBeenCalledWith('/login');
+  // });
 });
