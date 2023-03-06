@@ -15,6 +15,8 @@ const SButton = styled.button`
     text-white
     p-1
   `}
+
+  align-items: center;
 `;
 
 function Button(props) {
