@@ -1,6 +1,7 @@
 const jwt = require('jsonwebtoken');
 const fs = require('fs');
 const path = require('path');
+const InvalidParam = require('./errors/invalidParam');
 
 const secret = fs.readFileSync(
   path.resolve(__dirname, '../../jwt.evaluation.key'),
@@ -24,7 +25,7 @@ const verifyToken = (token) => {
     const tokenData = jwt.verify(token, secret);
     return tokenData;
   } catch (err) {
-    throw new Error('Inválid token!');
+    throw new InvalidParam('Inválid token!');
   }
 };
 

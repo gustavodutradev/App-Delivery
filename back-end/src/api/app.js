@@ -6,6 +6,7 @@ const app = express();
 const errorHandle = require('../middleware/errorHandle');
 
 app.use(express.json());
+app.use(express.static('public'));
 app.use(cors());
 // app.get('/coffee', (_req, res) => res.status(418).end());
 app.use(routes);

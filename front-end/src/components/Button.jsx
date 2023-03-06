@@ -22,7 +22,7 @@ function Button(p) {
     <SButton
       type={ type || 'submit' }
       onClick={ onClick }
-      datatest-id={ datatestId }
+      data-testid={ datatestId }
       disabled={ disabled }
     >
       {name}
