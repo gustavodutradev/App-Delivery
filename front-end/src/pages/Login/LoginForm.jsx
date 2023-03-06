@@ -16,8 +16,8 @@ const SForm = styled.form`
     flex-col
     justify-center
     content-center
-    
   `}
+  height: 100vh;
 `;
 
 export default function LoginForm() {
