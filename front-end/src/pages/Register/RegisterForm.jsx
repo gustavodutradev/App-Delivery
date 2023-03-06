@@ -6,7 +6,7 @@ import Button from '../../components/Button';
 import ErrorMessage from '../../components/ErrorMessage';
 import Input from '../../components/Input';
 import axiosRequest from '../../utils/axios';
-import { GET_STATUS_OK, POST_STATUS_OK } from '../../utils/statusCodes';
+import { POST_STATUS_OK } from '../../utils/statusCodes';
 
 const MIN_PASSWORD_CHARACTERS = 6;
 const MIN_NAME_CHARACTERS = 12;
@@ -37,7 +37,7 @@ export default function RegisterForm() {
 
   const handleRequest = (result) => {
     const { status } = result;
-    if (status === GET_STATUS_OK) {
+    if (status === POST_STATUS_OK) {
       redirect(status);
     }
     return null;
@@ -92,7 +92,7 @@ export default function RegisterForm() {
       {
         wrongRegister && <ErrorMessage
           message="Ops! E-mail já cadastrado"
-          datatest-id="common_register__element-invalid_register"
+          datatestId="common_register__element-invalid_register"
         />
       }
 

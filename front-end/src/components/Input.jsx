@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
+import propTypes from 'prop-types';
 import styled from 'styled-components';
 import tw from 'twin.macro';
 
@@ -28,6 +29,8 @@ const SInput = styled.label`
 
 function Input(props) {
   const { name, type, onChange, value, datatestId } = props;
+function Input(props) {
+  const { name, type, onChange, value, datatestId } = props;
   return (
     <SInput>
       <span>{name}</span>
@@ -35,7 +38,7 @@ function Input(props) {
         type={ type }
         onChange={ onChange }
         value={ value }
-        datatest-id={ datatestId }
+        data-testid={ datatestId }
       />
     </SInput>
   );

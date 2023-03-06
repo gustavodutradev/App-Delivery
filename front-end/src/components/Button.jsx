@@ -25,7 +25,7 @@ function Button(props) {
     <SButton
       type={ type }
       onClick={ onClick }
-      datatest-id={ datatestId }
+      data-testid={ datatestId }
       disabled={ disabled }
     >
       {name}

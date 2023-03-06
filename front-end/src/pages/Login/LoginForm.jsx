@@ -47,7 +47,7 @@ export default function LoginForm() {
     return null;
   };
 
-  const isValid = (pw.length > MIN_PASSWORD_CHARACTERS) && REGEXP_EMAIL.test(email);
+  const isValid = (pw.length >= MIN_PASSWORD_CHARACTERS) && REGEXP_EMAIL.test(email);
 
   return (
     <SForm
@@ -90,7 +90,7 @@ export default function LoginForm() {
       {
         wrongLogin && <ErrorMessage
           message="Ops! Verifique seu e-mail ou senha"
-          datatest-id="common_login__element-invalid-email"
+          datatestId="common_login__element-invalid-email"
         />
       }
 

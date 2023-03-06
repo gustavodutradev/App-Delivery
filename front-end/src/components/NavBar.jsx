@@ -98,7 +98,7 @@ function NavBar() {
       </SLeft>
       <SRigth>
         <span
-          datatest-id="customer_products__element-navbar-user-full-name"
+          data-testid="customer_products__element-navbar-user-full-name"
         >
           { `Olá, ${username} ` }
         </span>

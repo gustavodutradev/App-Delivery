@@ -1,9 +1,9 @@
 import React from 'react';
 
 function ErrorMessage(p) {
-  const { message } = p;
+  const { message, datatestId } = p;
   return (
-    <div>
+    <div data-testid={ datatestId }>
       {message}
     </div>
   );
