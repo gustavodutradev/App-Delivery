@@ -1,4 +1,5 @@
 import React from 'react';
+import propTypes from 'prop-types';
 import styled from 'styled-components';
 import tw from 'twin.macro';
 
@@ -25,8 +26,8 @@ const SInput = styled.label`
   }
 `;
 
-function Input(p) {
-  const { name, type, onChange, value, datatestId } = p;
+function Input(props) {
+  const { name, type, onChange, value, datatestId } = props;
   return (
     <SInput>
       <span>{name}</span>
@@ -34,10 +35,18 @@ function Input(p) {
         type={ type || 'text' }
         onChange={ onChange }
         value={ value }
-        data-testid={ datatestId }
+        datatest-id={ datatestId }
       />
     </SInput>
   );
 }
+
+Input.propTypes = {
+  name: propTypes.string.isRequired,
+  type: propTypes.string.isRequired,
+  onChange: propTypes.func.isRequired,
+  value: propTypes.string.isRequired,
+  datatestId: propTypes.string.isRequired,
+};
 
 export default Input;
