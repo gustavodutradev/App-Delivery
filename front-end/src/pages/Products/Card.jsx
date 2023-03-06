@@ -39,6 +39,10 @@ const QuantityContainer = styled.div`
     ${tw`
       h-6
     `}
+    &:hover {
+      transform: scale(1.1);
+      transition: 0.2s;
+    }
   }
 
   input {
@@ -73,6 +77,12 @@ const TopContainer = styled.div`
   background-size: cover;
   background-position-y: 50%;
   background-position-x: 50%;
+
+  span {
+    color: #333333;
+    font-size: 1.2rem;
+    font-weight: bold;
+  }
 `;
 
 function Card(props) {
