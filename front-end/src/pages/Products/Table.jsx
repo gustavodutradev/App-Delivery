@@ -2,14 +2,17 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import tw from 'twin.macro';
 import Card from './Card';
+import axiosRequest from '../../utils/axios';
 import { GET_STATUS_OK } from '../../utils/statusCodes';
 
-const STable = styled.table`
+const STable = styled.div`
   ${tw`
-    table-auto
+    grid
+    grid-cols-4
     m-1.5
     font-bold
     border
+    border-blue-700
     rounded
     text-white
     p-1
@@ -21,13 +24,26 @@ function Table() {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
-    const { status, data } = axios.get('/products');
-    if (status === GET_STATUS_OK) setProducts(data);
-  }, [axios]);
+    const fetchProducts = async () => {
+      try {
+        const { status, data } = await axios.get('/products');
+        if (status === GET_STATUS_OK) setProducts(data);
+      } catch (err) {
+        console.log(`Products Table error: ${err}`);
+      }
+    };
+    fetchProducts();
+  }, []);
 
   return (
     <STable>
-      {products.map((e) => <Card key={ e.id } product={ e } />)}
+      {products.map((e) => (<Card
+        key={ e.id }
+        product={ {
+          price: Number(e.price),
+          ...e,
+        } }
+      />))}
     </STable>
   );
 }
