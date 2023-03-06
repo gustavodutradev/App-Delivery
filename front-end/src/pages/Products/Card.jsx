@@ -100,19 +100,19 @@ function Card(props) {
           <Button
             onClick={ () => { setQuantity((count) => handleNegative(count - 1)); } }
             name="-"
-            datatestId="customer_products__button-card-rm-item-<id>"
+            datatestId={ `customer_products__button-card-rm-item-${product.id}` }
           />
           <Input
             name=""
             type="number"
             onChange={ (e) => { setQuantity(handleNegative(+e.target.value)); } }
             value={ quantity }
-            datatestId="customer_products_input-card-quantity-<id>"
+            datatestId={ `customer_products_input-card-quantity-${product.id}` }
           />
           <Button
             onClick={ () => { setQuantity((count) => handleNegative(+count + 1)); } }
             name="+"
-            datatestId="customer_products__button-card-add-item-<id>"
+            datatestId={ `customer_products__button-card-add-item-${product.id}` }
           />
         </QuantityContainer>
       </BottomContainer>
