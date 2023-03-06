@@ -7,14 +7,16 @@ import { GET_STATUS_OK } from '../../utils/statusCodes';
 
 const STable = styled.div`
   ${tw`
-    grid
-    grid-cols-4
+    flex
+    flex-wrap
+    justify-center
+    gap-3
     font-bold
     border
-    border-blue-700
     rounded
     text-white
     p-4
+    w-full
   `}
   background-color: #FC0;
 `;
