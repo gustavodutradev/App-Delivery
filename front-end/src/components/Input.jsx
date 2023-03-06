@@ -46,7 +46,10 @@ Input.propTypes = {
   onChange: PropTypes.func,
   name: PropTypes.string.isRequired,
   datatestId: PropTypes.string,
-  value: PropTypes.string.isRequired,
+  value: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number,
+  ]).isRequired,
 };
 
 Input.defaultProps = {
