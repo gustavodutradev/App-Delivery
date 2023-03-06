@@ -19,7 +19,7 @@ const SCard = styled.div`
     bg-gray-700
     text-white
     p-6
-    border-red-600
+    border-gray-400
   `}
   width: 23rem;
 
@@ -46,13 +46,20 @@ const QuantityContainer = styled.div`
       w-20
       text-black
     `}
-
+    text-align: center;
   }
 `;
 
 const BottomContainer = styled.div`
   ${tw`
-  `}`;
+  align-middle
+  `}
+  .product-title {
+    display: block;
+    align-items: center;
+    text-align: center;
+  }
+  `;
 
 const TopContainer = styled.div`
   ${tw`
@@ -92,10 +99,10 @@ function Card(props) {
   return (
     <SCard imgUrl={ product.urlImage }>
       <TopContainer>
-        <span>{product.price}</span>
+        <span>R$ {product.price.replace('.', ',')}</span>
       </TopContainer>
       <BottomContainer>
-        <span>{product.name}</span>
+        <span className="product-title">{product.name}</span>
         <QuantityContainer>
           <Button
             onClick={ () => { setQuantity((count) => handleNegative(count - 1)); } }
