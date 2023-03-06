@@ -5,27 +5,64 @@ import styled from 'styled-components';
 import tw from 'twin.macro';
 import Button from '../../components/Button';
 import Input from '../../components/Input';
-import { changeQuantity } from '../../redux/slices/cartSlice';
+import { addOrUpdateItem, removeItem } from '../../redux/slices/cartSlice';
 
 const SCard = styled.div`
   ${tw`
     justify-center
     flex
+    flex-col
     m-1.5
     font-bold
     border
     rounded
     bg-gray-700
     text-white
-    p-1
+    p-6
+    border-red-600
   `}
+  width: 23rem;
 
-  width: 200px;
-  height: 350px;
-
-  .product-IMG {
-    background-image: url(${(props) => props.imgUrl});
+  input {
+    width: 2em;
   }
+`;
+
+const QuantityContainer = styled.div`
+  ${tw`
+    flex
+    flex-1
+    justify-center
+  `}
+  align-items: center;
+  button {
+    ${tw`
+      h-6
+    `}
+  }
+
+  input {
+    ${tw`
+      w-20
+      text-black
+    `}
+
+  }
+`;
+
+const BottomContainer = styled.div`
+  ${tw`
+  `}`;
+
+const TopContainer = styled.div`
+  ${tw`
+    w-full
+  `}
+  background-image: url(${(props) => props.imgUrl});
+  height: 400px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+  object-fit: cover;
 `;
 
 function Card(props) {
@@ -33,43 +70,52 @@ function Card(props) {
   const dispatch = useDispatch();
   const [quantity, setQuantity] = useState(0);
 
+  const handleDispatch = () => {
+    if (quantity < 1) {
+      dispatch(removeItem(product.id));
+    } else {
+      dispatch(addOrUpdateItem({
+        name: product.name,
+        price: product.price,
+        quantity,
+        id: product.id,
+      }));
+    }
+  };
+
+  const handleNegative = (number) => (number < 0 ? 0 : number);
+
   useEffect(() => {
-    dispatch(changeQuantity({ id: product.id, quantity })); //
+    handleDispatch();
   }, [quantity]);
 
   return (
     <SCard imgUrl={ product.urlImage }>
-      <div className="product-IMG">
+      <TopContainer>
         <span>{product.price}</span>
-      </div>
-      <div>
+      </TopContainer>
+      <BottomContainer>
         <span>{product.name}</span>
-        <div>
-          <button
-            onClick={ () => { setQuantity((count) => count - 1); } }
-            type="button"
-          >
-            -
-          </button>
+        <QuantityContainer>
           <Button
-            onClick={ () => { setQuantity((count) => count - 1); } }
+            onClick={ () => { setQuantity((count) => handleNegative(count - 1)); } }
             name="-"
             datatestId="customer_products__button-card-rm-item-<id>"
           />
           <Input
             name=""
             type="number"
-            onChange={ (e) => { setQuantity(e.target.value); } }
+            onChange={ (e) => { setQuantity(handleNegative(+e.target.value)); } }
             value={ quantity }
             datatestId="customer_products_input-card-quantity-<id>"
           />
           <Button
-            onClick={ () => { setQuantity((count) => count + 1); } }
+            onClick={ () => { setQuantity((count) => handleNegative(+count + 1)); } }
             name="+"
             datatestId="customer_products__button-card-add-item-<id>"
           />
-        </div>
-      </div>
+        </QuantityContainer>
+      </BottomContainer>
     </SCard>
   );
 }
@@ -79,7 +125,7 @@ Card.propTypes = {
     id: PropTypes.number,
     name: PropTypes.string,
     urlImage: PropTypes.string,
-    price: PropTypes.number,
+    price: PropTypes.string,
   }).isRequired,
 };
 
