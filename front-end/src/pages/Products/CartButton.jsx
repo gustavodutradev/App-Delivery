@@ -8,6 +8,11 @@ const Fixed = styled(Button)`
   position: fixed;
   bottom: 2vh;
   right: 2vh;
+  height: 4rem;
+  width: 17rem;
+  font-size: 1.5em;
+  border-radius: 25px;
+  font-weight: lighter;
 `;
 
 function CartButton() {
