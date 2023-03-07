@@ -1,11 +1,18 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import styled from 'styled-components';
 import Button from '../../components/Button';
+
+const Fixed = styled(Button)`
+  position: fixed;
+  bottom: 2vh;
+  right: 2vh;
+`;
 
 function CartButton() {
   const navigate = useNavigate();
-  const goToCart = () => navigate('/customer/orders');
+  const goToCart = () => navigate('/customer/checkout');
   const productsRedux = useSelector((state) => state.cart.items);
 
   const totalPrice = (products) => products.reduce((acc, curr) => (
@@ -13,7 +20,7 @@ function CartButton() {
   ), 0);
 
   return (
-    <Button
+    <Fixed
       type="button"
       datatestId="customer_products__button-cart"
       name={
