@@ -15,8 +15,17 @@ function CartButton() {
   return (
     <Button
       type="button"
-      datatestId="customer_products__button-cart customer_products__checkout-bottom-value"
-      name={ `Ver Carrinho: R$ ${totalPrice(productsRedux).toFixed(2)}` }
+      datatestId="customer_products__button-cart"
+      name={
+        <>
+          Ver Carrinho: R$
+          <span
+            data-testid="customer_products__checkout-bottom-value"
+          >
+            { totalPrice(productsRedux).toFixed(2) }
+          </span>
+        </>
+      }
       onClick={ goToCart }
     />
   );

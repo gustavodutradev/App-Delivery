@@ -37,7 +37,10 @@ Button.propTypes = {
   type: PropTypes.string,
   onClick: PropTypes.func,
   disabled: PropTypes.bool,
-  name: PropTypes.string.isRequired,
+  name: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.node,
+  ]).isRequired,
   datatestId: PropTypes.string,
 };
 
