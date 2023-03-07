@@ -13,12 +13,12 @@ const STable = styled.div`
     gap-3
     font-bold
     border
-    rounded
     text-white
     p-4
     w-full
   `}
   background-color: #FC0;
+  border-color: #FC0;
 `;
 
 function Table() {
