@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import tw from 'twin.macro';
 import styled from 'styled-components';
 import Button from './Button';
+import { clearCart } from '../redux/slices/cartSlice';
+import { logout } from '../redux/slices/userSlice';
 
 const SNav = styled.nav`
   ${tw`
@@ -71,9 +73,12 @@ const SLeft = styled.ul`
 function NavBar() {
   const [username, setUsername] = useState('');
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const goToProducts = () => navigate('/customer/products');
   const goToOrders = () => navigate('/customer/orders');
-  const logout = () => {
+  const logoutOnClick = () => {
+    dispatch(clearCart());
+    dispatch(logout());
     localStorage.clear();
     navigate('/');
   };
@@ -109,7 +114,7 @@ function NavBar() {
         <Button
           name="Sair"
           datatestId="customer_products__element-navbar-link-logout"
-          onClick={ logout }
+          onClick={ logoutOnClick }
         />
       </SRigth>
     </SNav>
