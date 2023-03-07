@@ -21,7 +21,7 @@ const SForm = styled.form`
 `;
 
 export default function LoginForm() {
-  const [email, setEmail] = useState('');
+  const [email, setEmail] = useState(' ');
   const [pw, setPw] = useState('');
   const [wrongLogin, setWrongLogin] = useState(false);
 
