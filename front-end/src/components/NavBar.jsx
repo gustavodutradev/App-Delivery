@@ -73,6 +73,10 @@ function NavBar() {
   const navigate = useNavigate();
   const goToProducts = () => navigate('/customer/products');
   const goToOrders = () => navigate('/customer/orders');
+  const logout = () => {
+    localStorage.clear();
+    navigate('/');
+  };
 
   const name = useSelector((state) => state.user.name);
 
@@ -105,7 +109,7 @@ function NavBar() {
         <Button
           name="Sair"
           datatestId="customer_products__element-navbar-link-logout"
-          // onClick={}
+          onClick={ logout }
         />
       </SRigth>
     </SNav>
