@@ -13,13 +13,20 @@ const cartSlice = createSlice({
       //   id: number,
       //   name: string,
       //   price: number,
-      //   quantity: number
+      //   quantity: number,
+      //   urlImage: string,
       // }
-      state.items.push({ ...action.payload });
-    },
-    removeItem: (state, action) => {
-      // action.payload = id: number
-      state.items = state.items.filter((e) => e.id !== action.payload);
+      const { id } = action.payload;
+      const index = state.items.findIndex((e) => e.id === id);
+      if (index >= 0) return;
+      const item = {
+        id: action.payload.id,
+        name: action.payload.name,
+        price: action.payload.price,
+        quantity: action.payload.quantity,
+        urlImage: action.payload.urlImage,
+      };
+      state.items.push(item);
     },
     changeQuantity: (state, action) => {
       // action.payload: {
@@ -30,21 +37,6 @@ const cartSlice = createSlice({
       const index = state.items.findIndex((e) => e.id === id);
       if (index < 0) return;
       state.items[index].quantity = quantity;
-    },
-    addOrUpdateItem: (state, action) => {
-      // action.payload: {
-      //   id: number,
-      //   name: string,
-      //   price: number,
-      //   quantity: number
-      // }
-      const { id, quantity } = action.payload;
-      const index = state.items.findIndex((e) => e.id === id);
-      if (index < 0) {
-        state.items.push(action.payload);
-      } else {
-        state.items[index].quantity = quantity;
-      }
     },
   },
 });

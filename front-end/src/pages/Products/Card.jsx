@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import tw from 'twin.macro';
 import Button from '../../components/Button';
 import Input from '../../components/Input';
-import { addOrUpdateItem, removeItem } from '../../redux/slices/cartSlice';
+import { changeQuantity } from '../../redux/slices/cartSlice';
 
 const SCard = styled.div`
   ${tw`
@@ -96,19 +96,13 @@ const TopContainer = styled.div`
 function Card(props) {
   const { product } = props;
   const dispatch = useDispatch();
-  const [quantity, setQuantity] = useState(0);
+  const [quantity, setQuantity] = useState(product.quantity);
 
   const handleDispatch = () => {
-    if (quantity < 1) {
-      dispatch(removeItem(product.id));
-    } else {
-      dispatch(addOrUpdateItem({
-        name: product.name,
-        price: product.price,
-        quantity,
-        id: product.id,
-      }));
-    }
+    dispatch(changeQuantity({
+      quantity,
+      id: product.id,
+    }));
   };
 
   const handleNegative = (number) => (number < 0 ? 0 : number);
@@ -167,6 +161,7 @@ Card.propTypes = {
     name: PropTypes.string,
     urlImage: PropTypes.string,
     price: PropTypes.string,
+    quantity: PropTypes.number,
   }).isRequired,
 };
 
