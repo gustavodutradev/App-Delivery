@@ -33,21 +33,31 @@ const QuantityContainer = styled.div`
     flex
     flex-1
     justify-center
+    gap-3
   `}
   align-items: center;
   button {
     ${tw`
-      h-6
+      h-10
+      w-10
     `}
+    font-size: 1.2em;
+    border-color: #FC0;
+    background-color: #333;
+    color: #FC0;
     &:hover {
       transform: scale(1.1);
       transition: 0.2s;
+      border-color: #333;
+      background-color: #FC0;
+      color: #333;
     }
   }
 
   input {
     ${tw`
       w-20
+      h-10
       text-black
     `}
     text-align: center;
