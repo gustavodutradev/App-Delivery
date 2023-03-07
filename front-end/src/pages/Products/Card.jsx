@@ -67,9 +67,11 @@ const BottomContainer = styled.div`
 
 const TopContainer = styled.div`
   ${tw`
-  w-full
+    w-full
+    bg-white
+    flex
+    flex-col
   `}
-  background-image: url(${(props) => props.imgUrl});
   height: 300px;
   border: 1px solid rgba(0, 0, 0, 0.2);
   border-radius: 5px;
@@ -77,11 +79,17 @@ const TopContainer = styled.div`
   background-size: cover;
   background-position-y: 50%;
   background-position-x: 50%;
+  align-items: center;
+
+  img {
+    height: 266.67px;
+  }
 
   span {
     color: #333333;
     font-size: 1.2rem;
     font-weight: bold;
+    width: 100%;
   }
 `;
 
@@ -111,14 +119,24 @@ function Card(props) {
 
   return (
     <SCard>
-      <TopContainer imgUrl={ product.urlImage }>
-        <span>
+      <TopContainer>
+        <span data-testid={ `customer_products__element-card-price-${product.id}` }>
           R$
           {product.price.replace('.', ',')}
         </span>
+        <img
+          src={ product.urlImage }
+          alt=""
+          data-testid={ `customer_products__img-card-bg-image-${product.id}` }
+        />
       </TopContainer>
       <BottomContainer>
-        <span className="product-title">{product.name}</span>
+        <span
+          className="product-title"
+          data-testid={ `customer_products__element-card-title-${product.id}` }
+        >
+          {product.name}
+        </span>
         <QuantityContainer>
           <Button
             onClick={ () => { setQuantity((count) => handleNegative(count - 1)); } }
