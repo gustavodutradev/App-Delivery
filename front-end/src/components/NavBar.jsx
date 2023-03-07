@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import Button from './Button';
 import tw from 'twin.macro';
 import styled from 'styled-components';
+import Button from './Button';
 
 const SNav = styled.nav`
   ${tw`
@@ -18,7 +18,7 @@ const SNav = styled.nav`
     align-items: center;
   }
   background-color: #333333;
-`
+`;
 const SRigth = styled.ul`
   ${tw`
   flex
@@ -44,7 +44,7 @@ const SRigth = styled.ul`
     }
   }
 
-`
+`;
 
 const SLeft = styled.ul`
   ${tw`
@@ -66,8 +66,7 @@ const SLeft = styled.ul`
       color: #333333;
     }
   }
-`
-
+`;
 
 function NavBar() {
   const [username, setUsername] = useState('');

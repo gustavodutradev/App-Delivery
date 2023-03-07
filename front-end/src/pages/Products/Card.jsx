@@ -16,13 +16,13 @@ const SCard = styled.div`
     font-bold
     border
     rounded
-    bg-gray-700
     text-white
     p-6
-    border-gray-400
+    gap-2
   `}
-  width: 23rem;
-
+  width: 20rem;
+  background-color: #333333ed;
+  border-color: #333333a2;
   input {
     width: 2em;
   }
@@ -69,7 +69,7 @@ const TopContainer = styled.div`
   ${tw`
   w-full
   `}
-  background-image: url(${(props) => props.imgUrl });
+  background-image: url(${(props) => props.imgUrl});
   height: 300px;
   border: 1px solid rgba(0, 0, 0, 0.2);
   border-radius: 5px;
@@ -112,7 +112,10 @@ function Card(props) {
   return (
     <SCard>
       <TopContainer imgUrl={ product.urlImage }>
-        <span>R$ {product.price.replace('.', ',')}</span>
+        <span>
+          R$
+          {product.price.replace('.', ',')}
+        </span>
       </TopContainer>
       <BottomContainer>
         <span className="product-title">{product.name}</span>
