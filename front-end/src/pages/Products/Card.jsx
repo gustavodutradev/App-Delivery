@@ -148,7 +148,7 @@ function Card(props) {
             type="number"
             onChange={ (e) => { setQuantity(handleNegative(+e.target.value)); } }
             value={ quantity }
-            datatestId={ `customer_products_input-card-quantity-${product.id}` }
+            datatestId={ `customer_products__input-card-quantity-${product.id}` }
           />
           <Button
             onClick={ () => { setQuantity((count) => handleNegative(+count + 1)); } }
