@@ -46,7 +46,6 @@ const QuantityContainer = styled.div`
     background-color: #333;
     color: #FC0;
     &:hover {
-      transform: scale(1.1);
       transition: 0.2s;
       border-color: #333;
       background-color: #FC0;
@@ -61,6 +60,8 @@ const QuantityContainer = styled.div`
       text-black
     `}
     text-align: center;
+    border: 3px solid #e8be15;
+    padding: 0.5em;
   }
 `;
 
