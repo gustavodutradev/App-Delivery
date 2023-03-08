@@ -36,19 +36,19 @@ const SRigth = styled.ul`
     list-style-type: none;
   }
   span {
-    color: #FC0;
+    color: rgb(255, 197, 0);
     font-weight: bold;
   }
   button {
     background-color: #333333;
-    border: 1px solid #FC0;
-    color: #FC0;
+    border: 1px solid rgb(255, 197, 0);
+    color: rgb(255, 197, 0);
     border-radius: 10px;
     font-weight: lighter;
     height: 2.5rem;
     width: 4.5rem;
       &:hover {
-        background-color:#FC0;
+        background-color:rgb(255, 197, 0);
         border: 1px solid #333333;
         color: #333333;
     }
@@ -70,14 +70,14 @@ const SLeft = styled.ul`
   }
   button {
     background-color: #333333;
-    border: 1px solid #FC0;
-    color: #FC0;
+    border: 1px solid rgb(255, 197, 0);
+    color: rgb(255, 197, 0);
     border-radius: 10px;
     font-weight: lighter;
     height: 3rem;
     width: 7rem;
       &:hover {
-      background-color:#FC0;
+      background-color:rgb(255, 197, 0);
       border: 1px solid #333333;
       color: #333333;
     }
