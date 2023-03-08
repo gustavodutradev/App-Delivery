@@ -27,7 +27,7 @@ const SInput = styled.label`
 `;
 
 function Input(props) {
-  const { name, type, onChange, value, datatestId } = props;
+  const { name, type, onChange, value, datatestId, placeHolder } = props;
   return (
     <SInput>
       <span>{name}</span>
@@ -36,6 +36,7 @@ function Input(props) {
         onChange={ onChange }
         value={ value }
         data-testid={ datatestId }
+        placeholder={ placeHolder }
       />
     </SInput>
   );
