@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import tw from 'twin.macro';
@@ -48,15 +48,20 @@ const SubmitButton = styled(Button)`
 `;
 
 function DeliveryDetails() {
-  const [seller, setSeller] = useState('');
+  const [selectedSeller, setSelectedSeller] = useState('');
   const [address, setAddress] = useState('');
   const [addressNumber, setAddressNumber] = useState('');
   const [btnDisabled, setBtnDisabled] = useState(true);
-  const [optionsSelect, setOptionsSelect] = useState([]);
+  const [sellers, setSellers] = useState([]);
 
   const dispatch = useDispatch();
   const axios = axiosRequest();
   const navigate = useNavigate();
+  const products = useSelector((state) => state.cart.items);
+  const userId = useSelector((state) => state.user.id);
+  const totalPrice = products.reduce((acc, curr) => (
+    acc + (curr.quantity * curr.price)
+  ), 0);
 
   useEffect(() => {
     setBtnDisabled(!address || !addressNumber);
@@ -64,8 +69,8 @@ function DeliveryDetails() {
 
   useEffect(() => {
     const fetchSellers = async () => {
-      const { data } = axios.get(''); // por url de get seller
-      setOptionsSelect(data); // fazer a limpeza dos dados antes
+      const { data } = axios.get('/sales/sellers'); // por url de get seller
+      setSellers(data); // fazer a limpeza dos dados antes
     };
     fetchSellers();
   }, []);
@@ -74,11 +79,17 @@ function DeliveryDetails() {
     <SForm
       onSubmit={ async () => {
         try {
-          // const { data } = axios.post('', { // req.body to send
-          //   id: 0,
-          // });
+          const { data } = axios.post('', { // req.body to send
+            userId,
+            address: {
+              street: address,
+              number: addressNumber,
+            },
+            sellerId: sellers.find((e) => e.name === selectedSeller).id,
+            totalPrice,
+          });
           dispatch(clearCart()); // clear cart after purchase
-          navigate(''); // url to navigate
+          navigate(`customer/order/${data}`); // url to navigate
         } catch (error) {
           console.log(error);
         }
@@ -88,30 +99,27 @@ function DeliveryDetails() {
         <SelectSeller
           name="P.Vendedora Responsável"
           data-testid="customer_checkout__select-seller"
-        value={ seller }
-        onChange={ (e) => { setSeller(e.target.value); } }
-        // options={ optionsSelect }
-        options={ [
-          { name: 'ricardo', value: 'ricardo' },
-          { name: 'juliana', value: 'juliana' },
-          { name: 'gustavo', value: 'gustavo' },
-          { name: 'pedro', value: 'pedro' },
-        ] }
-      />
-      <Input
-        name="Endereço"
-        datatestId="customer_checkout__input-address"
-        type="text"
-        value={ address }
-        onChange={ (e) => { setAddress(e.target.value); } }
-      />
-      <Input
-        name="Numero"
-        datatestId="customer_checkout__input-address-number"
-        type="text"
-        value={ addressNumber }
-        onChange={ (e) => { setAddressNumber(e.target.value); } }
-      />
+          value={ selectedSeller }
+          onChange={ (e) => { setSelectedSeller(e.target.value); } }
+          options={ optionsSelect.map((e) => ({
+            name: e.name,
+            value: e.name,
+          })) }
+        />
+        <Input
+          name="Endereço"
+          datatestId="customer_checkout__input-address"
+          type="text"
+          value={ address }
+          onChange={ (e) => { setAddress(e.target.value); } }
+        />
+        <Input
+          name="Numero"
+          datatestId="customer_checkout__input-address-number"
+          type="text"
+          value={ addressNumber }
+          onChange={ (e) => { setAddressNumber(e.target.value); } }
+        />
       </FieldsContainer>
       <SubmitButton
         name="FINALIZAR PEDIDO"
