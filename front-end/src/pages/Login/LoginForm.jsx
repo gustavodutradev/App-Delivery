@@ -9,7 +9,6 @@ import Input from '../../components/Input';
 import { setUser } from '../../redux/slices/userSlice';
 import axiosRequest from '../../utils/axios';
 import { GET_STATUS_OK } from '../../utils/statusCodes';
-import logo from '../../images/appdeliverylogo.png';
 
 const SLogin = styled.div`
   ${tw`
@@ -144,54 +143,54 @@ export default function LoginForm() {
       <SFormHeader>
         <h1>Chegou o seu novo app de delivery com bebidas sempre geladas!</h1>
         <p>Venha gelar a goela com a gente também!</p>
-     </SFormHeader>
-    <SForm
-      onSubmit={ async (e) => {
-        e.preventDefault();
-        try {
-          handleRequest(await axios.post('/login', { email, password: pw }));
-        } catch (err) {
-          setWrongLogin(true);
-          console.log(err);
-        }
-      } }
-    >
-      <Input
-        onChange={ (e) => { setEmail(e.target.value); } }
-        value={ email }
-        name="Login"
-        type="email"
-        datatestId="common_login__input-email"
-        placeHolder="E-mail"
-      />
-      <Input
-        onChange={ (e) => { setPw(e.target.value); } }
-        value={ pw }
-        name="Senha"
-        type="password"
-        datatestId="common_login__input-password"
-        placeHolder="Senha"
-      />
-      <Button
-        name="LOGIN"
-        datatestId="common_login__button-login"
-        disabled={ !isValid }
-      />
-      <Button
-        name="Ainda não tenho conta"
-        datatestId="common_login__button-register"
-        type="button"
-        onClick={ () => { navigate('/register'); } }
-      />
-
-      {
-        wrongLogin && <ErrorMessage
-          message="Ops! Verifique seu e-mail ou senha"
-          datatestId="common_login__element-invalid-email"
+      </SFormHeader>
+      <SForm
+        onSubmit={ async (e) => {
+          e.preventDefault();
+          try {
+            handleRequest(await axios.post('/login', { email, password: pw }));
+          } catch (err) {
+            setWrongLogin(true);
+            console.log(err);
+          }
+        } }
+      >
+        <Input
+          onChange={ (e) => { setEmail(e.target.value); } }
+          value={ email }
+          name="Login"
+          type="email"
+          datatestId="common_login__input-email"
+          placeHolder="E-mail"
         />
-      }
+        <Input
+          onChange={ (e) => { setPw(e.target.value); } }
+          value={ pw }
+          name="Senha"
+          type="password"
+          datatestId="common_login__input-password"
+          placeHolder="Senha"
+        />
+        <Button
+          name="LOGIN"
+          datatestId="common_login__button-login"
+          disabled={ !isValid }
+        />
+        <Button
+          name="Ainda não tenho conta"
+          datatestId="common_login__button-register"
+          type="button"
+          onClick={ () => { navigate('/register'); } }
+        />
 
-    </SForm>
+        {
+          wrongLogin && <ErrorMessage
+            message="Ops! Verifique seu e-mail ou senha"
+            datatestId="common_login__element-invalid-email"
+          />
+        }
+
+      </SForm>
     </SLogin>
   );
 }

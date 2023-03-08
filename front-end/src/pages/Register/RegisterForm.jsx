@@ -104,60 +104,60 @@ export default function RegisterForm() {
   && (name.length >= MIN_NAME_CHARACTERS);
 
   return (
-  <SRegister>
+    <SRegister>
 
-    <SForm
-      onSubmit={ async (e) => {
-        e.preventDefault();
-        try {
-          handleRequest(await axios.post(
-            '/register',
-            { name, email, password: pw, role: 'customer',
-            },
-          ));
-        } catch (err) {
-          setWrongRegister(true);
-          console.log(err);
-        }
-      } }
-    >
-      <Input
-        onChange={ (e) => { setName(e.target.value); } }
-        value={ name }
-        name="Nome"
-        datatestId="common_register__input-name"
-        placeHolder="Nome e Sobrenome"
-      />
-      <Input
-        onChange={ (e) => { setEmail(e.target.value); } }
-        value={ email }
-        name="Email"
-        type="email"
-        datatestId="common_register__input-email"
-        placeHolder="E-mail"
-      />
-      <Input
-        onChange={ (e) => { setPw(e.target.value); } }
-        value={ pw }
-        name="Password"
-        type="password"
-        datatestId="common_register__input-password"
-        placeHolder="Senha"
-      />
-      <Button
-        name="CADASTRAR"
-        datatestId="common_register__button-register"
-        disabled={ !isValid }
-      />
-
-      {
-        wrongRegister && <ErrorMessage
-          message="Ops! E-mail já cadastrado"
-          datatestId="common_register__element-invalid_register"
+      <SForm
+        onSubmit={ async (e) => {
+          e.preventDefault();
+          try {
+            handleRequest(await axios.post(
+              '/register',
+              { name, email, password: pw, role: 'customer',
+              },
+            ));
+          } catch (err) {
+            setWrongRegister(true);
+            console.log(err);
+          }
+        } }
+      >
+        <Input
+          onChange={ (e) => { setName(e.target.value); } }
+          value={ name }
+          name="Nome"
+          datatestId="common_register__input-name"
+          placeHolder="Nome e Sobrenome"
         />
-      }
+        <Input
+          onChange={ (e) => { setEmail(e.target.value); } }
+          value={ email }
+          name="Email"
+          type="email"
+          datatestId="common_register__input-email"
+          placeHolder="E-mail"
+        />
+        <Input
+          onChange={ (e) => { setPw(e.target.value); } }
+          value={ pw }
+          name="Password"
+          type="password"
+          datatestId="common_register__input-password"
+          placeHolder="Senha"
+        />
+        <Button
+          name="CADASTRAR"
+          datatestId="common_register__button-register"
+          disabled={ !isValid }
+        />
 
-    </SForm>
-  </SRegister>
+        {
+          wrongRegister && <ErrorMessage
+            message="Ops! E-mail já cadastrado"
+            datatestId="common_register__element-invalid_register"
+          />
+        }
+
+      </SForm>
+    </SRegister>
   );
 }

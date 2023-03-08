@@ -26,8 +26,8 @@ const SInput = styled.label`
   }
 `;
 
-function Input(props) {
-  const { name, type, onChange, value, datatestId, placeHolder } = props;
+function Input({ name, value, ...props }) {
+  const { type, onChange, datatestId, placeHolder } = props;
   return (
     <SInput>
       <span>{name}</span>
@@ -47,13 +47,14 @@ Input.propTypes = {
   onChange: PropTypes.func,
   name: PropTypes.string.isRequired,
   datatestId: PropTypes.string,
+  placeHolder: PropTypes.string,
   value: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.number,
   ]).isRequired,
 };
 
-Input.defaultProps = {
+Input.defaultParameters = {
   type: 'text',
   onChange: () => {},
   datatestId: '',

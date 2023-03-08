@@ -110,7 +110,7 @@ function NavBar() {
   return (
     <SNav>
       <SLeft>
-        <img src={ logo } alt="app-logo"/>
+        <img src={ logo } alt="app-logo" />
         <Button
           name="Produtos"
           datatestId="customer_products__element-navbar-link-products"
