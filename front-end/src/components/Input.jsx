@@ -43,11 +43,11 @@ function Input({ name, value, ...props }) {
 }
 
 Input.propTypes = {
-  type: PropTypes.string,
-  onChange: PropTypes.func,
+  type: PropTypes.string.isRequired,
+  onChange: PropTypes.func.isRequired,
   name: PropTypes.string.isRequired,
-  datatestId: PropTypes.string,
-  placeHolder: PropTypes.string,
+  datatestId: PropTypes.string.isRequired,
+  placeHolder: PropTypes.string.isRequired,
   value: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.number,
