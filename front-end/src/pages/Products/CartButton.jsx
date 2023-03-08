@@ -20,7 +20,7 @@ function CartButton() {
   const goToCart = () => navigate('/customer/checkout');
   const productsRedux = useSelector((state) => state.cart.items);
 
-  const totalPrice = (products) => products.reduce((acc, curr) => (
+  const totalPrice = productsRedux.reduce((acc, curr) => (
     acc + (curr.quantity * curr.price)
   ), 0);
 
@@ -34,10 +34,11 @@ function CartButton() {
           <span
             data-testid="customer_products__checkout-bottom-value"
           >
-            { String(totalPrice(productsRedux).toFixed(2)).replace('.', ',') }
+            { String(totalPrice.toFixed(2)).replace('.', ',') }
           </span>
         </>
       }
+      disabled={ totalPrice <= 0 }
       onClick={ goToCart }
     />
   );
