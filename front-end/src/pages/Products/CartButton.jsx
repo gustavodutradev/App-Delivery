@@ -34,7 +34,7 @@ function CartButton() {
           <span
             data-testid="customer_products__checkout-bottom-value"
           >
-            { totalPrice(productsRedux).toFixed(2) }
+            { String(totalPrice(productsRedux).toFixed(2)).replace('.', ',') }
           </span>
         </>
       }
