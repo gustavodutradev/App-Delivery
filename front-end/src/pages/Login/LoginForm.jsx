@@ -9,15 +9,87 @@ import Input from '../../components/Input';
 import { setUser } from '../../redux/slices/userSlice';
 import axiosRequest from '../../utils/axios';
 import { GET_STATUS_OK } from '../../utils/statusCodes';
+import logo from '../../images/appdeliverylogo.png';
+
+const SLogin = styled.div`
+  ${tw`
+    flex
+    flex-col
+    gap-2
+    font-bold
+    border
+    rounded
+    text-white
+    p-6
+  `}
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+  background-color: #FC0;
+  border-color: #FC0;
+
+  img {
+    width: 40rem;
+    height: 40rem;
+  }
+`;
+
+const SFormHeader = styled.div`
+  ${tw`
+    flex
+    flex-col
+    justify-center
+    content-center
+    p-4
+  `}
+  color: #333;
+  font-size: 3rem;
+  text-align: center;
+  font-weight: bold;
+  position: fixed;
+  top: 2rem;
+`;
 
 const SForm = styled.form`
   ${tw`
     flex
     flex-col
     justify-center
-    content-center
+    rounded
+    p-10
+    gap-4
   `}
-  height: 100vh;
+  width: 35vh;
+  color: black;
+  background-color: #edededc5;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  align-items: center;
+  border: 1px solid #33333354;
+  
+  input {
+    border: 1px solid #00000058;
+    width: 16rem;
+    height: 1.8rem;
+    font-weight: lighter;
+    padding: 0.5rem;
+  }
+
+  button {
+    width: 12rem;
+    height: 1.8rem;
+    background-color: #333333;
+    border: 1px solid #FC0;
+    color: #FC0;
+    border-radius: 10px;
+    font-weight: lighter;
+      &:hover {
+      background-color:#FC0;
+      border: 1px solid #333333;
+      color: #333333;
+    }
+  }
 `;
 
 export default function LoginForm() {
@@ -50,6 +122,12 @@ export default function LoginForm() {
   const isValid = (pw.length >= MIN_PASSWORD_CHARACTERS) && REGEXP_EMAIL.test(email);
 
   return (
+    <SLogin>
+      <SFormHeader>
+        <h1>Chegou o seu novo app de delivery com bebidas sempre geladas!</h1>
+        <h4>Faça seu login e venha gelar a goela com a gente também! :)</h4>
+     </SFormHeader>
+     {/* <img src= { logo } alt="logo-delivery"/> */}
     <SForm
       onSubmit={ async (e) => {
         e.preventDefault();
@@ -95,5 +173,6 @@ export default function LoginForm() {
       }
 
     </SForm>
+    </SLogin>
   );
 }
