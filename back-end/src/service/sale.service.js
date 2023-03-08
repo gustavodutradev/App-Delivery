@@ -31,7 +31,15 @@ const createSaleObj = (sale) => {
   return newSale;
 };
 
-const getProductBySale = async (saleId) => {
+// deixa um objeto de produtos mais facil de ser consumido pelo front;
+const dataPrettier = (products) => products.map((product) => ({
+  name: product.name,
+  price: product.price,
+  quantity: product.SalesProduct.quantity,
+}));
+
+// Integra uma sale com products e o seller, e a deixa de facil consumo para o front;
+const getSaleById = async (saleId) => {
   const result = await Sale.findByPk(saleId, {
     include: [
       { model: User, as: 'seller', attributes: { exclude: ['password', 'role', 'email'] } },
@@ -40,15 +48,12 @@ const getProductBySale = async (saleId) => {
   });
   const { totalPrice, saleDate, status, seller } = result;
 
-  const products = result.products.map((product) => ({
-    name: product.name,
-    price: product.price,
-    quantity: product.SalesProduct.quantity,
-  }));
+  const products = dataPrettier(result.products);
 
   return { saleId, totalPrice, saleDate, status, seller, products };
 };
 
+// Cria uma nova sale e as relações desta com os produtos;
 const createSale = async (sale, token) => {
   verifyToken(token);
   const newSale = createSaleObj(sale);
@@ -64,11 +69,32 @@ const createSale = async (sale, token) => {
 
     return saleId;
   });
-  const result = await getProductBySale(newId);
+  const result = await getSaleById(newId);
   return result;
+};
+
+const allUserOrders = async (userId) => {
+  const result = await Sale.findAll({
+    where: { userId },
+    include: [
+      { model: User, as: 'seller', attributes: { exclude: ['password', 'role', 'email'] } },
+      { model: Product, as: 'products', through: { attributes: ['quantity'] } },
+    ],
+  });
+
+  const allOrders = result.map((item) => {
+    const { id, totalPrice, saleDate, status, seller } = item;
+    const products = dataPrettier(item.products);
+
+    return { id, totalPrice, saleDate, status, seller, products };
+  });
+
+  return allOrders;
 };
 
 module.exports = {
   getAllSellers,
   createSale,
+  getSaleById,
+  allUserOrders,
 };
