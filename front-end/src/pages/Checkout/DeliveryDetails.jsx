@@ -101,7 +101,7 @@ function DeliveryDetails() {
           data-testid="customer_checkout__select-seller"
           value={ selectedSeller }
           onChange={ (e) => { setSelectedSeller(e.target.value); } }
-          options={ optionsSelect.map((e) => ({
+          options={ sellers.map((e) => ({
             name: e.name,
             value: e.name,
           })) }
