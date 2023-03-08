@@ -26,8 +26,8 @@ const SLogin = styled.div`
   align-items: center;
   height: 100vh;
   width: 100vw;
-  background-color: #FC0;
-  border-color: #FC0;
+  background-color: rgb(255, 197, 0);
+  border-color: rgb(255, 197, 0);
 
   img {
     width: 40rem;
@@ -56,38 +56,56 @@ const SForm = styled.form`
     flex
     flex-col
     justify-center
-    rounded
     p-10
     gap-4
   `}
-  width: 35vh;
+  width: 350px;
   color: black;
-  background-color: #edededc5;
+  border-radius: 15px;
+  background-color: rgba(204, 156, 0, 0.486);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   align-items: center;
-  border: 1px solid #33333354;
+  margin-top: 8rem;
   
   input {
-    border: 1px solid #00000058;
-    width: 16rem;
-    height: 1.8rem;
+    background: rgb(255, 255, 255);
+    border: 1px solid #33333354;
+    border-radius: 8px;
+    color: rgb(51, 51, 51);
+    font-size: 16px;
+    width: 18rem;
+    height: 2rem;
     font-weight: lighter;
     padding: 0.5rem;
+      &::placeholder{
+        font-size: 0.8rem;
+      }
   }
 
   button {
+    cursor: pointer;
     width: 12rem;
     height: 1.8rem;
     background-color: #333333;
-    border: 1px solid #FC0;
-    color: #FC0;
+    border: none;
+    color: white;
     border-radius: 10px;
     font-weight: lighter;
       &:hover {
-      background-color:#FC0;
-      border: 1px solid #333333;
-      color: #333333;
+      color: rgb(255, 197, 0);
+    }
+
+    h1 {
+      text-align: center;
+      color: rgb(51, 51, 51);
+      font-weight: bold;
+      font-size: 100px;
+    }
+    p {
+      text-align: center;
+      color: rgb(51, 51, 51);
+      font-weight: lighter;
     }
   }
 `;
@@ -125,9 +143,8 @@ export default function LoginForm() {
     <SLogin>
       <SFormHeader>
         <h1>Chegou o seu novo app de delivery com bebidas sempre geladas!</h1>
-        <h4>Faça seu login e venha gelar a goela com a gente também! :)</h4>
+        <p>Venha gelar a goela com a gente também!</p>
      </SFormHeader>
-     {/* <img src= { logo } alt="logo-delivery"/> */}
     <SForm
       onSubmit={ async (e) => {
         e.preventDefault();
@@ -145,6 +162,7 @@ export default function LoginForm() {
         name="Login"
         type="email"
         datatestId="common_login__input-email"
+        placeHolder="E-mail"
       />
       <Input
         onChange={ (e) => { setPw(e.target.value); } }
@@ -152,6 +170,7 @@ export default function LoginForm() {
         name="Senha"
         type="password"
         datatestId="common_login__input-password"
+        placeHolder="Senha"
       />
       <Button
         name="LOGIN"
