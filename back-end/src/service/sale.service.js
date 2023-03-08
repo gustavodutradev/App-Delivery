@@ -1,4 +1,10 @@
-const { User, Sale, SalesProduct, sequelize } = require('../database/models');
+const {
+  User,
+  Sale,
+  SalesProduct,
+  Product,
+  sequelize,
+} = require('../database/models');
 const { verifyToken } = require('../utils/token');
 
 const getAllSellers = async (token) => {
@@ -25,25 +31,41 @@ const createSaleObj = (sale) => {
   return newSale;
 };
 
+const getProductBySale = async (saleId) => {
+  const result = await Sale.findByPk(saleId, {
+    include: [
+      { model: User, as: 'seller', attributes: { exclude: ['password', 'role', 'email'] } },
+      { model: Product, as: 'products', through: { attributes: ['quantity'] } },
+    ],
+  });
+  const { totalPrice, saleDate, status, seller } = result;
+
+  const products = result.products.map((product) => ({
+    name: product.name,
+    price: product.price,
+    quantity: product.SalesProduct.quantity,
+  }));
+
+  return { saleId, totalPrice, saleDate, status, seller, products };
+};
+
 const createSale = async (sale, token) => {
   verifyToken(token);
-  const t = await sequelize.transaction();
   const newSale = createSaleObj(sale);
   const { products } = sale;
 
-  try {
-    const { id: saleId } = await Sale.create(newSale, { transaction: t });
+  const newId = await sequelize.transaction(async (transaction) => {
+    const { id: saleId } = await Sale.create(newSale, { transaction });
 
     const createdSaleProduct = products.map(({ id, quantity }) => SalesProduct
-      .create({ saleId, productId: id, quantity }, { transaction: t }));
+      .create({ saleId, productId: id, quantity }, { transaction }));
 
     await Promise.all(createdSaleProduct);
-    await t.commit();
 
     return saleId;
-  } catch (err) {
-    await t.rollback();
-  }
+  });
+  const result = await getProductBySale(newId);
+  return result;
 };
 
 module.exports = {
