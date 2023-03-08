@@ -47,7 +47,11 @@ const SFormHeader = styled.div`
   text-align: center;
   font-weight: bold;
   position: fixed;
-  top: 2rem;
+  top: 5rem;
+  width: 100%;
+  max-height: 10rem;
+  text-indent: 0.5rem;
+  text-shadow: 0 0 0.3rem #000000b5;
 `;
 
 const SForm = styled.form`
