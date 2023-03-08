@@ -19,8 +19,8 @@ const STable = styled.div`
     p-4
     w-full
   `}
-  background-color: #FC0;
-  border-color: #FC0;
+  background-color: rgb(255, 197, 0);
+  border-color: rgb(255, 197, 0);
 `;
 
 function Table() {

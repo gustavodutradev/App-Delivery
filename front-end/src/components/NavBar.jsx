@@ -6,6 +6,7 @@ import styled from 'styled-components';
 import Button from './Button';
 import { clearCart } from '../redux/slices/cartSlice';
 import { logout } from '../redux/slices/userSlice';
+import logo from '../images/appdeliverylogo.png';
 
 const SNav = styled.nav`
   ${tw`
@@ -24,23 +25,30 @@ const SNav = styled.nav`
 const SRigth = styled.ul`
   ${tw`
   flex
+  align-middle
+  gap-3
   `}
-    li {
+  
+  align-items: center;
+
+  li {
     float: right;
     list-style-type: none;
   }
   span {
-    color: #FC0;
+    color: rgb(255, 197, 0);
     font-weight: bold;
   }
   button {
     background-color: #333333;
-    border: 1px solid #FC0;
-    color: #FC0;
+    border: 1px solid rgb(255, 197, 0);
+    color: rgb(255, 197, 0);
     border-radius: 10px;
     font-weight: lighter;
+    height: 2.5rem;
+    width: 4.5rem;
       &:hover {
-        background-color:#FC0;
+        background-color:rgb(255, 197, 0);
         border: 1px solid #333333;
         color: #333333;
     }
@@ -51,22 +59,32 @@ const SRigth = styled.ul`
 const SLeft = styled.ul`
   ${tw`
   flex
+  gap-3
   `}
-    li {
+  
+  align-items: center;
+  
+  li {
     float: left;
     list-style-type: none;
   }
   button {
     background-color: #333333;
-    border: 1px solid #FC0;
-    color: #FC0;
+    border: 1px solid rgb(255, 197, 0);
+    color: rgb(255, 197, 0);
     border-radius: 10px;
     font-weight: lighter;
+    height: 3rem;
+    width: 7rem;
       &:hover {
-      background-color:#FC0;
+      background-color:rgb(255, 197, 0);
       border: 1px solid #333333;
       color: #333333;
     }
+  }
+  img {
+    height: 5rem;
+    width: 5rem;
   }
 `;
 
@@ -92,6 +110,7 @@ function NavBar() {
   return (
     <SNav>
       <SLeft>
+        <img src={ logo } alt="app-logo" />
         <Button
           name="Produtos"
           datatestId="customer_products__element-navbar-link-products"

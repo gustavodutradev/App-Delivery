@@ -42,11 +42,10 @@ const QuantityContainer = styled.div`
       w-10
     `}
     font-size: 1.2em;
-    border-color: #FC0;
+    border-color: rgb(255, 197, 0);
     background-color: #333;
-    color: #FC0;
+    color: rgb(255, 197, 0);
     &:hover {
-      transform: scale(1.1);
       transition: 0.2s;
       border-color: #333;
       background-color: #FC0;
@@ -61,6 +60,8 @@ const QuantityContainer = styled.div`
       text-black
     `}
     text-align: center;
+    border: 3px solid rgb(255, 197, 0);
+    padding: 0.5em;
   }
 `;
 

@@ -19,8 +19,8 @@ const SButton = styled.button`
   align-items: center;
 `;
 
-function Button(props) {
-  const { type, onClick, datatestId, disabled, name, className } = props;
+function Button({ name, ...props }) {
+  const { type, onClick, datatestId, disabled, className } = props;
   return (
     <SButton
       className={ className }
@@ -35,18 +35,18 @@ function Button(props) {
 }
 
 Button.propTypes = {
-  type: PropTypes.string,
-  onClick: PropTypes.func,
-  disabled: PropTypes.bool,
+  type: PropTypes.string.isRequired,
+  onClick: PropTypes.func.isRequired,
+  disabled: PropTypes.bool.isRequired,
   name: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.node,
   ]).isRequired,
-  datatestId: PropTypes.string,
-  className: PropTypes.string,
+  datatestId: PropTypes.string.isRequired,
+  className: PropTypes.string.isRequired,
 };
 
-Button.defaultProps = {
+Button.defaultParameters = {
   type: 'submit',
   onClick: () => {},
   disabled: false,
