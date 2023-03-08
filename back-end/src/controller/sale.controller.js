@@ -31,7 +31,30 @@ const createSale = async (req, res, next) => {
     return next(err);
   }
 };
+
+const getSaleById = async (req, res, next) => {
+  const { id } = req.params;
+  try {
+    const saleById = await saleService.getSaleById(Number(id));
+    return res.status(200).json(saleById);
+  } catch (err) {
+    return next(err);
+  }
+};
+
+const getUserOrders = async (req, res, next) => {
+  const { id } = req.params;
+  try {
+    const userOrders = await saleService.allUserOrders(Number(id));
+    return res.status(200).json(userOrders);
+  } catch (err) {
+    return next(err);
+  }
+};
+
 module.exports = {
   getAllSeller,
   createSale,
+  getSaleById,
+  getUserOrders,
 };
