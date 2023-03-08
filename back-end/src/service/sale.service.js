@@ -73,20 +73,27 @@ const createSale = async (sale, token) => {
   return result;
 };
 
-const allUserOrders = async (userId) => {
+const getUserOrders = async (userId) => {
   const result = await Sale.findAll({
     where: { userId },
-    include: [
-      { model: User, as: 'seller', attributes: { exclude: ['password', 'role', 'email'] } },
-      { model: Product, as: 'products', through: { attributes: ['quantity'] } },
-    ],
   });
 
   const allOrders = result.map((item) => {
-    const { id, totalPrice, saleDate, status, seller } = item;
-    const products = dataPrettier(item.products);
+    const { id, totalPrice, saleDate, status } = item;
+    return { id, totalPrice, saleDate, status };
+  });
 
-    return { id, totalPrice, saleDate, status, seller, products };
+  return allOrders;
+};
+
+const getSellerOrders = async (sellerId) => {
+  const result = await Sale.findAll({
+    where: { sellerId },
+  });
+
+  const allOrders = result.map((item) => {
+    const { id, totalPrice, saleDate, deliveryAddress, deliveryNumber, status } = item;
+    return { id, totalPrice, saleDate, deliveryAddress, deliveryNumber, status };
   });
 
   return allOrders;
@@ -96,5 +103,6 @@ module.exports = {
   getAllSellers,
   createSale,
   getSaleById,
-  allUserOrders,
+  getUserOrders,
+  getSellerOrders,
 };
