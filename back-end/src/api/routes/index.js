@@ -9,6 +9,6 @@ const routes = express.Router();
 routes.use('/login', loginRoutes);
 routes.use('/register', registerRoutes);
 routes.use('/products', productRoutes);
-routes.use('/sales', saleRoutes)
+routes.use('/sales', saleRoutes);
 
 module.exports = routes;
