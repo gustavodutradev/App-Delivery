@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import tw from 'twin.macro';
 import Button from '../../components/Button';
-import Input from '../../components/Input';
-import axiosRequest from '../../utils/axios';
 import ErrorMessage from '../../components/ErrorMessage';
+import Input from '../../components/Input';
+import { setUser } from '../../redux/slices/userSlice';
+import axiosRequest from '../../utils/axios';
+import { GET_STATUS_OK } from '../../utils/statusCodes';
 
 const SForm = styled.form`
   ${tw`
@@ -13,36 +16,32 @@ const SForm = styled.form`
     flex-col
     justify-center
     content-center
-    
   `}
+  height: 100vh;
 `;
-
-const OK = 200;
 
 export default function LoginForm() {
   const [email, setEmail] = useState('');
   const [pw, setPw] = useState('');
   const [wrongLogin, setWrongLogin] = useState(false);
+
   const axios = axiosRequest();
   const navigate = useNavigate();
-
-  const setToken = (token) => localStorage.setItem('token', token);
-  const setUserName = (username) => localStorage.setItem('user', username);
+  const dispatch = useDispatch();
 
   const MIN_PASSWORD_CHARACTERS = 6;
   const REGEXP_EMAIL = /\S+@\S+\.\S+/;
 
   const redirect = (status) => {
-    if (status === OK) return navigate('/customer/products');
+    if (status === GET_STATUS_OK) return navigate('/customer/products');
     console.log(`erro: status ${status} sem resposta`);
   };
 
   const handleRequest = (result) => {
-    const { status, data: { token, name } } = result;
-    console.log(result);
-    if (status === OK) {
-      setToken(token);
-      setUserName(name);
+    const { status, data } = result;
+    // console.log(result);
+    if (status === GET_STATUS_OK) {
+      dispatch(setUser(data));
       redirect(status);
     }
     return null;

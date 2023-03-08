@@ -3,9 +3,10 @@ import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import tw from 'twin.macro';
 import Button from '../../components/Button';
-import Input from '../../components/Input';
 import ErrorMessage from '../../components/ErrorMessage';
+import Input from '../../components/Input';
 import axiosRequest from '../../utils/axios';
+import { POST_STATUS_OK } from '../../utils/statusCodes';
 
 const MIN_PASSWORD_CHARACTERS = 6;
 const MIN_NAME_CHARACTERS = 12;
@@ -17,11 +18,9 @@ const SForm = styled.form`
     flex-col
     justify-center
     content-center
-    
   `}
+  height: 100vh;
 `;
-
-const REGISTER_OK = 201;
 
 export default function RegisterForm() {
   const [email, setEmail] = useState('');
@@ -32,13 +31,13 @@ export default function RegisterForm() {
   const navigate = useNavigate();
 
   const redirect = (status) => {
-    if (status === REGISTER_OK) return navigate('/customer/products');
+    if (status === POST_STATUS_OK) return navigate('/customer/products');
     console.log(`erro: status ${status} sem resposta`);
   };
 
   const handleRequest = (result) => {
     const { status } = result;
-    if (status === REGISTER_OK) {
+    if (status === POST_STATUS_OK) {
       redirect(status);
     }
     return null;

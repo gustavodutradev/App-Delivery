@@ -1,5 +1,5 @@
+import PropTypes from 'prop-types';
 import React from 'react';
-import propTypes from 'prop-types';
 import styled from 'styled-components';
 import tw from 'twin.macro';
 
@@ -32,7 +32,7 @@ function Input(props) {
     <SInput>
       <span>{name}</span>
       <input
-        type={ type || 'text' }
+        type={ type }
         onChange={ onChange }
         value={ value }
         data-testid={ datatestId }
@@ -42,11 +42,20 @@ function Input(props) {
 }
 
 Input.propTypes = {
-  name: propTypes.string.isRequired,
-  type: propTypes.string.isRequired,
-  onChange: propTypes.func.isRequired,
-  value: propTypes.string.isRequired,
-  datatestId: propTypes.string.isRequired,
+  type: PropTypes.string,
+  onChange: PropTypes.func,
+  name: PropTypes.string.isRequired,
+  datatestId: PropTypes.string,
+  value: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number,
+  ]).isRequired,
+};
+
+Input.defaultProps = {
+  type: 'text',
+  onChange: () => {},
+  datatestId: '',
 };
 
 export default Input;
