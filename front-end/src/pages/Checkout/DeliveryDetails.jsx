@@ -93,7 +93,7 @@ function DeliveryDetails() {
               .map(({ id, quantity }) => ({ id, quantity })),
           });
           dispatch(clearCart()); // clear cart after purchase
-          navigate(`customer/orders/${data.saleId}`); // url to navigate
+          navigate(`/customer/orders/${data.saleId}`); // url to navigate
         } catch (error) {
           console.log(error);
         }
