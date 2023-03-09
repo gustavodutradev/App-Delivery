@@ -80,7 +80,7 @@ function DeliveryDetails() {
       onSubmit={ async (event) => {
         event.preventDefault();
         try {
-          const { data } = await axiosRequest({ authorization: token }).post('/sales', { // req.body to send
+          const { data } = await (axiosRequest({ authorization: token })).post('/sales', {
             userId,
             address: {
               street: address,
@@ -92,6 +92,7 @@ function DeliveryDetails() {
               .filter((e) => e.quantity > 0)
               .map(({ id, quantity }) => ({ id, quantity })),
           });
+          // console.log(`status ${status}`);
           dispatch(clearCart()); // clear cart after purchase
           navigate(`/customer/orders/${data.saleId}`); // url to navigate
         } catch (error) {
