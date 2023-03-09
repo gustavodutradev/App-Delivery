@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, fireEvent, waitFor } from '@testing-library/react';
+import { render, fireEvent, screen, waitFor } from '@testing-library/react';
 import * as reactRouter from 'react-router';
 import LoginForm from '../pages/Login/LoginPage';
 
@@ -34,17 +34,33 @@ describe('LoginPage', () => {
     expect(loginButton).toBeEnabled();
   });
 
-  describe('LoginForm', () => {
-    it('disables the login button when either email or password is invalid', () => {
-      const { getByTestId } = render(<LoginForm />);
-      const emailInput = getByTestId('common_login__input-email');
-      const passwordInput = getByTestId('common_login__input-password');
-      const loginButton = getByTestId('common_login__button-login');
+  it('disables the login button when either email or password is invalid', () => {
+    const { getByTestId } = render(<LoginForm />);
+    const emailInput = getByTestId(INPUT_EMAIL);
+    const passwordInput = getByTestId(INPUT_PASSWORD);
+    const loginButton = getByTestId(BTN_LOGIN);
 
-      fireEvent.change(emailInput, { target: { value: 'test' } });
-      fireEvent.change(passwordInput, { target: { value: '123' } });
+    fireEvent.change(emailInput, { target: { value: 'test' } });
+    fireEvent.change(passwordInput, { target: { value: '123' } });
 
-      expect(loginButton).toBeDisabled();
+    expect(loginButton).toBeDisabled();
+  });
+  it('should show an error message when login is invalid', async () => {
+    const { getByTestId } = render(<LoginForm />);
+    const emailInput = getByTestId('common_login__input-email');
+    const passwordInput = getByTestId('common_login__input-password');
+    const loginButton = getByTestId('common_login__button-login');
+
+    fireEvent.change(emailInput, { target: { value: 'test@example.com' } });
+    fireEvent.change(passwordInput, { target: { value: '123456' } });
+
+    fireEvent.click(loginButton);
+
+    await waitFor(() => {
+      const invalidEmailElement = screen
+        .getByTestId('common_login__element-invalid-email');
+      expect(invalidEmailElement).toBeInTheDocument();
+      expect(invalidEmailElement.textContent).toBe('Ops! Verifique seu e-mail ou senha');
     });
   });
 });
