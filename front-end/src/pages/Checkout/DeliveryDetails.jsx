@@ -27,7 +27,6 @@ const FieldsContainer = styled.div`
 const SelectSeller = styled(Select)`
   ${tw`
   `}
-  border: red solid 1px;
   span{
     margin-bottom: 0.30rem;
   }
@@ -38,8 +37,8 @@ const SelectSeller = styled(Select)`
     top: 37.5%;
     bottom: 0%;
     background: #FFFFFF;
-    border-radius: 5px;
-    height: 1.6rem;
+    border-radius: 4px;
+    height: 1.75rem;
   }
 `;
 
