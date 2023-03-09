@@ -98,7 +98,7 @@ function DeliveryDetails() {
       <FieldsContainer>
         <SelectSeller
           name="P.Vendedora Responsável"
-          data-testid="customer_checkout__select-seller"
+          dataTestid="customer_checkout__select-seller"
           value={ selectedSeller }
           onChange={ (e) => { setSelectedSeller(e.target.value); } }
           options={ sellers.map((e) => ({
