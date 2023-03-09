@@ -55,10 +55,11 @@ function DeliveryDetails() {
   const [sellers, setSellers] = useState([]);
 
   const dispatch = useDispatch();
-  const axios = axiosRequest();
   const navigate = useNavigate();
   const products = useSelector((state) => state.cart.items);
   const userId = useSelector((state) => state.user.id);
+  const token = useSelector((state) => state.user.token);
+  const axios = axiosRequest({ authorization: token });
   const totalPrice = products.reduce((acc, curr) => (
     acc + (curr.quantity * curr.price)
   ), 0);
@@ -69,7 +70,7 @@ function DeliveryDetails() {
 
   useEffect(() => {
     const fetchSellers = async () => {
-      const { data } = axios.get('/sales/sellers'); // por url de get seller
+      const { data } = await axios.get('/sales/sellers'); // por url de get seller
       setSellers(data); // fazer a limpeza dos dados antes
     };
     fetchSellers();
