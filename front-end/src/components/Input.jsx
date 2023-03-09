@@ -43,10 +43,10 @@ function Input({ name, value, ...props }) {
 }
 
 Input.propTypes = {
-  type: PropTypes.string.isRequired,
-  onChange: PropTypes.func.isRequired,
+  type: PropTypes.string,
+  onChange: PropTypes.func,
   name: PropTypes.string.isRequired,
-  datatestId: PropTypes.string.isRequired,
+  datatestId: PropTypes.string,
   placeHolder: PropTypes.string.isRequired,
   value: PropTypes.oneOfType([
     PropTypes.string,
@@ -54,7 +54,7 @@ Input.propTypes = {
   ]).isRequired,
 };
 
-Input.defaultParameters = {
+Input.defaultProps = {
   type: 'text',
   onChange: () => {},
   datatestId: '',
