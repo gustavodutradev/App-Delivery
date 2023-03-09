@@ -26,9 +26,9 @@ const createUser = async (user) => {
     role: user.role || 'costumer',
   });
   const token = generateToken(newUser);
-  const { role } = newUser;
+  const { role, id } = newUser;
 
-  return { name, email, role, token };
+  return { name, email, role, token, id };
 };
 
 const loginUser = async (user) => {
@@ -36,14 +36,14 @@ const loginUser = async (user) => {
   const userFound = await findUser(email);
   checkLoginEmail(userFound);
 
-  const { name, password: dbPassword, role } = userFound;
+  const { name, password: dbPassword, role, id } = userFound;
 
   const isValidPassword = checkPassword(password, dbPassword);
   checkLoingPassword(isValidPassword);
 
   const token = generateToken(userFound);
 
-  return { name, email, role, token };
+  return { name, email, role, token, id };
 };
 
 module.exports = {
