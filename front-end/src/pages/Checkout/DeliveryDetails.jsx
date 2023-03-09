@@ -58,7 +58,6 @@ function DeliveryDetails() {
   const products = useSelector((state) => state.cart.items);
   const userId = useSelector((state) => state.user.id);
   const token = useSelector((state) => state.user.token);
-  const axios = axiosRequest({ authorization: token });
   const totalPrice = products.reduce((acc, curr) => (
     acc + (curr.quantity * curr.price)
   ), 0);
@@ -69,17 +68,19 @@ function DeliveryDetails() {
 
   useEffect(() => {
     const fetchSellers = async () => {
-      const { data } = await axios.get('/sales/sellers'); // por url de get seller
+      const { data } = await axiosRequest({ authorization: token }).get('/sales/sellers'); // por url de get seller
       setSellers(data); // fazer a limpeza dos dados antes
+      setSelectedSeller(data[0].name);
     };
     fetchSellers();
-  }, []);
+  }, [token]);
 
   return (
     <SForm
-      onSubmit={ async () => {
+      onSubmit={ async (event) => {
+        event.preventDefault();
         try {
-          const { data } = axios.post('', { // req.body to send
+          const { data } = await axiosRequest({ authorization: token }).post('/sales', { // req.body to send
             userId,
             address: {
               street: address,
@@ -87,9 +88,12 @@ function DeliveryDetails() {
             },
             sellerId: sellers.find((e) => e.name === selectedSeller).id,
             totalPrice,
+            products: products
+              .filter((e) => e.quantity > 0)
+              .map(({ id, quantity }) => ({ id, quantity })),
           });
           dispatch(clearCart()); // clear cart after purchase
-          navigate(`customer/order/${data}`); // url to navigate
+          navigate(`customer/order/${data.saleId}`); // url to navigate
         } catch (error) {
           console.log(error);
         }
