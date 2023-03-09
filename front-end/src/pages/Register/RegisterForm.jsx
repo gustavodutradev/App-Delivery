@@ -5,7 +5,7 @@ import tw from 'twin.macro';
 import Button from '../../components/Button';
 import Input from '../../components/Input';
 import ErrorMessage from '../../components/ErrorMessage';
-import axiosRequest from '../../utils/axiosRequest.js';
+import axiosRequest from '../../utils/axiosRequest';
 
 const MIN_PASSWORD_CHARACTERS = 6;
 const MIN_NAME_CHARACTERS = 12;
@@ -69,6 +69,7 @@ export default function RegisterForm() {
         value={ name }
         name="Nome"
         datatestId="common_register__input-name"
+        type="text"
       />
       <Input
         onChange={ (e) => { setEmail(e.target.value); } }

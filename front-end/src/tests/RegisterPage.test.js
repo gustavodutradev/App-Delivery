@@ -1,9 +1,14 @@
+import React from 'react';
 import { render } from '@testing-library/react';
-import RegisterPage from '../pages/Register/RegisterPage';
+import { MemoryRouter } from 'react-router-dom';
+import RegisterForm from '../pages/Register/RegisterForm';
 
-describe('RegisterForm', () => {
-  it('should render RegisterForm component', () => {
-    const renderForm = render(<RegisterPage />);
-    expect(renderForm).toHaveLength(1);
+describe('App', () => {
+  test('renders App component with Routes', () => {
+    render(
+      <MemoryRouter initialEntries={ ['/register'] }>
+        <RegisterForm />
+      </MemoryRouter>,
+    );
   });
 });

@@ -14,7 +14,7 @@ describe('RegisterForm', () => {
 
   it('should call useNavigate', () => {
     render(
-      <MemoryRouter initialEntries={ ['/register'] }>
+      <MemoryRouter initialEntries={ ['/customer/products'] }>
         <RegisterForm />
       </MemoryRouter>,
     );
