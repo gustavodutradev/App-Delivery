@@ -51,9 +51,13 @@ const RightContainer = styled.div`
 
   .unitPrice {
     background-color: #421981;
+    width: 12rem;
+    justify-content: space-between;
   }
   .subTotal {
     background-color: #056CF9;
+    width: 12rem;
+    justify-content: space-between;
   }
   button {
     font-size: 2rem;
