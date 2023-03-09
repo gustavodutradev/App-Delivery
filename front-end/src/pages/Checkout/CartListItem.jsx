@@ -70,7 +70,6 @@ const RightContainer = styled.div`
 function CartListItem(props) {
   const { product, index } = props;
   const dispatch = useDispatch();
-  console.log(`prouct: ${JSON.stringify(product)}`);
 
   const formatValue = (number) => {
     if (typeof number === 'number') {
