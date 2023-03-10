@@ -20,7 +20,7 @@ const validateProducts = (productsList) => {
 const validateAddressTypes = ({ street, number }) => {
   if (typeof street !== 'string') throw new InvalidParam('Street field must be a string');
 
-  if (typeof number !== 'number') throw new InvalidParam('Number field must be a number');
+  if (typeof number !== 'string') throw new InvalidParam('Number field must be a string');
 };
 
 const validateAddress = (address) => {
