@@ -5,6 +5,8 @@ import OrderList from './OrderList';
 
 function OrderDetails() {
   const [products, setProducts] = useState([]);
+
+  const token = useSelector((state) => state.user.token);
   const { id } = useParams();
 
   useEffect(() => {
@@ -13,7 +15,7 @@ function OrderDetails() {
       setProducts(data.products);
     };
     fetchOrder();
-  }, [id]);
+  }, [id, token]);
 
   return (
     <OrderContext provider={ products }>
