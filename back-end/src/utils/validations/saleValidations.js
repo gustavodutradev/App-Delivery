@@ -12,7 +12,15 @@ const validateProducts = (productsList) => {
 
   if (!Array.isArray(productsList)) throw new InvalidParam('Products field must be an array');
 
-  if (productsList.length < 1) throw new InvalidParam('Products field must be an array with at least one product');
+  if (productsList.length < 1) {
+    throw new InvalidParam('Products field must be an array with at least one product');
+  }
+};
+
+const validateAddressTypes = ({ street, number }) => {
+  if (typeof street !== 'string') throw new InvalidParam('Street field must be a string');
+
+  if (typeof number !== 'number') throw new InvalidParam('Number field must be a number');
 };
 
 const validateAddress = (address) => {
@@ -22,14 +30,12 @@ const validateAddress = (address) => {
 
   if (!address.number) throw new MissingParam('Field number in address object is missing.');
 
-  if (typeof address.street !== 'string') throw new InvalidParam('Street field must be a string');
-
-  if (typeof address.number !== 'number') throw new InvalidParam('Number field must be a number');
+  validateAddressTypes({ street: address.street, number: address.number });
 };
 
 const validateTotalPrice = (totalPrice) => {
   if (!totalPrice) throw new MissingParam('Field totalPrice is required.');
-}
+};
 
 const validateFields = (newSale) => {
   const { userId, sellerId, products, address, totalPrice } = newSale;
