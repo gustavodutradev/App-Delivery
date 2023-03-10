@@ -6,7 +6,7 @@ import OrderContext from './OrderContext';
 import OrderList from './OrderList';
 
 function OrderDetails() {
-  const [order, setOrder] = useState([]);
+  const [order, setOrder] = useState();
 
   const token = useSelector((state) => state.user.token);
   const { id } = useParams();
@@ -21,7 +21,7 @@ function OrderDetails() {
 
   return (
     <OrderContext.Provider value={ order }>
-      <OrderList />
+      {order && <OrderList /> }
     </OrderContext.Provider>
   );
 }
