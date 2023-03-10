@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import axiosRequest from '../../utils/axios';
-import OrderContext from './Context';
+import OrderContext from './OrderContext';
 import OrderList from './OrderList';
 
 function OrderDetails() {
