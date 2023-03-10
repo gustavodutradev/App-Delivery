@@ -7,7 +7,11 @@ const {
 } = require('../database/models');
 const { verifyToken } = require('../utils/token');
 const { checkUserExistence } = require('../utils/validations/loginValidations');
-const { validateFields, userNotAuthorized, sellerNotAuthorized } = require('../utils/validations/saleValidations');
+const {
+  validateFields,
+  userNotAuthorized,
+  sellerNotAuthorized,
+} = require('../utils/validations/saleValidations');
 const loginService = require('./login.service');
 
 const getAllSellers = async (token) => {
@@ -113,15 +117,15 @@ const getSellerOrders = async (sellerId) => {
 const sellerOrderStatus = async ({ id, status }, token) => {
   const { data: { role } } = verifyToken(token);
   userNotAuthorized(role);
-  role === 'seller' && Sale.update({ status }, { where: { id } });
+  if (role === 'seller') Sale.update({ status }, { where: { id } });
 };
 
 // para usuários
 const userOrderStatus = async (id, token) => {
   const { data: { role } } = verifyToken(token);
   sellerNotAuthorized(role);
-  role === 'customer' && Sale.update({ status: 'Entregue' }, { where: { id } });
-}
+  if (role === 'customer') Sale.update({ status: 'Entregue' }, { where: { id } });
+};
 
 module.exports = {
   getAllSellers,
