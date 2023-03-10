@@ -39,6 +39,16 @@ const validateFields = (newSale) => {
   validateTotalPrice(totalPrice);
 };
 
+const userNotAuthorized = (role) => {
+  if (role !== 'seller') throw new InvalidParam('Only sellers can chage this status');
+};
+
+const sellerNotAuthorized = (role) => {
+  if (role !== 'customer') throw new InvalidParam('Only costumer can change this status');
+};
+
 module.exports = {
   validateFields,
+  userNotAuthorized,
+  sellerNotAuthorized,
 };
