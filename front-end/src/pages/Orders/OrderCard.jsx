@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import tw from 'twin.macro';
+import { Link } from 'react-router-dom';
 
 const dateCharacters = 10;
 
@@ -52,28 +53,30 @@ border-radius: 20px;
 function OrderCard(props) {
   const { order } = props;
   return (
-    <SCard>
-      <SOrderID data-testid={ `customer_orders__element-order-id-${order.id}` }>
-        {order.id}
-      </SOrderID>
-      <SStatus data-testid={ `customer_orders__element-delivery-status-${order.id}` }>
-        {order.status}
-      </SStatus>
-      <SDateAndPrice>
-        <span
-          data-testid={ `customer_orders__element-order-date-${order.id}` }
-        >
-          {order.saleDate.slice(0, dateCharacters).split('-').reverse().join('/')}
-        </span>
-        <span
-          data-testid={ `customer_orders__element-card-price-${order.id}` }
-        >
-          R$
-          {' '}
-          {order.totalPrice.replace('.', ',')}
-        </span>
-      </SDateAndPrice>
-    </SCard>
+    <Link to={ `/customer/orders/${order.id}` }>
+      <SCard>
+        <SOrderID data-testid={ `customer_orders__element-order-id-${order.id}` }>
+          {order.id}
+        </SOrderID>
+        <SStatus data-testid={ `customer_orders__element-delivery-status-${order.id}` }>
+          {order.status}
+        </SStatus>
+        <SDateAndPrice>
+          <span
+            data-testid={ `customer_orders__element-order-date-${order.id}` }
+          >
+            {order.saleDate.slice(0, dateCharacters).split('-').reverse().join('/')}
+          </span>
+          <span
+            data-testid={ `customer_orders__element-card-price-${order.id}` }
+          >
+            R$
+            {' '}
+            {order.totalPrice.replace('.', ',')}
+          </span>
+        </SDateAndPrice>
+      </SCard>
+    </Link>
   );
 }
 
