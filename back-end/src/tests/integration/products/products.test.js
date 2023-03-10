@@ -52,6 +52,17 @@ describe('Teste de integração para products', function () {
 
       expectAssertions(response, 404, { message: 'Invalid product id!' });
     });
+
+    it('Retorna status 500 ao buscar todos os produtos e um erro interno ocorre', async function () {
+      sinon.stub(Product, 'findAll').throws(new Error);
+
+      const response = await chai
+        .request(app)
+        .get('/products');
+
+      expect(response).to.be.json;
+      expect(response).to.have.status(500);
+    });
   });
 
   describe('Testes para rota post de products', function () {
