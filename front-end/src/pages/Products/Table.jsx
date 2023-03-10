@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import tw from 'twin.macro';
 import { useDispatch, useSelector } from 'react-redux';
 import Card from './Card';
-import axiosRequest from '../../utils/axios';
+import axiosRequest from '../../utils/axiosRequest';
 import { GET_STATUS_OK } from '../../utils/statusCodes';
 import { addItem } from '../../redux/slices/cartSlice';
 
