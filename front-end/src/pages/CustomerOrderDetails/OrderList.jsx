@@ -2,8 +2,8 @@ import React, { useContext } from 'react';
 import styled from 'styled-components';
 import tw from 'twin.macro';
 import TotalPrice from '../../components/TotalPrice';
+import OrderContext from './Context';
 import ProductItem from './ProductItem';
-import { OrderContext } from './OrderDetails';
 
 const ListContainer = styled.div`
   ${tw`

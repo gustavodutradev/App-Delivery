@@ -1,8 +1,7 @@
-import React, { createContext, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import OrderContext from './Context';
 import OrderList from './OrderList';
-
-export const OrderContext = createContext({});
 
 function OrderDetails() {
   const [products, setProducts] = useState([]);
