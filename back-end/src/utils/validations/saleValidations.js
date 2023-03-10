@@ -38,7 +38,8 @@ const validateTotalPrice = (totalPrice) => {
 };
 
 const validateSellerStatus = (status) => {
-  if (status !== 'Preparando' || status !== 'Em Trânsito') {
+  const checkStatus = status === 'Preparando' || status === 'Em Trânsito';
+  if (!checkStatus) {
     throw new InvalidParam('O status só pode ser alterado para "Preparando" ou "Em Trânsito".');
   }
 };
