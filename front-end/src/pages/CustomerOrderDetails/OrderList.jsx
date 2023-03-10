@@ -13,12 +13,12 @@ const ListContainer = styled.div`
 `;
 
 function OrderList() {
-  const { products } = useContext(OrderContext);
+  const order = useContext(OrderContext);
 
   return (
     <ListContainer>
       <ul>
-        {products
+        {order.products
           .filter((e) => e.quantity > 0)
           .map((e, i) => (
             <li key={ i }>
@@ -27,7 +27,7 @@ function OrderList() {
           ))}
       </ul>
       <TotalPrice
-        products={ products }
+        products={ order.products }
         dataTestid="customer_order_details__element-order-total-price"
       />
     </ListContainer>
