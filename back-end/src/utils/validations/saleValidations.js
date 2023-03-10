@@ -37,6 +37,12 @@ const validateTotalPrice = (totalPrice) => {
   if (!totalPrice) throw new MissingParam('Field totalPrice is required.');
 };
 
+const validateSellerStatus = (status) => {
+  if (status !== 'Preparando' || status !== 'Em Trânsito') {
+    throw new InvalidParam('O status só pode ser alterado para "Preparando" ou "Em Trânsito".');
+  }
+};
+
 const validateFields = (newSale) => {
   const { userId, sellerId, products, address, totalPrice } = newSale;
   validateIds(userId, sellerId);
@@ -57,4 +63,5 @@ module.exports = {
   validateFields,
   userNotAuthorized,
   sellerNotAuthorized,
+  validateSellerStatus,
 };

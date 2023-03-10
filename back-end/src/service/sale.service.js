@@ -11,6 +11,7 @@ const {
   validateFields,
   userNotAuthorized,
   sellerNotAuthorized,
+  validateSellerStatus,
 } = require('../utils/validations/saleValidations');
 const loginService = require('./login.service');
 
@@ -117,6 +118,7 @@ const getSellerOrders = async (sellerId) => {
 const sellerOrderStatus = async ({ id, status }, token) => {
   const { data: { role } } = verifyToken(token);
   userNotAuthorized(role);
+  validateSellerStatus(status);
   if (role === 'seller') Sale.update({ status }, { where: { id } });
 };
 
