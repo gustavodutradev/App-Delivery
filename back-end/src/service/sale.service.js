@@ -6,6 +6,7 @@ const {
   sequelize,
 } = require('../database/models');
 const { verifyToken } = require('../utils/token');
+const { validateFields } = require('../utils/validations/saleValidations');
 
 const getAllSellers = async (token) => {
   verifyToken(token);
@@ -56,6 +57,7 @@ const getSaleById = async (saleId) => {
 // Cria uma nova sale e as relações desta com os produtos;
 const createSale = async (sale, token) => {
   verifyToken(token);
+  validateFields(sale);
   const newSale = createSaleObj(sale);
   const { products } = sale;
 
@@ -98,6 +100,13 @@ const getSellerOrders = async (sellerId) => {
 
   return allOrders;
 };
+
+const changeOrderStatus = async ({ id, status }, token) => {
+  const { data: { role } } = verifyToken(token);
+
+  role === 'seller' && Sale.update({ status }, { where: { id } });
+}
+
 
 module.exports = {
   getAllSellers,
