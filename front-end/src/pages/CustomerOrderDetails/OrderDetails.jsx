@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
+import axiosRequest from '../../utils/axios';
 import OrderContext from './Context';
 import OrderList from './OrderList';
 
@@ -18,9 +20,9 @@ function OrderDetails() {
   }, [id, token]);
 
   return (
-    <OrderContext provider={ products }>
+    <OrderContext.Provider value={ products }>
       <OrderList />
-    </OrderContext>
+    </OrderContext.Provider>
   );
 }
 
