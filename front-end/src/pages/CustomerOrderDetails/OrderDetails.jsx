@@ -6,7 +6,7 @@ import OrderContext from './Context';
 import OrderList from './OrderList';
 
 function OrderDetails() {
-  const [products, setProducts] = useState([]);
+  const [order, setOrder] = useState([]);
 
   const token = useSelector((state) => state.user.token);
   const { id } = useParams();
@@ -14,13 +14,13 @@ function OrderDetails() {
   useEffect(() => {
     const fetchOrder = async () => {
       const { data } = await (axiosRequest({ authorization: token }).get(`/sales/${id}`));
-      setProducts(data.products);
+      setOrder(data);
     };
     fetchOrder();
   }, [id, token]);
 
   return (
-    <OrderContext.Provider value={ products }>
+    <OrderContext.Provider value={ order }>
       <OrderList />
     </OrderContext.Provider>
   );

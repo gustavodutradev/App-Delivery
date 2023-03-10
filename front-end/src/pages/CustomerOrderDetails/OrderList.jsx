@@ -13,7 +13,7 @@ const ListContainer = styled.div`
 `;
 
 function OrderList() {
-  const products = useContext(OrderContext);
+  const { products } = useContext(OrderContext);
 
   return (
     <ListContainer>
