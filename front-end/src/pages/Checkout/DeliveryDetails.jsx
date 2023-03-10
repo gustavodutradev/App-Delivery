@@ -58,7 +58,6 @@ function DeliveryDetails() {
   const products = useSelector((state) => state.cart.items);
   const userId = useSelector((state) => state.user.id);
   const token = useSelector((state) => state.user.token);
-  const axios = axiosRequest({ authorization: token });
   const totalPrice = products.reduce((acc, curr) => (
     acc + (curr.quantity * curr.price)
   ), 0);
@@ -69,27 +68,33 @@ function DeliveryDetails() {
 
   useEffect(() => {
     const fetchSellers = async () => {
-      const { data } = await axios.get('/sales/sellers'); // por url de get seller
+      const { data } = await axiosRequest({ authorization: token }).get('/sales/sellers'); // por url de get seller
       setSellers(data); // fazer a limpeza dos dados antes
+      setSelectedSeller(data[0].name);
     };
     fetchSellers();
-  }, []);
+  }, [token]);
 
   return (
     <SForm
-      onSubmit={ async () => {
+      onSubmit={ async (event) => {
+        event.preventDefault();
         try {
-          const { data } = axios.post('', { // req.body to send
+          const { data } = await (axiosRequest({ authorization: token })).post('/sales', {
             userId,
             address: {
               street: address,
               number: addressNumber,
             },
-            sellerId: sellers.find((e) => e.name === selectedSeller).id,
+            sellerId: selectedSeller,
             totalPrice,
+            products: products
+              .filter((e) => e.quantity > 0)
+              .map(({ id, quantity }) => ({ id, quantity })),
           });
+          // console.log(`status ${status}`);
           dispatch(clearCart()); // clear cart after purchase
-          navigate(`customer/order/${data}`); // url to navigate
+          navigate(`/customer/orders/${data.saleId}`); // url to navigate
         } catch (error) {
           console.log(error);
         }
@@ -98,12 +103,12 @@ function DeliveryDetails() {
       <FieldsContainer>
         <SelectSeller
           name="P.Vendedora Responsável"
-          data-testid="customer_checkout__select-seller"
+          dataTestid="customer_checkout__select-seller"
           value={ selectedSeller }
           onChange={ (e) => { setSelectedSeller(e.target.value); } }
           options={ sellers.map((e) => ({
             name: e.name,
-            value: e.name,
+            value: e.id,
           })) }
         />
         <Input

@@ -24,14 +24,13 @@ const STable = styled.div`
 `;
 
 function Table() {
-  const axios = axiosRequest();
   const dispatch = useDispatch();
   const products = useSelector((state) => state.cart.items);
 
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const { status, data } = await axios.get('/products');
+        const { status, data } = await axiosRequest().get('/products');
         if (status === GET_STATUS_OK) {
           return data.forEach((item) => {
             dispatch(addItem({
@@ -46,7 +45,7 @@ function Table() {
       }
     };
     fetchProducts();
-  }, []);
+  }, [dispatch]);
 
   return (
     <STable>
