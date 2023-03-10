@@ -55,9 +55,6 @@
       "__TESTID__": true,
       "__TESTDESC__": true,
       "__TESTFILE__": true
-    },
-    "moduleNameMapper": {
-      "^axios$": "axios/dist/axios.js"
-      } 
+    }
   }
 }
