@@ -89,7 +89,7 @@ function CartListItem(props) {
           className="index"
           data-testid={ `customer_checkout__element-order-table-item-number-${index}` }
         >
-          {index}
+          {index + 1}
         </span>
         <span
           className="description"

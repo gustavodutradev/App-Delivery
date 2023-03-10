@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
 import tw from 'twin.macro';
@@ -107,20 +107,15 @@ const TopContainer = styled.div`
 function Card(props) {
   const { product } = props;
   const dispatch = useDispatch();
-  const [quantity, setQuantity] = useState(product.quantity);
-
-  const handleDispatch = () => {
-    dispatch(changeQuantity({
-      quantity,
-      id: product.id,
-    }));
-  };
 
   const handleNegative = (number) => (number < 0 ? 0 : number);
 
-  useEffect(() => {
-    handleDispatch();
-  }, [quantity]);
+  const setQuantity = (number) => {
+    dispatch(changeQuantity({
+      quantity: number,
+      id: product.id,
+    }));
+  };
 
   return (
     <SCard>
@@ -144,7 +139,7 @@ function Card(props) {
         </span>
         <QuantityContainer>
           <Button
-            onClick={ () => { setQuantity((count) => handleNegative(count - 1)); } }
+            onClick={ () => { setQuantity(handleNegative(product.quantity - 1)); } }
             name="-"
             datatestId={ `customer_products__button-card-rm-item-${product.id}` }
           />
@@ -152,11 +147,11 @@ function Card(props) {
             name=""
             type="number"
             onChange={ (e) => { setQuantity(handleNegative(+e.target.value)); } }
-            value={ quantity }
+            value={ product.quantity }
             datatestId={ `customer_products__input-card-quantity-${product.id}` }
           />
           <Button
-            onClick={ () => { setQuantity((count) => handleNegative(+count + 1)); } }
+            onClick={ () => { setQuantity(handleNegative(product.quantity + 1)); } }
             name="+"
             datatestId={ `customer_products__button-card-add-item-${product.id}` }
           />

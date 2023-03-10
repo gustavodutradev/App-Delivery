@@ -11,6 +11,7 @@ const setLocalStorage = (user) => {
 };
 
 const initialState = {
+  id: 0,
   name: '',
   email: '',
   role: '',
@@ -23,12 +24,14 @@ const userSlice = createSlice({
   reducers: {
     setUser: (state, action) => {
       // action.payload: {
+      //   id: number,
       //   name: string,
       //   email: string,
       //   token: string,
       //   role: string,
       // }
       setLocalStorage(action.payload);
+      state.id = action.payload.id;
       state.email = action.payload.email;
       state.name = action.payload.name;
       state.role = action.payload.role;
@@ -39,6 +42,7 @@ const userSlice = createSlice({
       state.token = action.payload;
     },
     logout: (state) => {
+      state.id = '';
       state.name = '';
       state.email = '';
       state.role = '';

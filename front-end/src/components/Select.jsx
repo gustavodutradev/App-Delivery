@@ -24,11 +24,15 @@ const SSelect = styled.label`
 `;
 
 function Select(props) {
-  const { name, value, onChange, options, className } = props;
+  const { name, value, onChange, options, className, dataTestid } = props;
   return (
     <SSelect className={ className }>
       <span>{name}</span>
-      <select value={ value } onChange={ onChange }>
+      <select
+        value={ value }
+        onChange={ onChange }
+        data-testid={ dataTestid }
+      >
         {options.map((e, i) => (
           <Option key={ i } name={ e.name } value={ e.value } />
         ))}
@@ -46,10 +50,12 @@ Select.propTypes = {
     name: PropTypes.string,
   })).isRequired,
   className: PropTypes.string,
+  dataTestid: PropTypes.string,
 };
 
 Select.defaultProps = {
   className: '',
+  dataTestid: '',
 };
 
 export default Select;

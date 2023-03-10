@@ -35,18 +35,18 @@ function Button({ name, ...props }) {
 }
 
 Button.propTypes = {
-  type: PropTypes.string.isRequired,
-  onClick: PropTypes.func.isRequired,
-  disabled: PropTypes.bool.isRequired,
+  type: PropTypes.string,
+  onClick: PropTypes.func,
+  disabled: PropTypes.bool,
   name: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.node,
   ]).isRequired,
-  datatestId: PropTypes.string.isRequired,
-  className: PropTypes.string.isRequired,
+  datatestId: PropTypes.string,
+  className: PropTypes.string,
 };
 
-Button.defaultParameters = {
+Button.defaultProps = {
   type: 'submit',
   onClick: () => {},
   disabled: false,
