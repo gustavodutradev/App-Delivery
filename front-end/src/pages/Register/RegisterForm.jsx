@@ -5,7 +5,7 @@ import tw from 'twin.macro';
 import Button from '../../components/Button';
 import ErrorMessage from '../../components/ErrorMessage';
 import Input from '../../components/Input';
-import axiosRequest from '../../utils/axios';
+import axiosRequest from '../../utils/axiosRequest';
 import { POST_STATUS_OK } from '../../utils/statusCodes';
 
 const MIN_PASSWORD_CHARACTERS = 6;
