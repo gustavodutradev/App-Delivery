@@ -6,7 +6,9 @@ const {
   sequelize,
 } = require('../database/models');
 const { verifyToken } = require('../utils/token');
-const { validateFields } = require('../utils/validations/saleValidations');
+const { checkUserExistence } = require('../utils/validations/loginValidations');
+const { validateFields, userNotAuthorized, sellerNotAuthorized } = require('../utils/validations/saleValidations');
+const loginService = require('./login.service');
 
 const getAllSellers = async (token) => {
   verifyToken(token);
@@ -76,6 +78,9 @@ const createSale = async (sale, token) => {
 };
 
 const getUserOrders = async (userId) => {
+  const foundUser = await loginService.findUser(userId);
+  checkUserExistence(foundUser);
+
   const result = await Sale.findAll({
     where: { userId },
   });
@@ -89,6 +94,9 @@ const getUserOrders = async (userId) => {
 };
 
 const getSellerOrders = async (sellerId) => {
+  const foundUser = await loginService.findUser(sellerId);
+  checkUserExistence(foundUser);
+
   const result = await Sale.findAll({
     where: { sellerId },
   });
@@ -101,12 +109,19 @@ const getSellerOrders = async (sellerId) => {
   return allOrders;
 };
 
-const changeOrderStatus = async ({ id, status }, token) => {
+// para vendedores
+const sellerOrderStatus = async ({ id, status }, token) => {
   const { data: { role } } = verifyToken(token);
-
+  userNotAuthorized(role);
   role === 'seller' && Sale.update({ status }, { where: { id } });
-}
+};
 
+// para usuários
+const userOrderStatus = async (id, token) => {
+  const { data: { role } } = verifyToken(token);
+  sellerNotAuthorized(role);
+  role === 'customer' && Sale.update({ status: 'Entregue' }, { where: { id } });
+}
 
 module.exports = {
   getAllSellers,
@@ -114,4 +129,6 @@ module.exports = {
   getSaleById,
   getUserOrders,
   getSellerOrders,
+  sellerOrderStatus,
+  userOrderStatus,
 };
