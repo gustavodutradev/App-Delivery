@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import OrderContext from './OrderContext';
+import Button from '../../components/Button';
 
 const lintLength = 4;
 
@@ -19,7 +20,7 @@ function ListHeader() {
         className="seller"
         data-testid="customer_order_details__element-order-details-label-seller-name"
       >
-        {`P.Vend: ${order.sellerName}`}
+        {`P.Vend: ${order.seller.name}`}
 
       </span>
       <span
@@ -38,13 +39,13 @@ function ListHeader() {
         {order.status}
 
       </span>
-      <span
+      <Button
         className="confirm-delivery"
-        data-testid="customer_order_details__button-delivery-check"
-      >
-        should be a btn
-
-      </span>
+        dataTestid="customer_order_details__button-delivery-check"
+        type="button"
+        onClick={ () => {} }
+        name="MARCAR COMO ENTREGUE"
+      />
     </div>
   );
 }
