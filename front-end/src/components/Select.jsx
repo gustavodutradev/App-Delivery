@@ -43,16 +43,16 @@ function Select(props) {
 
 Select.propTypes = {
   name: PropTypes.string.isRequired,
-  value: PropTypes.oneOfType(
+  value: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.number,
-  ).isRequired,
+  ]).isRequired,
   onChange: PropTypes.func.isRequired,
   options: PropTypes.arrayOf(PropTypes.shape({
-    value: PropTypes.oneOfType(
+    value: PropTypes.oneOfType([
       PropTypes.string,
       PropTypes.number,
-    ),
+    ]),
     name: PropTypes.string,
   })).isRequired,
   className: PropTypes.string,
