@@ -86,7 +86,7 @@ function DeliveryDetails() {
               street: address,
               number: addressNumber,
             },
-            sellerId: sellers.find((e) => e.name === selectedSeller).id,
+            sellerId: selectedSeller,
             totalPrice,
             products: products
               .filter((e) => e.quantity > 0)
@@ -108,7 +108,7 @@ function DeliveryDetails() {
           onChange={ (e) => { setSelectedSeller(e.target.value); } }
           options={ sellers.map((e) => ({
             name: e.name,
-            value: e.name,
+            value: e.id,
           })) }
         />
         <Input
