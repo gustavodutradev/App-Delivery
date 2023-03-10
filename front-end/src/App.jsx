@@ -1,6 +1,7 @@
 import { Route, Routes, Navigate } from 'react-router-dom';
 import './App.css';
 import CheckoutPage from './pages/Checkout/CheckoutPage';
+import CustOrderDetailsPage from './pages/CustomerOrderDetails/CustOrderDetailsPage';
 import LoginPage from './pages/Login/LoginPage';
 import ProductsPage from './pages/Products/ProductsPage';
 import RegisterPage from './pages/Register/RegisterPage';
@@ -14,6 +15,7 @@ function App() {
         <Route path="/register" element={ <RegisterPage /> } />
         <Route path="/customer/products" element={ <ProductsPage /> } />
         <Route path="/customer/checkout" element={ <CheckoutPage /> } />
+        <Route path="/customer/orders/:id" element={ <CustOrderDetailsPage /> } />
       </Routes>
     </div>
   );
