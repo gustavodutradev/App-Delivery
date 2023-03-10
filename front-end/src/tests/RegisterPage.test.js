@@ -1,14 +1,16 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-import { MemoryRouter } from 'react-router-dom';
-import RegisterForm from '../pages/Register/RegisterForm';
+import * as reactRouter from 'react-router';
+import RegisterPage from '../pages/Register/RegisterPage';
 
-describe('App', () => {
-  test('renders App component with Routes', () => {
-    render(
-      <MemoryRouter initialEntries={ ['/register'] }>
-        <RegisterForm />
-      </MemoryRouter>,
-    );
+describe('Register', () => {
+  beforeEach(() => {
+    jest.spyOn(reactRouter, 'useNavigate').mockImplementation(() => jest.fn());
+  });
+
+  it('should render RegisterForm', () => {
+    const { getByTestId } = render(<RegisterPage />);
+    const registerFormElement = getByTestId('common_register__button-register');
+    expect(registerFormElement).toBeInTheDocument();
   });
 });
