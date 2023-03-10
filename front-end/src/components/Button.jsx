@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import styled from 'styled-components';
 import tw from 'twin.macro';
@@ -14,13 +15,16 @@ const SButton = styled.button`
     text-white
     p-1
   `}
+
+  align-items: center;
 `;
 
-function Button(p) {
-  const { type, onClick, datatestId, disabled, name } = p;
+function Button({ name, ...props }) {
+  const { type, onClick, datatestId, disabled, className } = props;
   return (
     <SButton
-      type={ type || 'submit' }
+      className={ className }
+      type={ type }
       onClick={ onClick }
       data-testid={ datatestId }
       disabled={ disabled }
@@ -29,5 +33,25 @@ function Button(p) {
     </SButton>
   );
 }
+
+Button.propTypes = {
+  type: PropTypes.string,
+  onClick: PropTypes.func,
+  disabled: PropTypes.bool,
+  name: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.node,
+  ]).isRequired,
+  datatestId: PropTypes.string,
+  className: PropTypes.string,
+};
+
+Button.defaultProps = {
+  type: 'submit',
+  onClick: () => {},
+  disabled: false,
+  datatestId: '',
+  className: '',
+};
 
 export default Button;

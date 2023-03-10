@@ -67,4 +67,19 @@ const allProducts = [
   }
 ];
 
-module.exports = allProducts;
+const newProduct = {
+  name: 'Secador de cabelo',
+  price: 19.90,
+  urlImage: 'https://i.zst.com.br/thumbs/12/1b/13/-30058155.jpg'
+}
+
+const productCreated = {
+  ...newProduct,
+  id: 12
+}
+
+module.exports = {
+  allProducts,
+  newProduct,
+  productCreated,
+};
