@@ -22,7 +22,7 @@ const STotalPrice = styled.div`
 
 function TotalPrice({ products, dataTestid }) {
   const totalPrice = products.reduce((acc, curr) => (
-    acc + (curr.quantity * curr.price)
+    acc + (curr.quantity * (+curr.price))
   ), 0);
 
   return (
@@ -39,7 +39,7 @@ function TotalPrice({ products, dataTestid }) {
 
 TotalPrice.propTypes = {
   products: PropTypes.arrayOf(PropTypes.shape({
-    price: PropTypes.number,
+    price: PropTypes.string,
     quantity: PropTypes.number,
   })).isRequired,
   dataTestid: PropTypes.string,
