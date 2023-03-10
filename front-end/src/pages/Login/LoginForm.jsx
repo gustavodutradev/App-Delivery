@@ -7,7 +7,7 @@ import Button from '../../components/Button';
 import ErrorMessage from '../../components/ErrorMessage';
 import Input from '../../components/Input';
 import { setUser } from '../../redux/slices/userSlice';
-import axiosRequest from '../../utils/axiosRequest';
+import axiosRequest from '../../utils/axios';
 import { GET_STATUS_OK } from '../../utils/statusCodes';
 
 const SLogin = styled.div`
