@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import axiosRequest from '../../utils/axios';
+import ListHeader from './ListHeader';
 import OrderContext from './OrderContext';
 import OrderList from './OrderList';
 
@@ -21,7 +22,8 @@ function OrderDetails() {
 
   return (
     <OrderContext.Provider value={ order }>
-      {order && <OrderList /> }
+      { order && <ListHeader /> }
+      { order && <OrderList /> }
     </OrderContext.Provider>
   );
 }
