@@ -4,7 +4,9 @@ import styled from 'styled-components';
 import tw from 'twin.macro';
 import Button from '../../components/Button';
 import ErrorMessage from '../../components/ErrorMessage';
-import axiosRequest from '../../utils/axios';
+import Input from '../../components/Input';
+import axiosRequest from '../../utils/axiosRequest';
+import { POST_STATUS_OK } from '../../utils/statusCodes';
 
 const MIN_PASSWORD_CHARACTERS = 6;
 const MIN_NAME_CHARACTERS = 12;
@@ -102,46 +104,51 @@ export default function RegisterForm() {
   && (name.length >= MIN_NAME_CHARACTERS);
 
   return (
-    <SForm
-      onSubmit={ async (e) => {
-        e.preventDefault();
-        try {
-          handleRequest(await axios.post(
-            '/register',
-            { name, email, password: pw, role: 'customer',
-            },
-          ));
-        } catch (err) {
-          setWrongRegister(true);
-          console.log(err);
-        }
-      } }
-    >
-      <Input
-        onChange={ (e) => { setName(e.target.value); } }
-        value={ name }
-        name="Nome"
-        datatestId="common_register__input-name"
-      />
-      <Input
-        onChange={ (e) => { setEmail(e.target.value); } }
-        value={ email }
-        name="Email"
-        type="email"
-        datatestId="common_register__input-email"
-      />
-      <Input
-        onChange={ (e) => { setPw(e.target.value); } }
-        value={ pw }
-        name="Password"
-        type="password"
-        datatestId="common_register__input-password"
-      />
-      <Button
-        name="CADASTRAR"
-        datatestId="common_register__button-register"
-        disabled={ !isValid }
-      />
+    <SRegister>
+
+      <SForm
+        onSubmit={ async (e) => {
+          e.preventDefault();
+          try {
+            handleRequest(await axios.post(
+              '/register',
+              { name, email, password: pw, role: 'customer',
+              },
+            ));
+          } catch (err) {
+            setWrongRegister(true);
+            console.log(err);
+          }
+        } }
+      >
+        <Input
+          onChange={ (e) => { setName(e.target.value); } }
+          value={ name }
+          name="Nome"
+          datatestId="common_register__input-name"
+          placeHolder="Nome e Sobrenome"
+        />
+        <Input
+          onChange={ (e) => { setEmail(e.target.value); } }
+          value={ email }
+          name="Email"
+          type="email"
+          datatestId="common_register__input-email"
+          placeHolder="E-mail"
+        />
+        <Input
+          onChange={ (e) => { setPw(e.target.value); } }
+          value={ pw }
+          name="Password"
+          type="password"
+          datatestId="common_register__input-password"
+          placeHolder="Senha"
+        />
+        <Button
+          name="CADASTRAR"
+          datatestId="common_register__button-register"
+          disabled={ !isValid }
+        />
 
         {
           wrongRegister && <ErrorMessage

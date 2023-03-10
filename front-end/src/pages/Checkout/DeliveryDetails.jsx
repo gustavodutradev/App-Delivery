@@ -7,7 +7,7 @@ import Button from '../../components/Button';
 import Input from '../../components/Input';
 import Select from '../../components/Select';
 import { clearCart } from '../../redux/slices/cartSlice';
-import axiosRequest from '../../utils/axios';
+import axiosRequest from '../../utils/axiosRequest';
 
 const SForm = styled.form`
   ${tw`
