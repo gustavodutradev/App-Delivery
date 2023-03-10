@@ -70,7 +70,7 @@ function DeliveryDetails() {
     const fetchSellers = async () => {
       const { data } = await axiosRequest({ authorization: token }).get('/sales/sellers'); // por url de get seller
       setSellers(data); // fazer a limpeza dos dados antes
-      setSelectedSeller(data[0].name);
+      setSelectedSeller(data[0].id);
     };
     fetchSellers();
   }, [token]);
