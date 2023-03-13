@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import OrderContext from './OrderContext';
 import Button from '../../components/Button';
 
@@ -6,7 +6,12 @@ const lintLength = 4;
 
 function ListHeader() {
   const order = useContext(OrderContext);
+  const [disabled, setDisabled] = useState(true);
   const index = 1;// tem que pegar o index
+
+  useEffect(() => {
+    setDisabled(order.status.toLowerCase() === 'entregue');
+  }, [order]);
 
   return (
     <div>
@@ -41,11 +46,11 @@ function ListHeader() {
       </span>
       <Button
         className="confirm-delivery"
-        dataTestid="customer_order_details__button-delivery-check"
+        datatestId="customer_order_details__button-delivery-check"
         type="button"
         onClick={ () => {} }
         name="MARCAR COMO ENTREGUE"
-        // disabled={ order.status.toLowerCase() === 'entregue' }
+        disabled={ disabled }
       />
     </div>
   );
