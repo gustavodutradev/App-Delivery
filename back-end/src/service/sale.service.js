@@ -6,6 +6,14 @@ const {
   sequelize,
 } = require('../database/models');
 const { verifyToken } = require('../utils/token');
+const { checkUserExistence } = require('../utils/validations/loginValidations');
+const {
+  validateFields,
+  userNotAuthorized,
+  sellerNotAuthorized,
+  validateSellerStatus,
+} = require('../utils/validations/saleValidations');
+const loginService = require('./login.service');
 
 const getAllSellers = async (token) => {
   verifyToken(token);
@@ -56,6 +64,7 @@ const getSaleById = async (saleId) => {
 // Cria uma nova sale e as relações desta com os produtos;
 const createSale = async (sale, token) => {
   verifyToken(token);
+  validateFields(sale);
   const newSale = createSaleObj(sale);
   const { products } = sale;
 
@@ -74,6 +83,9 @@ const createSale = async (sale, token) => {
 };
 
 const getUserOrders = async (userId) => {
+  const foundUser = await loginService.findUser(userId);
+  checkUserExistence(foundUser);
+
   const result = await Sale.findAll({
     where: { userId },
   });
@@ -87,6 +99,9 @@ const getUserOrders = async (userId) => {
 };
 
 const getSellerOrders = async (sellerId) => {
+  const foundUser = await loginService.findUser(sellerId);
+  checkUserExistence(foundUser);
+
   const result = await Sale.findAll({
     where: { sellerId },
   });
@@ -99,10 +114,27 @@ const getSellerOrders = async (sellerId) => {
   return allOrders;
 };
 
+// para vendedores
+const sellerOrderStatus = async ({ id, status }, token) => {
+  const { data: { role } } = verifyToken(token);
+  userNotAuthorized(role);
+  validateSellerStatus(status);
+  if (role === 'seller') Sale.update({ status }, { where: { id } });
+};
+
+// para usuários
+const userOrderStatus = async (id, token) => {
+  const { data: { role } } = verifyToken(token);
+  sellerNotAuthorized(role);
+  if (role === 'customer') Sale.update({ status: 'Entregue' }, { where: { id } });
+};
+
 module.exports = {
   getAllSellers,
   createSale,
   getSaleById,
   getUserOrders,
   getSellerOrders,
+  sellerOrderStatus,
+  userOrderStatus,
 };
