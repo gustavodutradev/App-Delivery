@@ -45,7 +45,7 @@ function ListHeader() {
         type="button"
         onClick={ () => {} }
         name="MARCAR COMO ENTREGUE"
-        disabled={ order.status.toLowerCase() === 'entregue' }
+        // disabled={ order.status.toLowerCase() === 'entregue' }
       />
     </div>
   );
