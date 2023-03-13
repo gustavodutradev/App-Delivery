@@ -1,11 +1,11 @@
-import React from 'react'
-import TableBody from './TableBody'
-import TableHeader from './TableHeader'
+import React from 'react';
+import TableBody from './TableBody';
+import TableHeader from './TableHeader';
 
 export default function Table() {
   return (
     <fieldset>
-      <table 
+      <table
         align="center"
         bgcolor="silver"
         border="5"
@@ -16,5 +16,5 @@ export default function Table() {
         <TableBody />
       </table>
     </fieldset>
-  )
+  );
 }

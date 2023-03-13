@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 
 const headers = ['Item', 'Nome', 'E-mail', 'Tipo', 'Excluir'];
 
