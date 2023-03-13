@@ -37,9 +37,14 @@ const checkLoingPassword = (isValidPassword) => {
   if (!isValidPassword) throw new NotFound('Email or password is invalid!');
 };
 
+const verifyAdminRole = (role) => {
+  if (role !== 'administrator') throw new InvalidParams('You must be an admin to utilize this route.');
+};
+
 module.exports = {
   registerValidations,
   checkUserExistence,
   checkLoginEmail,
   checkLoingPassword,
+  verifyAdminRole,
 };
