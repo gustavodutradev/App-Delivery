@@ -1,10 +1,10 @@
 const { User } = require('../database/models');
 const { checkPassword, encryptPassword } = require('../utils/md5');
 const { generateToken } = require('../utils/token');
-const { 
-  registerValidations, 
-  checkUserExistence, 
-  checkLoingPassword, 
+const {
+  registerValidations,
+  checkUserExistence,
+  checkLoingPassword,
   checkLoginEmail,
 } = require('../utils/validations/loginValidations');
 
@@ -20,8 +20,8 @@ const createUser = async (user) => {
   checkUserExistence(foundUser);
 
   const passwordCrypt = encryptPassword(password);
-  const newUser = await User.create({ 
-    ...user, 
+  const newUser = await User.create({
+    ...user,
     password: passwordCrypt,
     role: user.role || 'costumer',
   });
@@ -49,4 +49,5 @@ const loginUser = async (user) => {
 module.exports = {
   createUser,
   loginUser,
+  findUser,
 };

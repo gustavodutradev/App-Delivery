@@ -62,10 +62,35 @@ const getSellerOrders = async (req, res, next) => {
   }
 };
 
+const sellerChangeStatus = async (req, res, next) => {
+  const { id } = req.params;
+  const token = req.headers.authorization;
+  const { status } = req.body;
+  try {
+    await saleService.sellerOrderStatus({ id, status }, token);
+    return res.status(200).json();
+  } catch (err) {
+    return next(err);
+  }
+};
+
+const customerChangeStatus = async (req, res, next) => {
+  const { id } = req.params;
+  const token = req.headers.authorization;
+  try {
+    await saleService.userOrderStatus(id, token);
+    return res.status(200).json();
+  } catch (err) {
+    return next(err);
+  }
+};
+
 module.exports = {
   getAllSeller,
   createSale,
   getSaleById,
   getUserOrders,
   getSellerOrders,
+  sellerChangeStatus,
+  customerChangeStatus,
 };
