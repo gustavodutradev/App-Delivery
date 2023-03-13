@@ -22,9 +22,10 @@ const createUser = async (req, res, next) => {
 };
 
 const deleteUser = async (req, res, next) => {
+  const token = req.headers.authorization;
   const user = req.body;
   try {
-    await adminService.deleteUser(user);
+    await adminService.deleteUser(user, token);
     return res.status(204).json();
   } catch (err) {
     return next(err);
