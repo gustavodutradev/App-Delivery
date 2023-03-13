@@ -46,7 +46,6 @@ const loginUser = async (user) => {
   return { name, email, role, token, id };
 };
 
-
 module.exports = {
   createUser,
   loginUser,
