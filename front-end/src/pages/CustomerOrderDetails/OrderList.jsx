@@ -1,9 +1,9 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
 import tw from 'twin.macro';
 import TotalPrice from '../../components/TotalPrice';
-import CartListItem from './CartListItem';
+import OrderContext from './OrderContext';
+import ProductItem from './ProductItem';
 
 const ListContainer = styled.div`
   ${tw`
@@ -12,27 +12,28 @@ const ListContainer = styled.div`
   padding-bottom: 10rem; // deve ser relativo ao height do totalPrice
 `;
 
-function CartList() {
-  const products = useSelector((state) => state.cart.items);
+function OrderList() {
+  const order = useContext(OrderContext);
+
   return (
     <ListContainer>
       <ul>
-        {products
+        {order.products
           .filter((e) => e.quantity > 0)
           .map((e, i) => (
             <li key={ i }>
-              <CartListItem product={ e } index={ i } />
+              <ProductItem product={ e } index={ i } />
             </li>
           ))}
       </ul>
       <TotalPrice
-        dataTestid="customer_checkout__element-order-total-price"
-        products={ products }
+        products={ order.products }
+        dataTestid="customer_order_details__element-order-total-price"
       />
     </ListContainer>
   );
 }
 
-CartList.propTypes = {};
+OrderList.propTypes = {};
 
-export default CartList;
+export default OrderList;
