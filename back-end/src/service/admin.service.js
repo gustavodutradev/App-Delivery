@@ -11,8 +11,8 @@ const {
 const findUser = async (name, email) => {
   const userFound = await User.findOne({
     where: {
-      [sequelize.Op.or]: [{ email }, { name }]
-    }
+      [sequelize.Op.or]: [{ email }, { name }],
+    },
   });
   return userFound;
 };
@@ -22,7 +22,7 @@ const allUsersNotAdmin = async (token) => {
   verifyAdminRole(role);
   const users = await User.findAll({
     where: {
-      role: { [sequelize.Op.not]: 'administrator' }
+      role: { [sequelize.Op.not]: 'administrator' },
     },
     attributes: { exclude: ['id'] },
   });
