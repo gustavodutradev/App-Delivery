@@ -10,7 +10,7 @@ function ListHeader() {
   const index = 1;// tem que pegar o index
 
   useEffect(() => {
-    setDisabled(order.status.toLowerCase() === 'entregue');
+    setDisabled(order.status.toLowerCase() !== 'em trânsito');
   }, [order]);
 
   return (
