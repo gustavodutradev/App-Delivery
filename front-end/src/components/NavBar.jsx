@@ -93,7 +93,7 @@ function NavBar() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const goToProducts = () => navigate('/customer/products');
-  const goToOrders = () => navigate('/customer/orders');
+  const goToOrders = (user) => navigate(`/${user}/orders`);
   const logoutOnClick = () => {
     dispatch(clearCart());
     dispatch(logout());
@@ -102,6 +102,7 @@ function NavBar() {
   };
 
   const name = useSelector((state) => state.user.name);
+  const role = useSelector((state) => state.user.role);
 
   useEffect(() => {
     setUsername(name);
@@ -111,17 +112,30 @@ function NavBar() {
     <SNav>
       <SLeft>
         <img src={ logo } alt="app-logo" />
-        <Button
-          name="Produtos"
-          datatestId="customer_products__element-navbar-link-products"
-          onClick={ goToProducts }
-        />
-
-        <Button
+        { role === 'seller'
+        && <Button
           name="Pedidos"
           datatestId="customer_products__element-navbar-link-orders"
-          onClick={ goToOrders }
-        />
+          onClick={ () => goToOrders('seller') }
+        />}
+
+        {
+          role === 'customer'
+        && (
+          <>
+            <Button
+              name="Produtos"
+              datatestId="customer_products__element-navbar-link-products"
+              onClick={ goToProducts }
+            />
+            <Button
+              name="Pedidos"
+              datatestId="customer_products__element-navbar-link-orders"
+              onClick={ () => goToOrders('customer') }
+            />
+          </>
+        )
+        }
       </SLeft>
       <SRigth>
         <span
