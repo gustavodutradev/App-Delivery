@@ -12,7 +12,7 @@ const allUser = async (req, res, next) => {
 
 const createUser = async (req, res, next) => {
   const token = req.headers.authorization;
-  const userData = req.body;
+  const userData = req.body; // { ...cadastro, "role": "seller" }
   try {
     const createdUser = await adminService.createUser(userData, token);
     return res.status(201).json(createdUser);
@@ -23,7 +23,7 @@ const createUser = async (req, res, next) => {
 
 const deleteUser = async (req, res, next) => {
   const token = req.headers.authorization;
-  const user = req.body;
+  const user = req.body; // { "email": "algum@email.com" }
   try {
     await adminService.deleteUser(user, token);
     return res.status(204).json();
