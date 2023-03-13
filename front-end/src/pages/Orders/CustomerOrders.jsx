@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import axiosRequest from '../../utils/axios';
 import SOrdersTable from './styles/SOrdersTable';
@@ -9,13 +8,10 @@ function CustomerOrders() {
   const userId = useSelector((state) => state.user.id);
   const axios = axiosRequest();
   const [orders, setOrders] = useState([]);
-  const redirect = useNavigate();
 
   useEffect(() => {
     axios.get(`/sales/user/${userId}`)
       .then((response) => {
-        console.log(response.data);
-        if (response.data.length === 0) redirect('/customer/products');
         setOrders(response.data);
       });
   }, []);
