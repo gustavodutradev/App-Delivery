@@ -38,11 +38,11 @@ const createUser = async (user, token) => {
   return { name, email, role, token, id };
 };
 
-const deleteUser = async (userEmail) => {
+const deleteUser = async ({ name, email }) => {
   const { data: { role } } = verifyToken(token);
   verifyAdminRole(role);
 
-  const foundUser = await findUser(userEmail);
+  const foundUser = await findUser(name, email);
   checkUserExistence(foundUser);
 
   await User.destroy({ where: { id: foundUser.id } });
