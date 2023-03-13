@@ -8,22 +8,22 @@ const dateCharacters = 10;
 function OrderCard(props) {
   const { order } = props;
   return (
-    <Link to={ `/customer/orders/${order.id}` }>
+    <Link to={ `/seller/orders/${order.id}` }>
       <SCard>
-        <SOrderID data-testid={ `customer_orders__element-order-id-${order.id}` }>
+        <SOrderID data-testid={ `seller_orders__element-order-id-${order.id}` }>
           {order.id}
         </SOrderID>
-        <SStatus data-testid={ `customer_orders__element-delivery-status-${order.id}` }>
+        <SStatus data-testid={ `seller_orders__element-delivery-status-${order.id}` }>
           {order.status}
         </SStatus>
         <SDateAndPrice>
           <span
-            data-testid={ `customer_orders__element-order-date-${order.id}` }
+            data-testid={ `seller_orders__element-order-date-${order.id}` }
           >
             {order.saleDate.slice(0, dateCharacters).split('-').reverse().join('/')}
           </span>
           <span
-            data-testid={ `customer_orders__element-card-price-${order.id}` }
+            data-testid={ `seller_orders__element-card-price-${order.id}` }
           >
             R$
             {' '}

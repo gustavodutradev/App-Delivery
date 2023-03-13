@@ -6,6 +6,7 @@ import LoginPage from './pages/Login/LoginPage';
 import ProductsPage from './pages/Products/ProductsPage';
 import RegisterPage from './pages/Register/RegisterPage';
 import CustomerOrdersPage from './pages/Orders/CustomerOrdersPage';
+import SellerOrdersPage from './pages/Orders/SellerOrdersPage';
 import SellerOrderDetailsPage from './pages/SellerOrderDetails/SellerOrderDetailsPage';
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
         <Route path="/customer/orders/:id" element={ <CustOrderDetailsPage /> } />
         <Route path="/customer/seller/:id" element={ <SellerOrderDetailsPage /> } />
         <Route path="/customer/orders" element={ <CustomerOrdersPage /> } />
+        <Route path="/seller/orders" element={ <SellerOrdersPage /> } />
       </Routes>
     </div>
   );
