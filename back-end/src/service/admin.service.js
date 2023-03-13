@@ -1,23 +1,31 @@
+const sequelize = require('sequelize');
 const { User } = require('../database/models');
-const { checkPassword, encryptPassword } = require('../utils/md5');
-const { generateToken, verifyToken } = require('../utils/token');
+const { encryptPassword } = require('../utils/md5');
+const { verifyToken } = require('../utils/token');
 const {
-  registerValidations,
-  checkUserExistence,
-  checkLoingPassword,
-  checkLoginEmail,
   verifyAdminRole,
-} = require('../utils/validations/loginValidations');
+  adminRegisterValidations,
+  checkUserExistence,
+} = require('../utils/validations/adminValidations');
 
 const findUser = async (name, email) => {
-  const userFound = await User.findOne({ where: { email, name } });
+  const userFound = await User.findOne({
+    where: {
+      [sequelize.Op.or]: [{ email }, { name }]
+    }
+  });
   return userFound;
 };
 
 const allUsersNotAdmin = async (token) => {
   const { data: { role } } = verifyToken(token);
   verifyAdminRole(role);
-  const users = await User.findAll({ where: { role: { [sequelize.Op.not]: 'administrator' } } });
+  const users = await User.findAll({
+    where: {
+      role: { [sequelize.Op.not]: 'administrator' }
+    },
+    attributes: { exclude: ['id'] },
+  });
   return users;
 };
 
@@ -26,16 +34,15 @@ const createUser = async (user, token) => {
   verifyAdminRole(role);
 
   const { name, email, password } = user;
-  registerValidations(user);
+  adminRegisterValidations(user);
 
   const foundUser = await findUser(name, email);
   checkUserExistence(foundUser);
 
   const passwordCrypt = encryptPassword(password);
   const { id } = await User.create({ ...user, password: passwordCrypt });
-  const token = generateToken(newUser);
 
-  return { name, email, role, token, id };
+  return { name, email, role: user.role, id };
 };
 
 const deleteUser = async ({ name, email }) => {
