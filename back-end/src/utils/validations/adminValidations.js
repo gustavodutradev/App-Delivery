@@ -1,4 +1,7 @@
 const { registerValidations } = require('./loginValidations');
+const ConflictError = require('../errors/conflictError');
+const InvalidParams = require('../errors/invalidParam');
+const NotFound = require('../errors/notFound');
 
 const verifyAdminRole = (role) => {
   if (role !== 'administrator') throw new InvalidParams('You must be an admin to utilize this route.');
