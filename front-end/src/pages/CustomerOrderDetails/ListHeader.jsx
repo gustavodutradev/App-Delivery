@@ -3,11 +3,13 @@ import OrderContext from './OrderContext';
 import Button from '../../components/Button';
 
 const lintLength = 4;
+const lintLength2 = 10;
 
 function ListHeader() {
   const order = useContext(OrderContext);
   const [disabled, setDisabled] = useState(true);
   const index = 1;// tem que pegar o index
+  // const date = new Date(order.saleDate).toLocaleDateString();
 
   useEffect(() => {
     setDisabled(order.status.toLowerCase() !== 'em trânsito');
@@ -32,7 +34,7 @@ function ListHeader() {
         className="date"
         data-testid="customer_order_details__element-order-details-label-order-date"
       >
-        {order.saleDate}
+        {order.saleDate.slice(0, lintLength2).split('-').reverse().join('/')}
 
       </span>
       <span
