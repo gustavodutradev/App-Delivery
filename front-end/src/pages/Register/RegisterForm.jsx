@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import tw from 'twin.macro';
 import Button from '../../components/Button';
 import ErrorMessage from '../../components/ErrorMessage';
 import Input from '../../components/Input';
+import { setUser } from '../../redux/slices/userSlice';
 import axiosRequest from '../../utils/axios';
 import { POST_STATUS_OK } from '../../utils/statusCodes';
 
@@ -83,6 +85,7 @@ export default function RegisterForm() {
   const [name, setName] = useState('');
   const [pw, setPw] = useState('');
   const [wrongRegister, setWrongRegister] = useState(false);
+  const dispatch = useDispatch();
   const axios = axiosRequest();
   const navigate = useNavigate();
 
@@ -92,8 +95,9 @@ export default function RegisterForm() {
   };
 
   const handleRequest = (result) => {
-    const { status } = result;
+    const { status, data } = result;
     if (status === POST_STATUS_OK) {
+      dispatch(setUser(data));
       redirect(status);
     }
     return null;

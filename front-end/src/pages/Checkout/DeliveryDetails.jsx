@@ -7,6 +7,7 @@ import Button from '../../components/Button';
 import Input from '../../components/Input';
 import Select from '../../components/Select';
 import { clearCart } from '../../redux/slices/cartSlice';
+import { addOrder } from '../../redux/slices/orderSlice';
 import axiosRequest from '../../utils/axios';
 
 const SForm = styled.form`
@@ -70,7 +71,7 @@ function DeliveryDetails() {
     const fetchSellers = async () => {
       const { data } = await axiosRequest({ authorization: token }).get('/sales/sellers'); // por url de get seller
       setSellers(data); // fazer a limpeza dos dados antes
-      setSelectedSeller(data[0].name);
+      setSelectedSeller(data[0].id);
     };
     fetchSellers();
   }, [token]);
@@ -93,6 +94,7 @@ function DeliveryDetails() {
               .map(({ id, quantity }) => ({ id, quantity })),
           });
           // console.log(`status ${status}`);
+          dispatch(addOrder(data.saleId)); // add new order to redux store
           dispatch(clearCart()); // clear cart after purchase
           navigate(`/customer/orders/${data.saleId}`); // url to navigate
         } catch (error) {

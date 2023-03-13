@@ -4,10 +4,12 @@ import storage from 'redux-persist/lib/storage';
 import thunk from 'redux-thunk';
 import cart from './slices/cartSlice';
 import user from './slices/userSlice';
+import orders from './slices/orderSlice';
 
 const reducers = combineReducers({
   user,
   cart,
+  orders,
 });
 
 const persistConfig = {

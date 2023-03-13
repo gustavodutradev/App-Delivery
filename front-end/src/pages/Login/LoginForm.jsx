@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
@@ -121,6 +121,11 @@ export default function LoginForm() {
   const axios = axiosRequest();
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    const isLogged = localStorage.getItem('user');
+    if (isLogged) navigate('/customer/products');
+  });
 
   const MIN_PASSWORD_CHARACTERS = 6;
   const REGEXP_EMAIL = /\S+@\S+\.\S+/;
