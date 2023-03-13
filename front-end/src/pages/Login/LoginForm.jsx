@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import tw from 'twin.macro';
@@ -122,25 +122,27 @@ export default function LoginForm() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
+  const user = useSelector((state) => state.user);
+
+  const redirectByRole = (role) => {
+    if (role === 'seller') return navigate('/seller/orders');
+    if (role === 'admin') return navigate('/admin/manage');
+    if (role === 'customer') return navigate('/customer/products');
+  };
+
   useEffect(() => {
-    const isLogged = localStorage.getItem('user');
-    if (isLogged) navigate('/customer/products');
-  });
+    if (!user) return;
+    redirectByRole(user.role);
+  }, []);
 
   const MIN_PASSWORD_CHARACTERS = 6;
   const REGEXP_EMAIL = /\S+@\S+\.\S+/;
 
-  const redirect = (status) => {
-    if (status === GET_STATUS_OK) return navigate('/customer/products');
-    console.log(`erro: status ${status} sem resposta`);
-  };
-
   const handleRequest = (result) => {
     const { status, data } = result;
-    // console.log(result);
     if (status === GET_STATUS_OK) {
       dispatch(setUser(data));
-      redirect(status);
+      redirectByRole(data.role);
     }
     return null;
   };
