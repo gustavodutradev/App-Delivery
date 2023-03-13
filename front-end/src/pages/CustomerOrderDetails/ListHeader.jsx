@@ -32,7 +32,7 @@ function ListHeader() {
         className="date"
         data-testid="customer_order_details__element-order-details-label-order-date"
       >
-        {order.date}
+        {order.saleDate}
 
       </span>
       <span
