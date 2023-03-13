@@ -13,13 +13,6 @@ const findUser = async (email) => {
   return userFound;
 };
 
-const allUsersNotAdmin = async (token) => {
-  const { data: { role } } = verifyToken(token);
-  verifyAdminRole(role);
-  const users = await User.findAll({ where: { role: { [sequelize.Op.not]: 'administrator' } } });
-  return users;
-};
-
 const createUser = async (user) => {
   const { name, email, password } = user;
   registerValidations(user);
@@ -53,9 +46,9 @@ const loginUser = async (user) => {
   return { name, email, role, token, id };
 };
 
+
 module.exports = {
   createUser,
   loginUser,
   findUser,
-  allUsersNotAdmin,
 };
