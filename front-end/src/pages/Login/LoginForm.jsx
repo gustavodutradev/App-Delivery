@@ -140,7 +140,6 @@ export default function LoginForm() {
 
   const handleRequest = (result) => {
     const { status, data } = result;
-    console.log(data);
     if (status === GET_STATUS_OK) {
       dispatch(setUser(data));
       redirectByRole(data.role);
