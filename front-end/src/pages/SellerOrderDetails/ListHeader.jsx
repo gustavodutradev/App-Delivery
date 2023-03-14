@@ -38,6 +38,7 @@ function ListHeader() {
         className=""
         datatestId="seller_order_details__button-preparing-check"
         type="button"
+        clickDouble
         onClick={ async () => {
           const { status } = await axiosRequest({ authorization: token })
             .put(`/sales/seller/${order.saleId}`, { status: 'Preparando' });
@@ -53,6 +54,7 @@ function ListHeader() {
         className=""
         datatestId="seller_order_details__button-dispatch-check"
         type="button"
+        clickDouble
         onClick={ async () => {
           const { status } = await axiosRequest({ authorization: token })
             .put(`/sales/seller/${order.saleId}`, { status: 'Em Trânsito' });
