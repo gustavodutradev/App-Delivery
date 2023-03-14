@@ -5,7 +5,7 @@ import { SCard, SOrderID, SDateAndPrice, SStatus } from './styles/SCards';
 
 const dateCharacters = 10;
 
-function OrderCard(props) {
+function SellerCard(props) {
   const { order } = props;
   return (
     <Link to={ `/seller/orders/${order.id}` }>
@@ -35,7 +35,7 @@ function OrderCard(props) {
   );
 }
 
-OrderCard.propTypes = {
+SellerCard.propTypes = {
   order: PropTypes.shape({
     id: PropTypes.number,
     status: PropTypes.string,
@@ -44,4 +44,4 @@ OrderCard.propTypes = {
   }).isRequired,
 };
 
-export default OrderCard;
+export default SellerCard;

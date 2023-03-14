@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import axiosRequest from '../../utils/axios';
 import SOrdersTable from './styles/SOrdersTable';
-import OrderCard from './OrderCard';
+import SellerCard from './SellerCard';
 
 function SellerOrders() {
   const userId = useSelector((state) => state.user.id);
@@ -21,7 +21,7 @@ function SellerOrders() {
     <div>
       <SOrdersTable>
         {orders.map((order, index) => (
-          <OrderCard
+          <SellerCard
             key={ index }
             order={ order }
           />
