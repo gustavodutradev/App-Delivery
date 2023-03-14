@@ -2,25 +2,26 @@ import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import axiosRequest from '../../utils/axios';
 import SOrdersTable from './styles/SOrdersTable';
-import OrderCard from './OrderCard';
+import SellerCard from './SellerCard';
 
-function CustomerOrders() {
+function SellerOrders() {
   const userId = useSelector((state) => state.user.id);
   const axios = axiosRequest();
   const [orders, setOrders] = useState([]);
 
   useEffect(() => {
-    axios.get(`/sales/user/${userId}`)
+    axios.get(`/sales/seller/${userId}`)
       .then((response) => {
-        setOrders(response.data);
+        if (response.data) setOrders(response.data);
       });
+    console.log('Passei por aqui');
   }, []);
 
   return (
     <div>
       <SOrdersTable>
         {orders.map((order, index) => (
-          <OrderCard
+          <SellerCard
             key={ index }
             order={ order }
           />
@@ -30,4 +31,4 @@ function CustomerOrders() {
   );
 }
 
-export default CustomerOrders;
+export default SellerOrders;
