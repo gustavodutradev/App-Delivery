@@ -20,12 +20,13 @@ const SButton = styled.button`
 `;
 
 function Button({ name, ...props }) {
-  const { type, onClick, datatestId, disabled, className } = props;
+  const { type, onClick, datatestId, disabled, className, clickDouble } = props;
   return (
     <SButton
       className={ className }
       type={ type }
-      onClick={ onClick }
+      onClick={ !clickDouble ? onClick : null }
+      onDoubleClick={ clickDouble ? onClick : null }
       data-testid={ datatestId }
       disabled={ disabled }
     >
@@ -44,6 +45,7 @@ Button.propTypes = {
   ]).isRequired,
   datatestId: PropTypes.string,
   className: PropTypes.string,
+  clickDouble: PropTypes.bool,
 };
 
 Button.defaultProps = {
@@ -52,6 +54,7 @@ Button.defaultProps = {
   disabled: false,
   datatestId: '',
   className: '',
+  clickDouble: false,
 };
 
 export default Button;
