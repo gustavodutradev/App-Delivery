@@ -27,6 +27,13 @@ export default function AdminRegisterForm() {
   && REGEXP_EMAIL.test(email)
   && (name.length >= MIN_NAME_CHARACTERS);
 
+  const resetState = () => {
+    setEmail('');
+    setName('');
+    setPw('');
+    setWrongRegister(false);
+  };
+
   return (
     <section>
       <form
@@ -38,7 +45,7 @@ export default function AdminRegisterForm() {
               { name, email, password: pw, role: selectedRole,
               },
             );
-            window.location.reload(true);
+            resetState();
           } catch (err) {
             setWrongRegister(true);
             console.log(err);
