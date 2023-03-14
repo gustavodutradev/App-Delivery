@@ -7,7 +7,7 @@ import Select from '../../components/Select';
 import axiosRequest from '../../utils/axios';
 
 const roleTypes = [
-  { name: 'costumer', value: 'costumer' },
+  { name: 'customer', value: 'customer' },
   { name: 'seller', value: 'seller' },
   { name: 'administrador', value: 'administrador' },
 ];
