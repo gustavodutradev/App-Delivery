@@ -19,7 +19,7 @@ function App() {
         <Route path="/customer/products" element={ <ProductsPage /> } />
         <Route path="/customer/checkout" element={ <CheckoutPage /> } />
         <Route path="/customer/orders/:id" element={ <CustOrderDetailsPage /> } />
-        <Route path="/customer/seller/:id" element={ <SellerOrderDetailsPage /> } />
+        <Route path="/seller/orders/:id" element={ <SellerOrderDetailsPage /> } />
         <Route path="/customer/orders" element={ <CustomerOrdersPage /> } />
         <Route path="/seller/orders" element={ <SellerOrdersPage /> } />
       </Routes>
