@@ -14,10 +14,10 @@ function ListHeader() {
   const token = useSelector((state) => state.user.token);
 
   const changeStatus = async (statusToChange) => {
+    setStat(statusToChange);
     const { status } = await axiosRequest({ authorization: token })
       .put(`/sales/seller/${order.saleId}`, { status: statusToChange });
     if (status === GET_STATUS_OK) {
-      setStat(statusToChange);
       fetchOrder(); // reload window to get new request
     }
   };
@@ -51,7 +51,7 @@ function ListHeader() {
         clickDouble
         onClick={ () => { changeStatus('Preparando'); } }
         name="PREPARAR PEDIDO"
-        disabled={ order.status.toLowerCase() !== 'pendente' }
+        disabled={ stat.toLowerCase() !== 'pendente' }
       />
       <Button
         className=""
@@ -60,7 +60,7 @@ function ListHeader() {
         clickDouble
         onClick={ () => { changeStatus('Em Trânsito'); } }
         name="SAIU PARA ENTREGA"
-        disabled={ order.status.toLowerCase() !== 'preparando' }
+        disabled={ stat.toLowerCase() !== 'preparando' }
       />
     </div>
   );
