@@ -9,17 +9,21 @@ const lintLength = 4;
 const lintLength2 = 10;
 
 function ListHeader() {
-  const { order, fetchOrder } = useContext(OrderContext);
+  const { order } = useContext(OrderContext);
   const [stat, setStat] = useState(order.status);
   const token = useSelector((state) => state.user.token);
 
+  const request = async (statusToCHange) => {
+    const { status } = await axiosRequest({ authorization: token })
+      .put(`/sales/seller/${order.saleId}`, { status: statusToCHange });
+    if (status === GET_STATUS_OK) {
+      console.log('ok');
+    }
+  };
+
   const changeStatus = async (statusToChange) => {
     setStat(statusToChange);
-    const { status } = await axiosRequest({ authorization: token })
-      .put(`/sales/seller/${order.saleId}`, { status: statusToChange });
-    if (status === GET_STATUS_OK) {
-      fetchOrder(); // reload window to get new request
-    }
+    await request(statusToChange);
   };
 
   return (
@@ -48,7 +52,6 @@ function ListHeader() {
         className=""
         datatestId="seller_order_details__button-preparing-check"
         type="button"
-        clickDouble
         onClick={ () => { changeStatus('Preparando'); } }
         name="PREPARAR PEDIDO"
         disabled={ stat.toLowerCase() !== 'pendente' }
@@ -57,7 +60,6 @@ function ListHeader() {
         className=""
         datatestId="seller_order_details__button-dispatch-check"
         type="button"
-        clickDouble
         onClick={ () => { changeStatus('Em Trânsito'); } }
         name="SAIU PARA ENTREGA"
         disabled={ stat.toLowerCase() !== 'preparando' }

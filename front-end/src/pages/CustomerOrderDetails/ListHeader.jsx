@@ -12,7 +12,6 @@ function ListHeader() {
   const [disabled, setDisabled] = useState(true);
   const token = useSelector((state) => state.user.token);
   const index = useSelector((state) => state.orders.findIndex((e) => e === order.saleId));
-  // const date = new Date(order.saleDate).toLocaleDateString();
 
   useEffect(() => {
     setDisabled(order.status.toLowerCase() !== 'em trânsito');
@@ -53,12 +52,11 @@ function ListHeader() {
         className="confirm-delivery"
         datatestId="customer_order_details__button-delivery-check"
         type="button"
-        clickDouble
         onClick={ async () => {
           const { status } = await axiosRequest({ authorization: token })
             .put(`/sales/user/${order.saleId}`);
           if (status) {
-            fetchOrder(); // reload window to get new request
+            fetchOrder();
           }
         } }
         name="MARCAR COMO ENTREGUE"
