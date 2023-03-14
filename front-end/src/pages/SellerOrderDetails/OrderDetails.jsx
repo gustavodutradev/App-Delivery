@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import axiosRequest from '../../utils/axios';
 import ListHeader from './ListHeader';
@@ -10,16 +10,15 @@ function OrderDetails() {
 
   const { id } = useParams();
 
-  const fetchOrder = useCallback(async () => {
-    const { data } = await (axiosRequest().get(`/sales/${id}`));
-    setOrder(data);
-  }, [id]);
-
-  const contextValue = useMemo(() => ({ order, fetchOrder }), [order, fetchOrder]);
+  const contextValue = useMemo(() => ({ order }), [order]);
 
   useEffect(() => {
+    const fetchOrder = async () => {
+      const { data } = await (axiosRequest().get(`/sales/${id}`));
+      setOrder(data);
+    };
     fetchOrder();
-  }, [fetchOrder]);
+  }, [id]);
 
   return (
     <OrderContext.Provider value={ contextValue }>
