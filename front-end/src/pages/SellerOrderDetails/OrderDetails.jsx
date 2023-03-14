@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import axiosRequest from '../../utils/axios';
 import ListHeader from './ListHeader';
@@ -9,19 +8,21 @@ import OrderList from './OrderList';
 function OrderDetails() {
   const [order, setOrder] = useState();
 
-  const token = useSelector((state) => state.user.token);
   const { id } = useParams();
 
+  const fetchOrder = useCallback(async () => {
+    const { data } = await (axiosRequest().get(`/sales/${id}`));
+    setOrder(data);
+  }, [id]);
+
+  const contextValue = useMemo(() => ({ order, fetchOrder }), [order, fetchOrder]);
+
   useEffect(() => {
-    const fetchOrder = async () => {
-      const { data } = await (axiosRequest({ authorization: token }).get(`/sales/${id}`));
-      setOrder(data);
-    };
     fetchOrder();
-  }, [id, token]);
+  }, [fetchOrder]);
 
   return (
-    <OrderContext.Provider value={ order }>
+    <OrderContext.Provider value={ contextValue }>
       { order && <ListHeader /> }
       { order && <OrderList /> }
     </OrderContext.Provider>

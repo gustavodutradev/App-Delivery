@@ -9,7 +9,7 @@ const lintLength = 4;
 const lintLength2 = 10;
 
 function ListHeader() {
-  const order = useContext(OrderContext);
+  const { order, fetchOrder } = useContext(OrderContext);
   const token = useSelector((state) => state.user.token);
 
   return (
@@ -43,7 +43,7 @@ function ListHeader() {
           const { status } = await axiosRequest({ authorization: token })
             .put(`/sales/seller/${order.saleId}`, { status: 'Preparando' });
           if (status === GET_STATUS_OK) {
-            window.location.reload(); // reload window to get new request
+            fetchOrder(); // reload window to get new request
           }
           console.log(status);
         } }
@@ -59,7 +59,7 @@ function ListHeader() {
           const { status } = await axiosRequest({ authorization: token })
             .put(`/sales/seller/${order.saleId}`, { status: 'Em Trânsito' });
           if (status) {
-            window.location.reload(); // reload window to get new request
+            fetchOrder(); // reload window to get new request
           }
         } }
         name="SAIU PARA ENTREGA"
