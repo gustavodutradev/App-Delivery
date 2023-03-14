@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux';
 import OrderContext from './OrderContext';
 import Button from '../../components/Button';
 import axiosRequest from '../../utils/axios';
+import { POST_STATUS_OK } from '../../utils/statusCodes';
 
 const lintLength = 4;
 const lintLength2 = 10;
@@ -38,10 +39,10 @@ function ListHeader() {
         datatestId="seller_order_details__button-preparing-check"
         type="button"
         onClick={ async () => {
-          const { status, data } = await axiosRequest({ authorization: token })
+          const { status } = await axiosRequest({ authorization: token })
             .put(`/sales/seller/${order.id}`, { status: 'preparando' });
-          if (status) {
-            order.status = data.status;
+          if (status === POST_STATUS_OK) {
+            window.location.reload(); // reload window to get new request
           }
         } }
         name="PREPARAR PEDIDO"
@@ -52,10 +53,10 @@ function ListHeader() {
         datatestId="seller_order_details__button-dispatch-check"
         type="button"
         onClick={ async () => {
-          const { status, data } = await axiosRequest({ authorization: token })
+          const { status } = await axiosRequest({ authorization: token })
             .put(`/sales/seller/${order.id}`, { status: 'em trânsito' });
           if (status) {
-            order.status = data.status;
+            window.location.reload(); // reload window to get new request
           }
         } }
         name="SAIU PARA ENTREGA"
