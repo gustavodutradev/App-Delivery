@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { useSelector } from 'react-redux';
 import OrderContext from './OrderContext';
 import Button from '../../components/Button';
@@ -10,7 +10,17 @@ const lintLength2 = 10;
 
 function ListHeader() {
   const { order, fetchOrder } = useContext(OrderContext);
+  const [stat, setStat] = useState(order.status);
   const token = useSelector((state) => state.user.token);
+
+  const changeStatus = async (statusToChange) => {
+    const { status } = await axiosRequest({ authorization: token })
+      .put(`/sales/seller/${order.saleId}`, { status: statusToChange });
+    if (status === GET_STATUS_OK) {
+      setStat(statusToChange);
+      fetchOrder(); // reload window to get new request
+    }
+  };
 
   return (
     <div>
@@ -31,7 +41,7 @@ function ListHeader() {
         className="status"
         data-testid="seller_order_details__element-order-details-label-delivery-status"
       >
-        {order.status}
+        {stat}
 
       </span>
       <Button
@@ -39,14 +49,7 @@ function ListHeader() {
         datatestId="seller_order_details__button-preparing-check"
         type="button"
         clickDouble
-        onClick={ async () => {
-          const { status } = await axiosRequest({ authorization: token })
-            .put(`/sales/seller/${order.saleId}`, { status: 'Preparando' });
-          if (status === GET_STATUS_OK) {
-            fetchOrder(); // reload window to get new request
-          }
-          console.log(status);
-        } }
+        onClick={ () => { changeStatus('Preparando'); } }
         name="PREPARAR PEDIDO"
         disabled={ order.status.toLowerCase() !== 'pendente' }
       />
@@ -55,13 +58,7 @@ function ListHeader() {
         datatestId="seller_order_details__button-dispatch-check"
         type="button"
         clickDouble
-        onClick={ async () => {
-          const { status } = await axiosRequest({ authorization: token })
-            .put(`/sales/seller/${order.saleId}`, { status: 'Em Trânsito' });
-          if (status) {
-            fetchOrder(); // reload window to get new request
-          }
-        } }
+        onClick={ () => { changeStatus('Em Trânsito'); } }
         name="SAIU PARA ENTREGA"
         disabled={ order.status.toLowerCase() !== 'preparando' }
       />
