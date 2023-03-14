@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import OrderContext from './OrderContext';
 import Button from '../../components/Button';
 import axiosRequest from '../../utils/axios';
-import { POST_STATUS_OK } from '../../utils/statusCodes';
+import { GET_STATUS_OK } from '../../utils/statusCodes';
 
 const lintLength = 4;
 const lintLength2 = 10;
@@ -35,26 +35,27 @@ function ListHeader() {
 
       </span>
       <Button
-        className="confirm-delivery"
+        className=""
         datatestId="seller_order_details__button-preparing-check"
         type="button"
         onClick={ async () => {
           const { status } = await axiosRequest({ authorization: token })
-            .put(`/sales/seller/${order.id}`, { status: 'preparando' });
-          if (status === POST_STATUS_OK) {
+            .put(`/sales/seller/${order.saleId}`, { status: 'Preparando' });
+          if (status === GET_STATUS_OK) {
             window.location.reload(); // reload window to get new request
           }
+          console.log(status);
         } }
         name="PREPARAR PEDIDO"
         disabled={ order.status.toLowerCase() !== 'pendente' }
       />
       <Button
-        className="confirm-delivery"
+        className=""
         datatestId="seller_order_details__button-dispatch-check"
         type="button"
         onClick={ async () => {
           const { status } = await axiosRequest({ authorization: token })
-            .put(`/sales/seller/${order.id}`, { status: 'em trânsito' });
+            .put(`/sales/seller/${order.saleId}`, { status: 'Em Trânsito' });
           if (status) {
             window.location.reload(); // reload window to get new request
           }
