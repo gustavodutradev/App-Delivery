@@ -45,10 +45,9 @@ export default function TableBody() {
           >
             { role }
           </td>
-          <td>
+          <td data-testid={ `admin_manage__element-user-table-remove-${index}` }>
             <Button
               name="Excluir"
-              data-testid={ `admin_manage__element-user-table-remove-${index}` }
               type="button"
               onClick={ () => deleteUser(email) }
               disabled={ false }
