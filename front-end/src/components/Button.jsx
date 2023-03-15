@@ -9,9 +9,6 @@ const SButton = styled.button`
     flex
     m-1.5
     font-bold
-    border
-    rounded
-    bg-gray-700
     text-white
     p-1
   `}

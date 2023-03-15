@@ -19,7 +19,6 @@ const Fixed = styled(Button)`
     border-color: #036B52;
     background-color:#036B52;
     color: white;
-
   }
 `;
 

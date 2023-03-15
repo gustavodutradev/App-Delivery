@@ -5,6 +5,8 @@ import Button from '../../components/Button';
 import axiosRequest from '../../utils/axios';
 import { GET_STATUS_OK } from '../../utils/statusCodes';
 
+import SListHeader from './styles/SListHeader';
+
 const lintLength = 4;
 const lintLength2 = 10;
 
@@ -27,7 +29,7 @@ function ListHeader() {
   };
 
   return (
-    <div>
+    <SListHeader>
       <span
         className="order-index"
         data-testid="seller_order_details__element-order-details-label-order-id"
@@ -64,7 +66,7 @@ function ListHeader() {
         name="SAIU PARA ENTREGA"
         disabled={ stat.toLowerCase() !== 'preparando' }
       />
-    </div>
+    </SListHeader>
   );
 }
 

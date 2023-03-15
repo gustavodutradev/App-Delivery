@@ -23,6 +23,7 @@ const FieldsContainer = styled.div`
 
 const SubmitButton = styled(Button)`
   background-color: #036B52;
+  border-radius: 20px;
 `;
 
 function DeliveryDetails() {

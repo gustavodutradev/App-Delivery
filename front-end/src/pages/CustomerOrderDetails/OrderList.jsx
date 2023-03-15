@@ -1,6 +1,5 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components';
-import tw from 'twin.macro';
 import TotalPrice from '../../components/TotalPrice';
 import OrderContext from './OrderContext';
 import ProductItem from './ProductItem';

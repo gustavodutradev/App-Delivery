@@ -13,7 +13,7 @@ const SNav = styled.nav`
   flex
   justify-evenly
   `}
-  width: 100%;
+  min-width: 100%;
   height: 3rem;
   span {
     display: flex;
@@ -28,11 +28,11 @@ const SRigth = styled.ul`
 @media only screen and (min-width: 360px) and (max-width: 480px) {
   ${tw`
   flex
-  justify-center
+  justify-around
+  items-center
   `}
   align-items: center;
   width: 100%;
-  margin-right: 1.5rem;
   
   span {
     color: rgb(255, 197, 0);
@@ -62,13 +62,9 @@ const SLeft = styled.ul`
   ${tw`
   flex
   `}
-  margin-left: 1rem;
+  /* margin-left: 2.8rem; */
   align-items: center;
-  
-  li {
-    float: left;
-    list-style-type: none;
-  }
+
   button {
     background-color: #333333;
     border: 1px solid rgb(255, 197, 0);
