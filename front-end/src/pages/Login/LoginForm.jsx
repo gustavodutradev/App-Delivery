@@ -126,7 +126,7 @@ export default function LoginForm() {
 
   const redirectByRole = (role) => {
     if (role === 'seller') return navigate('/seller/orders');
-    if (role === 'admin') return navigate('/admin/manage');
+    if (role === 'administrator') return navigate('/admin/manage');
     if (role === 'customer') return navigate('/customer/products');
   };
 
