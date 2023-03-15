@@ -61,6 +61,7 @@ Input.defaultProps = {
   onChange: () => {},
   datatestId: '',
   placeHolder: '',
+  className: '',
 };
 
 export default Input;
