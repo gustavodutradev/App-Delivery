@@ -1,15 +1,16 @@
 import React from 'react';
+import Headers from './styles/THeaders';
 
 const headers = ['Item', 'Nome', 'E-mail', 'Tipo', 'Excluir'];
 
 export default function TableHeader() {
   return (
-    <thead>
+    <Headers>
       <tr>
         { headers.map((element, index) => (
           <th key={ index }>{ element }</th>
         ))}
       </tr>
-    </thead>
+    </Headers>
   );
 }

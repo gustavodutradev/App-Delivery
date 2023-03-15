@@ -3,6 +3,9 @@ import { useSelector } from 'react-redux';
 import Button from '../../components/Button';
 import axiosRequest from '../../utils/axios';
 
+// styles
+import TBody from './styles/TBody';
+
 export default function TableBody() {
   const [users, setUsers] = useState([]);
   const token = useSelector((state) => state.user.token);
@@ -22,7 +25,7 @@ export default function TableBody() {
   }, [users]);
 
   return (
-    <tbody align="center">
+    <TBody align="center">
       { users.map(({ name, email, role }, index) => (
         <tr key={ index }>
           <td
@@ -55,6 +58,6 @@ export default function TableBody() {
           </td>
         </tr>
       ))}
-    </tbody>
+    </TBody>
   );
 }

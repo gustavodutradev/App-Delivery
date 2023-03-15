@@ -6,6 +6,9 @@ import Input from '../../components/Input';
 import Select from '../../components/Select';
 import axiosRequest from '../../utils/axios';
 
+// styles
+import SForm from './styles/SForm';
+
 const roleTypes = [
   { name: 'customer', value: 'customer' },
   { name: 'seller', value: 'seller' },
@@ -35,66 +38,64 @@ export default function AdminRegisterForm() {
   };
 
   return (
-    <section>
-      <form
-        onSubmit={ async (e) => {
-          e.preventDefault();
-          try {
-            await axiosRequest({ authorization: token }).post(
-              '/admin',
-              { name, email, password: pw, role: selectedRole,
-              },
-            );
-            resetState();
-          } catch (err) {
-            setWrongRegister(true);
-            console.log(err);
-          }
-        } }
-      >
-        <Input
-          onChange={ (e) => { setName(e.target.value); } }
-          value={ name }
-          name="Nome"
-          datatestId="admin_manage__input-name"
-          placeHolder="Nome e Sobrenome"
-        />
-        <Input
-          onChange={ (e) => { setEmail(e.target.value); } }
-          value={ email }
-          name="Email"
-          type="email"
-          datatestId="admin_manage__input-email"
-          placeHolder="E-mail"
-        />
-        <Input
-          onChange={ (e) => { setPw(e.target.value); } }
-          value={ pw }
-          name="Password"
-          type="password"
-          datatestId="admin_manage__input-password"
-          placeHolder="Senha"
-        />
-        <Select
-          name="Tipo"
-          value={ selectedRole }
-          dataTestid="admin_manage__select-role"
-          onChange={ (e) => { setSelectedRole(e.target.value); } }
-          options={ roleTypes }
-        />
-        <Button
-          name="CADASTRAR"
-          datatestId="admin_manage__button-register"
-          disabled={ !isValid }
-        />
-
-        {
-          wrongRegister && <ErrorMessage
-            message="Ops! E-mail ou Nome já cadastrado"
-            datatestId="admin_manage__element-invalid-register"
-          />
+    <SForm
+      onSubmit={ async (e) => {
+        e.preventDefault();
+        try {
+          await axiosRequest({ authorization: token }).post(
+            '/admin',
+            { name, email, password: pw, role: selectedRole,
+            },
+          );
+          resetState();
+        } catch (err) {
+          setWrongRegister(true);
+          console.log(err);
         }
-      </form>
-    </section>
+      } }
+    >
+      <Input
+        onChange={ (e) => { setName(e.target.value); } }
+        value={ name }
+        name="Nome"
+        datatestId="admin_manage__input-name"
+        placeHolder="Nome e Sobrenome"
+      />
+      <Input
+        onChange={ (e) => { setEmail(e.target.value); } }
+        value={ email }
+        name="Email"
+        type="email"
+        datatestId="admin_manage__input-email"
+        placeHolder="E-mail"
+      />
+      <Input
+        onChange={ (e) => { setPw(e.target.value); } }
+        value={ pw }
+        name="Password"
+        type="password"
+        datatestId="admin_manage__input-password"
+        placeHolder="Senha"
+      />
+      <Select
+        name="Tipo"
+        value={ selectedRole }
+        dataTestid="admin_manage__select-role"
+        onChange={ (e) => { setSelectedRole(e.target.value); } }
+        options={ roleTypes }
+      />
+      <Button
+        name="CADASTRAR"
+        datatestId="admin_manage__button-register"
+        disabled={ !isValid }
+      />
+
+      {
+        wrongRegister && <ErrorMessage
+          message="Ops! E-mail ou Nome já cadastrado"
+          datatestId="admin_manage__element-invalid-register"
+        />
+      }
+    </SForm>
   );
 }
