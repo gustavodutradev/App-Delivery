@@ -6,62 +6,63 @@ import styled from 'styled-components';
 import Button from './Button';
 import { clearCart } from '../redux/slices/cartSlice';
 import { logout } from '../redux/slices/userSlice';
-import logo from '../images/appdeliverylogo.png';
 
 const SNav = styled.nav`
+@media only screen and (min-width: 360px) and (max-width: 480px) {  
   ${tw`
-  w-full
   flex
-  justify-between
-  p-1.5
+  justify-evenly
   `}
+  width: 100%;
+  height: 3rem;
   span {
     display: flex;
     text-align: center;
     align-items: center;
   }
   background-color: #333333;
+  }
 `;
+
 const SRigth = styled.ul`
+@media only screen and (min-width: 360px) and (max-width: 480px) {
   ${tw`
   flex
-  align-middle
-  gap-3
+  justify-center
   `}
-  
   align-items: center;
-
-  li {
-    float: right;
-    list-style-type: none;
-  }
+  width: 100%;
+  margin-right: 1.5rem;
+  
   span {
     color: rgb(255, 197, 0);
     font-weight: bold;
+    font-size: 12px;
   }
   button {
     background-color: #333333;
     border: 1px solid rgb(255, 197, 0);
     color: rgb(255, 197, 0);
     border-radius: 10px;
-    font-weight: lighter;
-    height: 2.5rem;
-    width: 4.5rem;
+    font-size: 12px;
+    font-weight: bold;
+    height: 1.7rem;
+    width: 3.5rem;
       &:hover {
         background-color:rgb(255, 197, 0);
         border: 1px solid #333333;
         color: #333333;
     }
   }
-
+}
 `;
 
 const SLeft = styled.ul`
+@media only screen and (min-width: 360px) and (max-width: 480px) {
   ${tw`
   flex
-  gap-3
   `}
-  
+  margin-left: 1rem;
   align-items: center;
   
   li {
@@ -73,19 +74,17 @@ const SLeft = styled.ul`
     border: 1px solid rgb(255, 197, 0);
     color: rgb(255, 197, 0);
     border-radius: 10px;
-    font-weight: lighter;
-    height: 3rem;
-    width: 7rem;
+    font-size: 12px;
+    font-weight: bold;
+    height: 1.5rem;
+    width: 4.5rem;
       &:hover {
       background-color:rgb(255, 197, 0);
       border: 1px solid #333333;
       color: #333333;
     }
   }
-  img {
-    height: 5rem;
-    width: 5rem;
-  }
+}
 `;
 
 function NavBar() {
@@ -111,7 +110,6 @@ function NavBar() {
   return (
     <SNav>
       <SLeft>
-        <img src={ logo } alt="app-logo" />
         { role === 'seller'
         && <Button
           name="Pedidos"

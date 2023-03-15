@@ -6,18 +6,22 @@ import tw from 'twin.macro';
 const STotalPrice = styled.div`
   ${tw`
     flex
-    items-center
     justify-center
-    absolute
-    bottom-4
-    right-0
-    rounded-xl
-    text-white
-    text-4xl
+    items-center
+    gap-1
+    p-1
   `}
+  width: 150px;
+  font-weight: bold;
+  border-radius: 20px;
   background-color: #036B52;
-  width: 18rem;
-  height: 5rem; // deve ser relativo ao padding-bottom do ListContainer
+  position: fixed;
+  color: white;
+  font-size: 18px;
+  bottom: 0;
+  right: 0;
+  margin: 1rem;
+  box-shadow: 0.3rem 0.3rem 0.7rem #333333;
 `;
 
 function TotalPrice({ products, dataTestid }) {

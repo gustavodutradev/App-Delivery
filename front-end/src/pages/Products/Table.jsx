@@ -1,27 +1,11 @@
 import React, { useEffect } from 'react';
-import styled from 'styled-components';
-import tw from 'twin.macro';
 import { useDispatch, useSelector } from 'react-redux';
 import Card from './Card';
 import axiosRequest from '../../utils/axios';
 import { GET_STATUS_OK } from '../../utils/statusCodes';
 import { addItem } from '../../redux/slices/cartSlice';
 
-const STable = styled.div`
-  ${tw`
-    flex
-    flex-wrap
-    justify-center
-    gap-3
-    font-bold
-    border
-    text-white
-    p-4
-    w-full
-  `}
-  background-color: rgb(255, 197, 0);
-  border-color: rgb(255, 197, 0);
-`;
+import STable from './styles/STable';
 
 function Table() {
   const dispatch = useDispatch();

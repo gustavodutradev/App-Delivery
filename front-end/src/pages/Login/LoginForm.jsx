@@ -1,117 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import styled from 'styled-components';
-import tw from 'twin.macro';
 import Button from '../../components/Button';
 import ErrorMessage from '../../components/ErrorMessage';
 import Input from '../../components/Input';
 import { setUser } from '../../redux/slices/userSlice';
 import axiosRequest from '../../utils/axios';
 import { GET_STATUS_OK } from '../../utils/statusCodes';
+import logo from '../../images/logoappdelivery.jpeg';
 
-const SLogin = styled.div`
-  ${tw`
-    flex
-    flex-col
-    gap-2
-    font-bold
-    border
-    rounded
-    text-white
-    p-6
-  `}
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  width: 100vw;
-  background-color: rgb(255, 197, 0);
-  border-color: rgb(255, 197, 0);
-
-  img {
-    width: 40rem;
-    height: 40rem;
-  }
-`;
-
-const SFormHeader = styled.div`
-  ${tw`
-    flex
-    flex-col
-    justify-center
-    content-center
-    p-4
-  `}
-  color: #333;
-  font-size: 3rem;
-  text-align: center;
-  font-weight: bold;
-  position: fixed;
-  top: 5rem;
-  width: 100%;
-  max-height: 10rem;
-  text-indent: 0.5rem;
-  text-shadow: 0 0 0.3rem #000000b5;
-`;
-
-const SForm = styled.form`
-  ${tw`
-    flex
-    flex-col
-    justify-center
-    p-10
-    gap-4
-  `}
-  width: 350px;
-  color: black;
-  border-radius: 15px;
-  background-color: rgba(204, 156, 0, 0.486);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  align-items: center;
-  margin-top: 8rem;
-  
-  input {
-    background: rgb(255, 255, 255);
-    border: 1px solid #33333354;
-    border-radius: 8px;
-    color: rgb(51, 51, 51);
-    font-size: 16px;
-    width: 18rem;
-    height: 2rem;
-    font-weight: lighter;
-    padding: 0.5rem;
-      &::placeholder{
-        font-size: 0.8rem;
-      }
-  }
-
-  button {
-    cursor: pointer;
-    width: 12rem;
-    height: 1.8rem;
-    background-color: #333333;
-    border: none;
-    color: white;
-    border-radius: 10px;
-    font-weight: lighter;
-      &:hover {
-      color: rgb(255, 197, 0);
-    }
-
-    h1 {
-      text-align: center;
-      color: rgb(51, 51, 51);
-      font-weight: bold;
-      font-size: 100px;
-    }
-    p {
-      text-align: center;
-      color: rgb(51, 51, 51);
-      font-weight: lighter;
-    }
-  }
-`;
+// styles
+import SFormHeader from './styles/SFormHeader';
+import SLogin from './styles/SLogin';
+import SForm from './styles/SForm';
 
 export default function LoginForm() {
   const [email, setEmail] = useState('');
@@ -152,8 +53,7 @@ export default function LoginForm() {
   return (
     <SLogin>
       <SFormHeader>
-        <h1>Chegou o seu novo app de delivery com bebidas sempre geladas!</h1>
-        <p>Venha gelar a goela com a gente também!</p>
+        <h1>Toninho Soluções WEB SA.</h1>
       </SFormHeader>
       <SForm
         onSubmit={ async (e) => {
@@ -166,6 +66,7 @@ export default function LoginForm() {
           }
         } }
       >
+        <img src={ logo } alt="logo" />
         <Input
           onChange={ (e) => { setEmail(e.target.value); } }
           value={ email }
@@ -188,6 +89,7 @@ export default function LoginForm() {
           disabled={ !isValid }
         />
         <Button
+          className="register-btn"
           name="Ainda não tenho conta"
           datatestId="common_login__button-register"
           type="button"

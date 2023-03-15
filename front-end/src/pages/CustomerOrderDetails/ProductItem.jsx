@@ -1,72 +1,10 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import styled from 'styled-components';
-import tw from 'twin.macro';
 
-const SListItem = styled.div`
-  ${tw`
-    justify-center
-    flex
-    m-1.5
-    font-bold
-    rounded-md
-    gap-2
-    bg-white
-    overflow-hidden
-  `}
-  span {
-    ${tw`
-      flex
-      justify-center
-      items-center
-      h-full
-      px-5
-    `}
-    font-size: 2rem;
-  }
-`;
-
-const LeftContainer = styled.div`
-  ${tw`
-    flex
-  `}
-  width: 30rem;
-  .index {
-    min-width: 2rem;
-  }
-`;
-
-const RightContainer = styled.div`
-  ${tw`
-    text-white
-    flex
-  `}
-  .quantity {
-    min-width: 3rem;
-    background-color: #036B52;
-  }
-
-  .unitPrice {
-    background-color: #421981;
-    width: 12rem;
-    justify-content: space-between;
-  }
-  .subTotal {
-    background-color: #056CF9;
-    width: 12rem;
-    justify-content: space-between;
-  }
-  button {
-    font-size: 2rem;
-    background-color: #2FC18C;
-    border-radius: 0;
-    ${tw`
-      px-5
-      m-0
-      border-0
-    `}
-  }
-  `;
+// styles
+import SListItem from './styles/SListItem';
+import LeftContainer from './styles/SLeftContainer';
+import RightContainer from './styles/SRightContainer';
 
 function ProductItem(props) {
   const { product, index } = props;

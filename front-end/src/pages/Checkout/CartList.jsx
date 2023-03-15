@@ -1,15 +1,14 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import styled from 'styled-components';
-import tw from 'twin.macro';
 import TotalPrice from '../../components/TotalPrice';
 import CartListItem from './CartListItem';
 
 const ListContainer = styled.div`
-  ${tw`
-    relative
-  `}
-  padding-bottom: 10rem; // deve ser relativo ao height do totalPrice
+  @media only screen and (min-width: 360px) and (max-width: 480px) {
+    width: fit-content;
+    height: 80%;
+  }
 `;
 
 function CartList() {

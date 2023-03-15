@@ -2,45 +2,23 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
-import tw from 'twin.macro';
 import Button from '../../components/Button';
 import Input from '../../components/Input';
-import Select from '../../components/Select';
 import { clearCart } from '../../redux/slices/cartSlice';
 import { addOrder } from '../../redux/slices/orderSlice';
 import axiosRequest from '../../utils/axios';
 
-const SForm = styled.form`
-  ${tw`
-    flex
-    items-center
-    flex-col
-    justify-center
-  `}
-`;
+// styles
+import SForm from './styles/SForm';
+import SelectSeller from './styles/SSelectSeller';
 
 const FieldsContainer = styled.div`
-  ${tw`
-    flex
-  `}
-`;
-
-const SelectSeller = styled(Select)`
-  ${tw`
-  `}
-  span{
-    margin-bottom: 0.30rem;
-  }
-  select {
-    box-sizing: border-box;
-    left: 0%;
-    right: 0%;
-    top: 37.5%;
-    bottom: 0%;
-    background: #FFFFFF;
-    border-radius: 4px;
-    height: 1.75rem;
-  }
+  @media only screen and (min-width: 360px) and (max-width: 480px) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 0;
+}
 `;
 
 const SubmitButton = styled(Button)`
@@ -119,6 +97,7 @@ function DeliveryDetails() {
           type="text"
           value={ address }
           onChange={ (e) => { setAddress(e.target.value); } }
+          className="address"
         />
         <Input
           name="Numero"
@@ -126,6 +105,7 @@ function DeliveryDetails() {
           type="text"
           value={ addressNumber }
           onChange={ (e) => { setAddressNumber(e.target.value); } }
+          className="address-number"
         />
       </FieldsContainer>
       <SubmitButton

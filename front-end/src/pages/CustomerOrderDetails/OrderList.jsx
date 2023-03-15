@@ -6,10 +6,10 @@ import OrderContext from './OrderContext';
 import ProductItem from './ProductItem';
 
 const ListContainer = styled.div`
-  ${tw`
-    relative
-  `}
-  padding-bottom: 10rem; // deve ser relativo ao height do totalPrice
+  @media only screen and (min-width: 360px) and (max-width: 480px) {
+    width: fit-content;
+    height: 100vh;
+  }
 `;
 
 function OrderList() {

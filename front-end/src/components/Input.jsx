@@ -26,7 +26,7 @@ const SInput = styled.label`
   }
 `;
 
-function Input({ type, onChange, datatestId, placeHolder, name, value }) {
+function Input({ className, type, onChange, datatestId, placeHolder, name, value }) {
   // const { type, onChange, datatestId, placeHolder, name, value } = props;
   return (
     <SInput>
@@ -37,6 +37,7 @@ function Input({ type, onChange, datatestId, placeHolder, name, value }) {
         value={ value }
         data-testid={ datatestId }
         placeholder={ placeHolder }
+        className={ className }
       />
     </SInput>
   );
@@ -48,6 +49,7 @@ Input.propTypes = {
   name: PropTypes.string.isRequired,
   datatestId: PropTypes.string,
   placeHolder: PropTypes.string,
+  className: PropTypes.string,
   value: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.number,

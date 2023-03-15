@@ -5,14 +5,22 @@ import styled from 'styled-components';
 import Button from '../../components/Button';
 
 const Fixed = styled(Button)`
-  position: fixed;
-  bottom: 2vh;
-  right: 2vh;
-  height: 4rem;
-  width: 17rem;
-  font-size: 1.5em;
-  border-radius: 25px;
-  font-weight: lighter;
+  @media only screen and (min-width: 360px) and (max-width: 480px) {
+    size-adjust: inherit;
+    position: sticky;
+    bottom: 0.5rem;
+    top: 0;
+    height: 1.5rem;
+    width: 11rem;
+    font-size: 0.9rem;
+    font-weight: bold;
+    border-radius: 25px;
+    padding: 3px 0 0 0;
+    border-color: #036B52;
+    background-color:#036B52;
+    color: white;
+
+  }
 `;
 
 function CartButton() {
