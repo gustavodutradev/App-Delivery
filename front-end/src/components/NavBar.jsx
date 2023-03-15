@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import tw from 'twin.macro';
 import styled from 'styled-components';
 import Button from './Button';
@@ -90,10 +90,18 @@ const SLeft = styled.ul`
 
 function NavBar() {
   const [username, setUsername] = useState('');
+  const location = useLocation();
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const goToProducts = () => navigate('/customer/products');
-  const goToOrders = (user) => navigate(`/${user}/orders`);
+  const goToOrders = (user) => {
+    const urlToNavigate = `/${user}/orders`;
+    if (urlToNavigate === location.pathname) {
+      window.location.reload();
+    } else {
+      navigate(urlToNavigate);
+    }
+  };
   const logoutOnClick = () => {
     dispatch(clearCart());
     dispatch(logout());

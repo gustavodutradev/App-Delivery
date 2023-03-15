@@ -28,7 +28,7 @@ function OrderList() {
       </ul>
       <TotalPrice
         products={ order.products }
-        dataTestid="customer_order_details__element-order-total-price"
+        dataTestid="seller_order_details__element-order-total-price"
       />
     </ListContainer>
   );

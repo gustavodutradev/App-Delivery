@@ -1,15 +1,17 @@
 import React, { useContext, useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 import OrderContext from './OrderContext';
 import Button from '../../components/Button';
+import axiosRequest from '../../utils/axios';
 
 const lintLength = 4;
 const lintLength2 = 10;
 
 function ListHeader() {
-  const order = useContext(OrderContext);
+  const { order, fetchOrder } = useContext(OrderContext);
   const [disabled, setDisabled] = useState(true);
-  const index = 1;// tem que pegar o index
-  // const date = new Date(order.saleDate).toLocaleDateString();
+  const token = useSelector((state) => state.user.token);
+  const index = useSelector((state) => state.orders.findIndex((e) => e === order.saleId));
 
   useEffect(() => {
     setDisabled(order.status.toLowerCase() !== 'em trânsito');
@@ -50,7 +52,13 @@ function ListHeader() {
         className="confirm-delivery"
         datatestId="customer_order_details__button-delivery-check"
         type="button"
-        onClick={ () => {} }
+        onClick={ async () => {
+          const { status } = await axiosRequest({ authorization: token })
+            .put(`/sales/user/${order.saleId}`);
+          if (status) {
+            fetchOrder();
+          }
+        } }
         name="MARCAR COMO ENTREGUE"
         disabled={ disabled }
       />
