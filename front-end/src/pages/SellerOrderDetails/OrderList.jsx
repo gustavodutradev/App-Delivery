@@ -6,10 +6,10 @@ import OrderContext from './OrderContext';
 import ProductItem from './ProductItem';
 
 const ListContainer = styled.div`
-  @media only screen and (min-width: 360px) and (max-width: 480px) {
-    width: fit-content;
-    height: 100vh;
-  }
+  ${tw`
+    relative
+  `}
+  padding-bottom: 10rem; // deve ser relativo ao height do totalPrice
 `;
 
 function OrderList() {
@@ -28,7 +28,7 @@ function OrderList() {
       </ul>
       <TotalPrice
         products={ order.products }
-        dataTestid="customer_order_details__element-order-total-price"
+        dataTestid="seller_order_details__element-order-total-price"
       />
     </ListContainer>
   );
