@@ -1,5 +1,25 @@
-# :construction: README em construção ! :construction:
+# Apresentação
 
+Seja bem-vindo(a) ao repositório do App de Receitas! Este projeto foi realizado em grupo durante meus estudos na Trybe.
+
+Composição do grupo:
+- Danilo Ramalho
+- Gustavo Dutra
+- Juliana Martinelli
+- Pedro Boccaletti
+- Ricardo Souza
+
+Neste projeto criamos um MVP de um aplicativo de receitas. Fomos responsáveis por construir tanto o Front-End, quanto o Back-end e o Banco de Dados da aplicação.
+
+# Tecnologias Utilizadas
+- Docker
+- React (Vite)
+- Node.js
+- Express
+- JWT
+- MySQL
+
+# Preview
 
 <div align="center">
   <video src="https://github.com/Gustavo-trybedev/App-Delivery/assets/103958434/dff166ba-cb24-4d95-af89-a833bb39f737" />
