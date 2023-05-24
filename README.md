@@ -14,10 +14,14 @@ Neste projeto criamos um MVP de um aplicativo de receitas. Fomos responsáveis p
 # Tecnologias Utilizadas
 - Docker
 - React (Vite)
+- EsLint
+- Axios
 - Node.js
 - Express
 - JWT
 - MySQL
+- Tailwind (twin macro) 
+- Styled Components
 
 # Preview
 
