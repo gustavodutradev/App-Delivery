@@ -2,7 +2,7 @@
 
 
 <div align="center">
-https://github.com/Gustavo-trybedev/App-Delivery/assets/103958434/dff166ba-cb24-4d95-af89-a833bb39f737
+  <video src="https://github.com/Gustavo-trybedev/App-Delivery/assets/103958434/dff166ba-cb24-4d95-af89-a833bb39f737" />
 </div>
 
 <!-- Olá, Tryber!
