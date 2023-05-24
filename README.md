@@ -1,7 +1,7 @@
 # :construction: README em construção ! :construction:
 
 
-<div align-items="center" display: "flex">
+<div align="center">
 https://github.com/Gustavo-trybedev/App-Delivery/assets/103958434/dff166ba-cb24-4d95-af89-a833bb39f737
 </div>
 
