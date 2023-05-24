@@ -3,7 +3,7 @@
 
 
 
-<video src="[LINK](https://github.com/Gustavo-trybedev/App-Delivery/assets/103958434/c66a91f8-b872-4140-a000-7335aa982b3a)" controls="controls" style="max-width: 730px;"> </video>
+<video src="https://github.com/Gustavo-trybedev/App-Delivery/assets/103958434/c66a91f8-b872-4140-a000-7335aa982b3a" controls="controls" style="max-width: 730px;"> </video>
 
 <!-- Olá, Tryber!
 Esse é apenas um arquivo inicial para o README do seu projeto.
