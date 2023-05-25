@@ -35,6 +35,25 @@ Neste projeto criamos um MVP de um aplicativo de receitas. Fomos responsáveis p
 - MySQL
 - Sinon / Mocha / Chai
 
+# Principais Funcionalidades
+A) Acesso via login: tanto clientes, quanto pessoas vendedoras e administradores devem ter acesso ao aplicativo via login, porém para funções diferentes: (1) A pessoa cliente, que compra da lista de produtos; (2) A pessoa vendedora, que aprova, prepara e entrega; (3) A pessoa administradora, que gerencia quem usa o aplicativo;
+
+B) Fazer a comunicação entre clientes e pessoas vendedoras: a pessoa cliente faz o pedido via "carrinho de compras" e a pessoa vendedora aprova, prepara e envia esse pedido. Quando o produto é recebido por quem comprou, essa pessoa marca o pedido como "recebido". Ambos devem possuir detalhes sobre seus pedidos;
+
+C) Se a pessoa cliente faz o pedido, o mesmo deve aparecer para a pessoa vendedora em seu dash de pedidos após a atualização da página. A pessoa cliente, por sua vez, deve ter as informações sobre seu pedido quando sua página for atualizada, ou seja, ter informações se o pedido está sendo preparado ou se já saiu pra entrega;
+
+# Banco de Dados
+
+O banco de dados contituiu-se de 4 tabelas que se relacionam entre si, que são:
+- Usuários
+- Vendas
+- Produtos da Venda
+- Produtos
+
+**Diagrama de Entidade e Relacionamento**
+
+![erdr](https://github.com/Gustavo-trybedev/App-Delivery/assets/103958434/d9921d12-122f-4434-a342-dd34e029c916)
+
 # Preview
 
 <div align="center">
