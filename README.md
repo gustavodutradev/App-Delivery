@@ -29,17 +29,17 @@ Importante ressaltar que cada equipe prestava suporte à outra e realizava *pair
 - React-Hooks
 - Axios
 
-**Estilização**
-- Mobile First
-- Tailwind
-- Styled-Components
-
 **Back-End**
 - Node.js
 - Express
 - Sequelize
 - JWT
 - MySQL
+
+**Estilização**
+- Mobile First
+- Tailwind
+- Styled-Components
 
 **Testes**
 - Front-End: Jest
