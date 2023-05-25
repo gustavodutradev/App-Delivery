@@ -3,7 +3,6 @@
 Seja bem-vindo(a) ao repositório do App de Receitas! Este projeto foi realizado em grupo durante meus estudos na Trybe, sendo o projeto de conclusão de Back-End.
 
 Composição do grupo:
-- Danilo Ramalho
 - Gustavo Dutra
 - Juliana Martinelli
 - Pedro Boccaletti
