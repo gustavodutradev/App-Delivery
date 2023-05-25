@@ -1,6 +1,6 @@
 # Apresentação
 
-Seja bem-vindo(a) ao repositório do App de Receitas! Este projeto foi realizado em grupo durante meus estudos na Trybe.
+Seja bem-vindo(a) ao repositório do App de Receitas! Este projeto foi realizado em grupo durante meus estudos na Trybe, sendo o projeto de conclusão de Back-End.
 
 Composição do grupo:
 - Danilo Ramalho
@@ -9,7 +9,13 @@ Composição do grupo:
 - Pedro Boccaletti
 - Ricardo Souza
 
-Neste projeto criamos um MVP de um aplicativo de receitas. Fomos responsáveis por construir tanto o Front-End, quanto o Back-end e o Banco de Dados da aplicação.
+Neste projeto criamos um MVP de um aplicativo de delivery de bebidas. Fomos responsáveis por construir tanto o Front-End, quanto o Back-end e o Banco de Dados da aplicação.
+
+Utilizamos da metodologia Kanban para organizarmos nosso progresso e possuir total visibilidade e transparência de cada etapa. Além disso, realizávamos *daily meetings* antes do início de cada dia de trabalho, para que todos ficassem à par da situação atual de cada integrante, o que seria feito no dia e se havia algum impedimento/bloqueio em alguma tarefa.
+
+Fui responsável pela construção do Front-End e estilização do projeto, junto ao Pedro Boccaletti.
+Ricardo Souza e Juliana Martinelli foram responsáveis pela construção do Back-End e realização de testes.
+Importante ressaltar que cada equipe prestava suporte à outra e realizava *pair programming* quando suas tarefas já haviam sido concluídas. Dessa forma, todos os integrantes puderam participar de todas as etapas da aplicação, do início ao fim.
 
 # Tecnologias Utilizadas
 
