@@ -28,9 +28,11 @@ Importante ressaltar que cada equipe prestava suporte à outra e realizava *pair
 - React-Redux
 - React-Hooks
 - Axios
+
+**Estilização**
+- Mobile First
 - Tailwind
-- Styled Components
-- Jest
+- Styled-Components
 
 **Back-End**
 - Node.js
@@ -38,7 +40,10 @@ Importante ressaltar que cada equipe prestava suporte à outra e realizava *pair
 - Sequelize
 - JWT
 - MySQL
-- Sinon / Mocha / Chai
+
+**Testes**
+- Front-End: Jest
+- Back-End: Sinon / Mocha / Chai
 
 # Principais Funcionalidades
 A) Acesso via login: tanto clientes, quanto pessoas vendedoras e administradores devem ter acesso ao aplicativo via login, porém para funções diferentes: (1) A pessoa cliente, que compra da lista de produtos; (2) A pessoa vendedora, que aprova, prepara e entrega; (3) A pessoa administradora, que gerencia quem usa o aplicativo;
