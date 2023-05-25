@@ -12,16 +12,28 @@ Composição do grupo:
 Neste projeto criamos um MVP de um aplicativo de receitas. Fomos responsáveis por construir tanto o Front-End, quanto o Back-end e o Banco de Dados da aplicação.
 
 # Tecnologias Utilizadas
-- Docker
-- React (Vite)
+
+**Aplicação**
+- JavaScript
+- GIT
+- DOCKER
 - EsLint
+
+**Front-End**
+- React-Redux
+- React-Hooks
 - Axios
+- Tailwind
+- Styled Components
+- Jest
+
+**Back-End**
 - Node.js
 - Express
+- Sequelize
 - JWT
 - MySQL
-- Tailwind (twin macro) 
-- Styled Components
+- Sinon / Mocha / Chai
 
 # Preview
 
