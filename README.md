@@ -1,6 +1,6 @@
 # Apresentação
 
-Seja bem-vindo(a) ao repositório do App de Receitas! Este projeto foi realizado em grupo durante meus estudos na Trybe, sendo o projeto de conclusão de Back-End.
+Seja bem-vindo(a) ao repositório do App Delivery de Bebidas! Este projeto foi realizado em grupo durante meus estudos na Trybe, sendo o projeto de conclusão de Back-End.
 
 Composição do grupo:
 - Gustavo Dutra
