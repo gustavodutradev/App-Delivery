@@ -3,7 +3,7 @@ import tw from 'twin.macro';
 
 const SCard = styled.div`
   ${tw`
-    justify-center
+    justify-around
     flex
     flex-col
     m-1.5
@@ -16,9 +16,15 @@ const SCard = styled.div`
   `}
 
 width: 10rem;
-height: 20rem;
-background-color: #333333ed;
-border-color: #333333a2;
+height: 17rem;
+background: #433f5a;
+background: -webkit-linear-gradient(145deg, #433f5a 0%, #ff6442 50%, #433f5a 100%);
+background: linear-gradient(145deg, #433f5a 0%, #ff6442 50%, #433f5a 100%);
+border: 1px solid #433f5a;
+outline: none;
+border-radius: 8px;
+filter: drop-shadow(0px 15px 27px rgba(0, 0, 0, 0.25));
+
   input {
     width: 2em;
   }
