@@ -5,23 +5,20 @@ const SForm = styled.form`
   ${tw`
     flex
     flex-col
-    justify-center
-    p-10
-    gap-4
   `}
-    width: 35vh;
-    color: black;
-    border-radius: 15px;
-    background-color: rgba(204, 156, 0, 0.486);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    align-items: center;
+  width: 280px;
+  color: #fff;
+  background-color:#433F5A;
+  align-items: center;
+  border: none;
+  outline: none;
+  filter: drop-shadow(0 -32px 16px -0.5px rgba(0, 0, 0, 0.25));
 
   input {
-    background: rgb(255, 255, 255);
-    border: 1px solid #33333354;
-    border-radius: 8px;
-    color: rgb(51, 51, 51);
+    background: #433F5A;
+    border: none;
+    border-bottom: 1px solid #fff;
+    color: #fff;
     font-size: 16px;
     width: 18rem;
     height: 2rem;
@@ -36,28 +33,32 @@ const SForm = styled.form`
     cursor: pointer;
     width: 12rem;
     height: 1.8rem;
-    background-color: #333333;
-    border: none;
+    background-color: #FF6442;
     color: white;
     border-radius: 10px;
-    font-weight: lighter;
-      &:hover {
-      color: rgb(255, 197, 0);
-    }
+    padding: 0.7rem;
+    font-size: 12px;
   }
 
   @media only screen and (min-device-width: 360px) and (max-device-width: 480px) {
-    width: 270px;
-    height: 330px;
-    text-transform: uppercase;
-    margin-top: 10rem;
+    width: 280px;
+    height: auto;
+    gap: 0;
+    font-size: 15px;
+    position: fixed;
+    margin-bottom: 1rem;
+
     input {
-      width: 12rem;
-      height: 1.5rem;
+      width: 10rem;
+      height: 1rem;
+      font-size: 10px;
+        &::placeholder{
+          font-size: 0.7rem;
+        }
     }
     button {
-      width: 12rem;
-      height: 1.5rem;
+      width: 6rem;
+      height: 1rem;
     }
   }
 `;
