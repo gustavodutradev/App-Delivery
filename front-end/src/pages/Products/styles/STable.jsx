@@ -7,8 +7,8 @@ const STable = styled.div`
   flex-wrap: wrap;
   justify-content: space-evenly;
   position: relative;
-  background-color: rgb(255, 197, 0);
-  border-color: rgb(255, 197, 0);
+  background-color: #433F5A;
+  border-color: #433F5A;
   height: 100%;
 
   // SMARTPHONE
