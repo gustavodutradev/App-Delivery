@@ -7,12 +7,11 @@ import Input from '../../components/Input';
 import { setUser } from '../../redux/slices/userSlice';
 import axiosRequest from '../../utils/axios';
 import { GET_STATUS_OK } from '../../utils/statusCodes';
-import logo from '../../images/logoappdelivery.jpeg';
 
 // styles
+import SForm from './styles/SForm';
 import SFormHeader from './styles/SFormHeader';
 import SLogin from './styles/SLogin';
-import SForm from './styles/SForm';
 
 export default function LoginForm() {
   const [email, setEmail] = useState('');
@@ -53,7 +52,7 @@ export default function LoginForm() {
   return (
     <SLogin>
       <SFormHeader>
-        <h1>Toninho Soluções WEB SA.</h1>
+        header
       </SFormHeader>
       <SForm
         onSubmit={ async (e) => {
@@ -66,25 +65,24 @@ export default function LoginForm() {
           }
         } }
       >
-        <img src={ logo } alt="logo" />
         <Input
           onChange={ (e) => { setEmail(e.target.value); } }
           value={ email }
-          name="Login"
+          name="Address Email"
           type="email"
           datatestId="common_login__input-email"
-          placeHolder="E-mail"
+          placeHolder="user@deliveryapp.com"
         />
         <Input
           onChange={ (e) => { setPw(e.target.value); } }
           value={ pw }
-          name="Senha"
+          name="Password"
           type="password"
           datatestId="common_login__input-password"
-          placeHolder="Senha"
+          placeHolder="**********"
         />
         <Button
-          name="LOGIN"
+          name="Log In"
           datatestId="common_login__button-login"
           disabled={ !isValid }
         />
