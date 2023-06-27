@@ -2,48 +2,51 @@ import styled from 'styled-components';
 import tw from 'twin.macro';
 
 const RightContainer = styled.div`
-  @media only screen and (min-width: 360px) and (max-width: 480px) {
-
-    ${tw`
-      text-white
+@media only screen and (min-width: 360px) and (max-width: 480px) {
+  ${tw`
       flex
-      gap-1
-      justify-center
+      flex-col
       items-center
-    `}
-    width: 250px;
+      gap-2
+  `}
 
-    .quantity {
-      min-width: 1.5rem;
-      background-color: #036B52;
-      font-weight: bold;
-      border-radius: 7px;
-      padding: 0.2rem;
-      box-shadow: 0.3rem 0.3rem 0.7rem #333333;
-    }
-    .unitPrice {
-      background-color: #421981;
-      width: 5rem;
-      font-weight: bold;
-      border-radius: 7px;
-      box-shadow: 0.3rem 0.3rem 0.7rem #333333;
-    }
-    .subTotal {
-      background-color: #056CF9;
-      width: 5rem;
-      font-weight: bold;
-      border-radius: 7px;
-      box-shadow: 0.3rem 0.3rem 0.7rem #333333;
-    }
 
-    button {
-      width: 50px;
-      font-size: 10px;
-      border: none;
-      border-radius: 10px;
-      background-color: #de3131;
-      box-shadow: 0.3rem 0.3rem 0.7rem #333333;
-    }
+  button {
+    height: 1.4rem;
+    width: 1.4rem;
+    font-size: 14px;
+    border-radius: 5px;
+    margin: 1px;
+    background-color: #FF6442;
+  }
+
+  span {
+    font-size: 16px;
+    font-weight: bold;
+    color: black;
+    text-shadow: 0.1rem 0.1rem 0.2rem #333333aa;
+  }
+    
+.product-infos {
+  ${tw`
+      flex
+      justify-start
+      items-center
+  `}
+    
+  button {
+    background-color: rgb(255, 255, 255);
+    color: red;
+    border: none;
+  }
+}
+
+.subTotal {
+  color: #FF5833;
+  font-size: 16px;
+  width: auto;
+}
+
 }
   `;
 
