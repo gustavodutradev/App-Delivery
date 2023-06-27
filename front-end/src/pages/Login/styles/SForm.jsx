@@ -13,7 +13,8 @@ const SForm = styled.form`
   color: #fff;
   background-color:#433F5A;
   align-items: center;
-  margin-top: 8rem;
+  position: fixed;
+  bottom: 7rem;
   border: none;
   outline: none;
   filter: drop-shadow(0 -32px 16px -0.5px rgba(0, 0, 0, 0.25));
