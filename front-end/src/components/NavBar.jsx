@@ -13,7 +13,7 @@ const SNav = styled.nav`
   flex
   justify-evenly
   `}
-  min-width: 100%;
+  max-width: 100vw;
   height: 3rem;
   span {
     display: flex;
