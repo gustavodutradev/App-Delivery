@@ -7,9 +7,9 @@ import { changeQuantity } from '../../redux/slices/cartSlice';
 
 // styles
 import BottomContainer from './styles/SBottom';
-import TopContainer from './styles/STop';
 import SCard from './styles/SCard';
 import QuantityContainer from './styles/SQuantity';
+import TopContainer from './styles/STop';
 
 function Card(props) {
   const { product } = props;
