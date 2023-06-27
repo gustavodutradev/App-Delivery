@@ -9,6 +9,7 @@ import axiosRequest from '../../utils/axios';
 import { GET_STATUS_OK } from '../../utils/statusCodes';
 
 // styles
+import logo from '../../images/login.jpeg';
 import SForm from './styles/SForm';
 import SFormHeader from './styles/SFormHeader';
 import SLogin from './styles/SLogin';
@@ -52,7 +53,7 @@ export default function LoginForm() {
   return (
     <SLogin>
       <SFormHeader>
-        header
+        <img src={ logo } alt="logo" />
       </SFormHeader>
       <SForm
         onSubmit={ async (e) => {
