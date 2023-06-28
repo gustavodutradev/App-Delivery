@@ -5,7 +5,7 @@ const STable = styled.table`
     font-size: 11px;
     box-shadow: 0.3rem 0.3rem 0.7rem #333333;
     border-radius: 5px;
-    width: 100vw;
+    width: 90vw;
 }
 `;
 
