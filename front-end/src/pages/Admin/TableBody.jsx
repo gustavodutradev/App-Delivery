@@ -4,6 +4,7 @@ import Button from '../../components/Button';
 import axiosRequest from '../../utils/axios';
 
 // styles
+import { FaTrashAlt } from 'react-icons/fa';
 import TBody from './styles/TBody';
 
 export default function TableBody() {
@@ -50,7 +51,7 @@ export default function TableBody() {
           </td>
           <td data-testid={ `admin_manage__element-user-table-remove-${index}` }>
             <Button
-              name="Excluir"
+              name= { <FaTrashAlt /> }
               type="button"
               onClick={ () => deleteUser(email) }
               disabled={ false }
