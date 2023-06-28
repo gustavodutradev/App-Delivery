@@ -1,9 +1,9 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import RightContainer from './styles/SRightContainer';
 import LeftContainer from './styles/SLeftContainer';
 import SListItem from './styles/SListItem';
+import RightContainer from './styles/SRightContainer';
 
 function ProductItem(props) {
   const { product, index } = props;
@@ -18,14 +18,6 @@ function ProductItem(props) {
   return (
     <SListItem>
       <LeftContainer>
-        <span
-          className="index"
-          data-testid={
-            `seller_order_details__element-order-table-item-number-${index}`
-          }
-        >
-          {index}
-        </span>
         <span
           className="description"
           data-testid={ `seller_order_details__element-order-table-name-${index}` }
