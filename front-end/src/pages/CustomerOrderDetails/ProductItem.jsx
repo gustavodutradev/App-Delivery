@@ -20,14 +20,6 @@ function ProductItem(props) {
     <SListItem>
       <LeftContainer>
         <span
-          className="index"
-          data-testid={
-            `customer_order_details__element-order-table-item-number-${index}`
-          }
-        >
-          {index}
-        </span>
-        <span
           className="description"
           data-testid={ `customer_order_details__element-order-table-name-${index}` }
         >
