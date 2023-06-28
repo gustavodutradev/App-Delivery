@@ -1,25 +1,30 @@
 import styled from 'styled-components';
-import tw from 'twin.macro';
 
 const SForm = styled.form`
   @media only screen and (min-width: 360px) and (max-width: 480px) {
-  ${tw`
-  grid
-  grid-cols-1
-  gap-2
-  `}
   span {
     font-size: 12px;
+    font-weight: bold;
+    color: #FF6442;
   }
+
   .address {
-    width: 80px;
-    border: 1px solid #036B52;
+    width: 100%;
+    height: 25px;
+    border: 1px solid #FF6442;
     border-radius: 5px;
+    font-size: 14px;
+    font-weight: lighter;
+    padding: 0.5em;
   }
   .address-number {
-    width: 80px;
-    border: 1px solid #036B52;
+    width: 100%;
+    height: 25px;
+    border: 1px solid #FF6442;
     border-radius: 5px;
+    font-size: 14px;
+    font-weight: lighter;
+    padding: 0.5em;
   }
   }
 `;

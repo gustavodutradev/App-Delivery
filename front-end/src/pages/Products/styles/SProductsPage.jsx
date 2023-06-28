@@ -1,5 +1,5 @@
-import tw from 'twin.macro';
 import styled from 'styled-components';
+import tw from 'twin.macro';
 
 const SProductsPage = styled.div`
 
@@ -10,6 +10,7 @@ ${tw`
   items-center
   justify-between
 `}
+
 }
 `;
 

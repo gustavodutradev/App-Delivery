@@ -15,15 +15,24 @@ import SelectSeller from './styles/SSelectSeller';
 const FieldsContainer = styled.div`
   @media only screen and (min-width: 360px) and (max-width: 480px) {
     display: flex;
+    flex-direction: column;
     justify-content: center;
-    align-items: center;
     margin-top: 0;
 }
 `;
 
 const SubmitButton = styled(Button)`
-  background-color: #036B52;
-  border-radius: 20px;
+    background-color: #FF6442;
+    color: #fff;
+    width: 216px;
+    height: 47px;
+    border-radius: 22px;
+    border-color: #FF6442;
+    margin-bottom: 2rem;
+    &:hover {
+      color: white;
+      transform: scale(1.05);
+    }
 `;
 
 function DeliveryDetails() {
@@ -83,7 +92,7 @@ function DeliveryDetails() {
     >
       <FieldsContainer>
         <SelectSeller
-          name="P.Vendedora Responsável"
+          name="Vendedor"
           dataTestid="customer_checkout__select-seller"
           value={ selectedSeller }
           onChange={ (e) => { setSelectedSeller(e.target.value); } }
@@ -101,7 +110,7 @@ function DeliveryDetails() {
           className="address"
         />
         <Input
-          name="Numero"
+          name="Número"
           datatestId="customer_checkout__input-address-number"
           type="text"
           value={ addressNumber }
@@ -110,7 +119,7 @@ function DeliveryDetails() {
         />
       </FieldsContainer>
       <SubmitButton
-        name="FINALIZAR PEDIDO"
+        name="Finalizar Pedido"
         datatestId="customer_checkout__button-submit-order"
         disabled={ btnDisabled }
       />

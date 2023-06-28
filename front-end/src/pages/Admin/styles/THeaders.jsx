@@ -5,13 +5,16 @@ const Headers = styled.thead`
         
         tr {
             line-height: 1rem;
-            background-color: #036B52;
-            color: white;
+            background-color: #FF5833;
+            color: black;
+            text-shadow: 0.1rem 0.1rem 0.2rem #333333aa;
             font-weight: bold;
+            font-size: 14px;
             border-radius: 5px;
         }
         th {
-            width: 0.5rem;
+            width: 1rem;
+            padding: 0.3rem 0.3rem 0.3rem 0.3rem;
         }
     }
 `;

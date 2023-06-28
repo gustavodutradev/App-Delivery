@@ -9,18 +9,13 @@ const LeftContainer = styled.div`
       items-center
       gap-1
     `}
-    width: 8rem;
+    padding: 0.5rem 0.5rem 0.5rem 0.5rem;
     font-weight: bold;
-    .index {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-width: 1.5rem;
-    background-color: #1f6caf;
-    border-radius: 100px;
-    color: white;
-    font-weight: bold;
-    height: 1.5rem;
+
+    span {
+      font-size: 16px;
+      text-shadow: 0.1rem 0.1rem 0.2rem #333333aa;
+      font-weight: bold;
     }
 }
 `;

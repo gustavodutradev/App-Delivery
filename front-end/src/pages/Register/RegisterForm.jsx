@@ -65,9 +65,9 @@ export default function RegisterForm() {
         <Input
           onChange={ (e) => { setName(e.target.value); } }
           value={ name }
-          name="Nome"
+          name="Full Name"
           datatestId="common_register__input-name"
-          placeHolder="Nome e Sobrenome"
+          placeHolder="Andrew McMillan"
         />
         <Input
           onChange={ (e) => { setEmail(e.target.value); } }
@@ -75,7 +75,7 @@ export default function RegisterForm() {
           name="Email"
           type="email"
           datatestId="common_register__input-email"
-          placeHolder="E-mail"
+          placeHolder="newuser@deliveryapp.com"
         />
         <Input
           onChange={ (e) => { setPw(e.target.value); } }
@@ -83,10 +83,10 @@ export default function RegisterForm() {
           name="Password"
           type="password"
           datatestId="common_register__input-password"
-          placeHolder="Senha"
+          placeHolder="*********"
         />
         <Button
-          name="CADASTRAR"
+          name="Sign Up"
           datatestId="common_register__button-register"
           disabled={ !isValid }
         />

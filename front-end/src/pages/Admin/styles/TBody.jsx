@@ -3,7 +3,8 @@ import styled from 'styled-components';
 const TBody = styled.tbody`
     @media only screen and (min-width: 360px) and (max-width: 480px) {
         tr {
-            line-height: 1rem;
+            line-height: 1.5rem;
+            border-top: 2px solid #433F5A;
         }
 
         td {
@@ -12,8 +13,9 @@ const TBody = styled.tbody`
         }
 
         button {
-            width: 50px;
-            font-size: 10px;
+            width: 25px;
+            height: 25px;
+            font-size: 12px;
             border: none;
             border-radius: 10px;
             background-color: #de3131;

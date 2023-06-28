@@ -7,7 +7,7 @@ import CartListItem from './CartListItem';
 const ListContainer = styled.div`
   @media only screen and (min-width: 360px) and (max-width: 480px) {
     width: fit-content;
-    height: 80%;
+    height: fit-content;
   }
 `;
 

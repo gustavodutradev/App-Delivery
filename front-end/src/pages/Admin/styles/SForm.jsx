@@ -9,8 +9,11 @@ const SForm = styled.form`
   gap-2
   justify-items-center
   `}
+
   span {
-    font-size: 12px;
+    font-size: 14px;
+    font-weight: bold;
+    color: white;
   }
 
   input {
@@ -19,8 +22,8 @@ const SForm = styled.form`
     border-radius: 8px;
     color: rgb(51, 51, 51);
     font-size: 16px;
-    width: 18rem;
-    height: 2rem;
+    width: 100%;
+    height: 25px;
     font-weight: lighter;
     padding: 0.5rem;
       &::placeholder{
@@ -29,15 +32,13 @@ const SForm = styled.form`
   }
 
   select {
-    background: rgb(255, 255, 255);
-    border: 1px solid #33333354;
-    border-radius: 8px;
-    color: rgba(51, 51, 51, 0.589);
-    font-size: 13px;
-    width: 18rem;
-    height: 2rem;
-    font-weight: lighter;
-    padding: 0.5rem;
+    width: 100%;
+    height: 25px;
+    border-radius: 5px;
+    background-color: #fff;
+    color: black;
+    font-size: 14px;
+    text-align: center;
   }
 
   button {
@@ -45,7 +46,7 @@ const SForm = styled.form`
     cursor: pointer;
     width: 6rem;
     height: 1.8rem;
-    background-color: #333333;
+    background-color: #FF5833;
     border: none;
     color: white;
     border-radius: 10px;

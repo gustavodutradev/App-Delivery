@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useLocation, useNavigate } from 'react-router-dom';
-import tw from 'twin.macro';
 import styled from 'styled-components';
-import Button from './Button';
+import tw from 'twin.macro';
 import { clearCart } from '../redux/slices/cartSlice';
 import { logout } from '../redux/slices/userSlice';
+import Button from './Button';
 
 const SNav = styled.nav`
 @media only screen and (min-width: 360px) and (max-width: 480px) {  
@@ -13,14 +13,14 @@ const SNav = styled.nav`
   flex
   justify-evenly
   `}
-  min-width: 100%;
+  max-width: 100vw;
   height: 3rem;
   span {
     display: flex;
     text-align: center;
     align-items: center;
   }
-  background-color: #333333;
+  background-color: #433f5a;
   }
 `;
 
@@ -28,29 +28,30 @@ const SRigth = styled.ul`
 @media only screen and (min-width: 360px) and (max-width: 480px) {
   ${tw`
   flex
-  justify-around
+  justify-end
   items-center
+  m-1
   `}
   align-items: center;
   width: 100%;
   
   span {
-    color: rgb(255, 197, 0);
+    color: #ff6442;
     font-weight: bold;
     font-size: 12px;
   }
   button {
-    background-color: #333333;
-    border: 1px solid rgb(255, 197, 0);
-    color: rgb(255, 197, 0);
+    background-color: #433f5a;
+    border: 1px solid #ff6442;
+    color: #ff6442;
     border-radius: 10px;
     font-size: 12px;
     font-weight: bold;
-    height: 1.7rem;
-    width: 3.5rem;
+    height: 1.2rem;
+    width: 3rem;
       &:hover {
         background-color:rgb(255, 197, 0);
-        border: 1px solid #333333;
+        border: 1px solid rgb(255, 197, 0);
         color: #333333;
     }
   }
@@ -62,22 +63,22 @@ const SLeft = styled.ul`
   ${tw`
   flex
   `}
-  /* margin-left: 2.8rem; */
   align-items: center;
 
   button {
-    background-color: #333333;
-    border: 1px solid rgb(255, 197, 0);
-    color: rgb(255, 197, 0);
+    background-color: #433f5a;
+    border: 1px solid #ff6442;
+    color: #ff6442;
     border-radius: 10px;
     font-size: 12px;
     font-weight: bold;
-    height: 1.5rem;
-    width: 4.5rem;
-      &:hover {
-      background-color:rgb(255, 197, 0);
-      border: 1px solid #333333;
-      color: #333333;
+    height: 1.2rem;
+    width: 4rem;
+      &:active {
+      transition: 0.1s;
+      transform: scale(1.1);
+      border: 1px solid rgb(255, 197, 0);
+      color: rgb(255, 197, 0);
     }
   }
 }

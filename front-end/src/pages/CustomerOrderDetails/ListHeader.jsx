@@ -1,8 +1,8 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-import OrderContext from './OrderContext';
 import Button from '../../components/Button';
 import axiosRequest from '../../utils/axios';
+import OrderContext from './OrderContext';
 
 import SListHeader from './styles/SListHeader';
 
@@ -31,14 +31,14 @@ function ListHeader() {
         className="seller"
         data-testid="customer_order_details__element-order-details-label-seller-name"
       >
-        {`P.Vend: ${order.seller.name}`}
+        {`Vendedor(a): ${order.seller.name}`}
 
       </span>
       <span
         className="date"
         data-testid="customer_order_details__element-order-details-label-order-date"
       >
-        {order.saleDate.slice(0, lintLength2).split('-').reverse().join('/')}
+        {`Data: ${order.saleDate.slice(0, lintLength2).split('-').reverse().join('/')}`}
 
       </span>
       <span
@@ -47,7 +47,7 @@ function ListHeader() {
           `customer_order_details__element-order-details-label-delivery-status${index}`
         }
       >
-        {order.status}
+        {`Status: ${order.status}`}
 
       </span>
       <Button
@@ -61,7 +61,7 @@ function ListHeader() {
             fetchOrder();
           }
         } }
-        name="MARCAR COMO ENTREGUE"
+        name="Marcar como entregue"
         disabled={ disabled }
       />
     </SListHeader>

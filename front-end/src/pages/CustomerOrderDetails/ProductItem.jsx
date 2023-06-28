@@ -2,8 +2,8 @@ import PropTypes from 'prop-types';
 import React from 'react';
 
 // styles
-import SListItem from './styles/SListItem';
 import LeftContainer from './styles/SLeftContainer';
+import SListItem from './styles/SListItem';
 import RightContainer from './styles/SRightContainer';
 
 function ProductItem(props) {
@@ -19,14 +19,6 @@ function ProductItem(props) {
   return (
     <SListItem>
       <LeftContainer>
-        <span
-          className="index"
-          data-testid={
-            `customer_order_details__element-order-table-item-number-${index}`
-          }
-        >
-          {index}
-        </span>
         <span
           className="description"
           data-testid={ `customer_order_details__element-order-table-name-${index}` }
@@ -45,13 +37,13 @@ function ProductItem(props) {
           className="unitPrice"
           data-testid={ `ustomer_order_details__element-order-table-unit-price-${index}` }
         >
-          {`R$: ${formatValue(product.price)}`}
+          {`R$ ${formatValue(product.price)}`}
         </span>
         <span
           className="subTotal"
           data-testid={ `customer_order_details__element-order-table-sub-total-${index}` }
         >
-          {`R$: ${formatValue(product.price * product.quantity)}`}
+          {`R$ ${formatValue(product.price * product.quantity)}`}
         </span>
       </RightContainer>
     </SListItem>

@@ -16,8 +16,7 @@ const SLogin = styled.div`
   align-items: center;
   height: 100vh;
   width: 100vw;
-  background-color: rgb(255, 197, 0);
-  border-color: rgb(255, 197, 0);
+  background: #433F5A;
 `;
 
 export default SLogin;

@@ -1,7 +1,7 @@
 import React from 'react';
 import Headers from './styles/THeaders';
 
-const headers = ['Item', 'Nome', 'E-mail', 'Tipo', 'Excluir'];
+const headers = ['ID', 'Nome', 'E-mail', 'Tipo', 'Excluir'];
 
 export default function TableHeader() {
   return (

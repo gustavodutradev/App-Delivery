@@ -8,23 +8,22 @@ const SForm = styled.form`
   ${tw`
     flex
     flex-col
-    justify-center
-    p-10
-    gap-4
   `}
-  width: 350px;
-  color: black;
-  border-radius: 15px;
-  background-color: rgba(204, 156, 0, 0.486);
-  box-shadow: 0.3rem 0.3rem 0.7rem #333333;
+  width: 280px;
+  color: #fff;
+  background-color:#433F5A;
   align-items: center;
-  margin-top: 8rem;
+  position: fixed;
+  bottom: 7rem;
+  border: none;
+  outline: none;
+  filter: drop-shadow(0 -32px 16px -0.5px rgba(0, 0, 0, 0.25));
   
   input {
-    background: rgb(255, 255, 255);
-    border: 1px solid #33333354;
-    border-radius: 8px;
-    color: rgb(51, 51, 51);
+    background: #433F5A;
+    border: none;
+    border-bottom: 1px solid #fff;
+    color: #fff;
     font-size: 16px;
     width: 18rem;
     height: 2rem;
@@ -35,47 +34,42 @@ const SForm = styled.form`
       }
   }
   
+  button {
+    cursor: pointer;
+    width: 12rem;
+    height: 1.8rem;
+    background-color: #FF6442;
+    color: white;
+    border-radius: 10px;
+    padding: 0.7rem;
+    font-size: 12px;
+  }
+  
   button.register-btn {
-    background-color: rgba(204, 156, 0, 0);
-    width: 15rem;
-    font-weight: bold;
-    margin-top: 1rem;
-    margin-bottom: 0;
+    background-color: #FF6442;
+    color: #fff;
+    width: 200px;
+    height: 40px;
+    border-radius: 22px;
+    border-color: #FF6442;
+    position: fixed;
+    bottom: 0;
+    margin-bottom: 2rem;
     &:hover {
       color: white;
       transform: scale(1.05);
     }
   }
 
-  button {
-    cursor: pointer;
-    width: 12rem;
-    height: 1.8rem;
-    background-color: #333333;
-    border: none;
-    color: white;
-    border-radius: 10px;
-    font-weight: lighter;
-      &:hover {
-      color: rgb(255, 197, 0);
-    }
-  }
 
   // SMARTPHONE
   @media only screen and (min-width: 360px) and (max-width: 480px) {
     width: 280px;
     height: auto;
-    text-transform: uppercase;
     gap: 0;
-    font-size: 12px;
+    font-size: 15px;
     position: fixed;
     margin-bottom: 1rem;
-    
-    img {
-      height: auto;
-      max-width: 100%;
-      border-radius: 15px;
-    }
 
     input {
       width: 10rem;
