@@ -12,7 +12,7 @@ border-radius: 10px;
 box-shadow: 0.3rem 0.3rem 0.7rem #333333;
 gap: 1rem;
 height: auto;
-width: 80%;
+width: 60%;
 padding: 0.5rem;
 margin-top: 1rem;
 background-color: #036B52;
