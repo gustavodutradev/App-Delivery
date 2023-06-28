@@ -17,7 +17,7 @@ const RightContainer = styled.div`
     font-size: 14px;
     border-radius: 5px;
     margin: 1px;
-    background-color: #FF6442;
+    background-color: #de3131;
   }
 
   span {
