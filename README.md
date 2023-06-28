@@ -40,6 +40,7 @@ Importante ressaltar que cada equipe prestava suporte à outra e realizava *pair
 - Mobile First
 - Tailwind
 - Styled-Components
+- React Icons
 
 **Testes**
 - Front-End: Jest
