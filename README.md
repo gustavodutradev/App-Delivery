@@ -65,12 +65,6 @@ O banco de dados contituiu-se de 4 tabelas que se relacionam entre si, que são:
 
 ![erdr](https://github.com/Gustavo-trybedev/App-Delivery/assets/103958434/d9921d12-122f-4434-a342-dd34e029c916)
 
-# Preview
-
-<div align="center">
-  <video src="https://github.com/Gustavo-trybedev/App-Delivery/assets/103958434/dff166ba-cb24-4d95-af89-a833bb39f737" />
-</div>
-
 <!-- Olá, Tryber!
 Esse é apenas um arquivo inicial para o README do seu projeto.
 É essencial que você preencha esse documento por conta própria, ok?
